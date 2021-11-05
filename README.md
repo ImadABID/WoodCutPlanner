@@ -1,2 +1,2 @@
-# PG_220_decoupage_de_bois
-Application de gestion de découpe de planche de bois.
+# WoodCutPlanner
+A Java Software that optimizes cutting patterns based on the available wood panels.
