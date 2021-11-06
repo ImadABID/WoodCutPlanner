@@ -2,68 +2,6 @@
 
 package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
-    package "actor"{
-
-        abstract class actor.Actor{
-            # int id
-
-            + int getId()
-            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) \n\tthrows IllegalArgumentException
-        }
-
-        class actor.Client{
-
-        }
-
-        class actor.Supplier{
-            
-        }
-
-        actor.Actor <|-- actor.Client
-        actor.Actor <|-- actor.Supplier
-
-    }
-
-    package "wood"{
-
-        abstract class wood.RectuangularWoodPiece {
-
-            # int typeId
-            # int idInsideGroup
-            # int nbrPiecesFromType
-            # double length
-            # double width
-            # Date critical_date
-            # double price
-
-            + RectuangularWoodPiece(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price)\n\tthrows IllegalArgumentException
-            + double getLength()
-            + double getWidth()
-            + int getTypeId()
-            + int getIdInsideGroup()
-            + int getNbrPiecesFromType()
-            + Date getCritical_date()
-            + double getPrice()
-
-        }
-
-        class wood.Panel {
-            + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
-            + Supplier getSupplier();
-        }
-        wood.Panel *-- actor.Supplier
-
-        class wood.Board {
-            + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tClient client)
-            + Client getClient();
-        }
-        wood.Board *-- actor.Client
-
-        wood.RectuangularWoodPiece <|-- wood.Panel
-        wood.RectuangularWoodPiece <|-- wood.Board
-
-    }
-
     package "basic_geometry"{
 
         class basic_geometry.Point {
@@ -104,6 +42,66 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         basic_geometry.Rectangle *-- basic_geometry.Point
 
         basic_geometry.Polygon <|-- basic_geometry.Rectangle
+
+    }
+
+    package "actor"{
+
+        abstract class actor.Actor{
+            # int id
+
+            + int getId()
+            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) \n\tthrows IllegalArgumentException
+        }
+
+        class actor.Client{
+
+        }
+
+        class actor.Supplier{
+            
+        }
+
+        actor.Actor <|-- actor.Client
+        actor.Actor <|-- actor.Supplier
+
+    }
+
+    package "wood"{
+
+        abstract class wood.WoodPiece {
+
+            # int typeId
+            # int idInsideGroup
+            # int nbrPiecesFromType
+            # Date critical_date
+            # double price
+
+            + WoodPiece(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone,\n\tDate critical_date,\n\tdouble price)\n\tthrows IllegalArgumentException
+            + int getTypeId()
+            + int getIdInsideGroup()
+            + int getNbrPiecesFromType()
+            + Polygon getPolygon()
+            + Date getCritical_date()
+            + double getPrice()
+
+        }
+        wood.WoodPiece *-- basic_geometry.Polygon
+
+        class wood.Panel {
+            + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
+            + Supplier getSupplier();
+        }
+        wood.Panel *-- actor.Supplier
+
+        class wood.Board {
+            + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tClient client)
+            + Client getClient();
+        }
+        wood.Board *-- actor.Client
+
+        wood.WoodPiece <|-- wood.Panel
+        wood.WoodPiece <|-- wood.Board
 
     }
 

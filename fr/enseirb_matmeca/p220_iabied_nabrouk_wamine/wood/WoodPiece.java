@@ -2,27 +2,28 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood;
 
 import java.util.Date;
 
-public abstract class RectuangularWoodPiece {
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
+
+public abstract class WoodPiece {
 
     protected int typeId;
     protected int idInsideGroup;
     protected int nbrPiecesFromType;
 
-    protected double length;
-    protected double width;
+    protected Polygon polygon;
 
     protected Date critical_date;
 
     protected double price;
 
-    public RectuangularWoodPiece(
+    public WoodPiece(
         int typeId, int idInsideGroup, int nbrPiecesFromType,
-        double length, double width,
+        Polygon polygon,
         Date critical_date,
         double price
     ) throws IllegalArgumentException{
 
-        if( length <= .0 || width <= .0 || typeId < 0 || idInsideGroup >= nbrPiecesFromType || nbrPiecesFromType <= 0){
+        if(typeId < 0 || idInsideGroup >= nbrPiecesFromType || nbrPiecesFromType <= 0){
             throw new IllegalArgumentException();
         }
 
@@ -30,8 +31,7 @@ public abstract class RectuangularWoodPiece {
         this.idInsideGroup = idInsideGroup;
         this.nbrPiecesFromType = nbrPiecesFromType;
 
-        this.length = length;
-        this.width = width;
+        this.polygon = polygon;
 
         this.critical_date = critical_date;
 
@@ -40,14 +40,6 @@ public abstract class RectuangularWoodPiece {
     }
 
     // geters
-
-    public double getLength(){
-        return this.length;
-    }
-
-    public double getWidth(){
-        return this.width;
-    }
 
     public int getTypeId(){
         return this.typeId;
@@ -59,6 +51,10 @@ public abstract class RectuangularWoodPiece {
 
     public int getNbrPiecesFromType(){
         return this.nbrPiecesFromType;
+    }
+
+    public Polygon getPolygon(){
+        return this.polygon;
     }
 
     public Date getCritical_date(){
