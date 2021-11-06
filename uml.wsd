@@ -51,16 +51,59 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
             + Supplier getSupplier();
         }
-        wood.Panel o-- actor.Supplier
+        wood.Panel *-- actor.Supplier
 
         class wood.Board {
             + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tClient client)
             + Client getClient();
         }
-        wood.Board o-- actor.Client
+        wood.Board *-- actor.Client
 
         wood.RectuangularWoodPiece <|-- wood.Panel
         wood.RectuangularWoodPiece <|-- wood.Board
+
+    }
+
+    package "basic_geometry"{
+
+        class basic_geometry.Point {
+
+            - double x
+            - double y
+
+            + Point(double x, double y)\n\tthrows IllegalArgumentException
+            + Point()
+            + double getX()
+            + void setX(double x)
+            + double getY()
+            + void setY(double y)
+
+        }
+
+        class basic_geometry.Polygon {
+
+            + Polygon(List<Point> pts)
+            + Polygon()
+            + List<Point> getPts();
+            + {static} boolean overlap(Polygon p1, Polygon p2)
+
+        }
+        basic_geometry.Polygon "1" *-- "*" basic_geometry.Point
+
+        class basic_geometry.Rectangle {
+
+            - double lenght
+            - double width
+            
+            + Rectangle(Point leftTopPt, double lenght, double width)\n\tthrows IllegalArgumentException
+            + Point getLeftTopPt()
+            + double getLenght()
+            + double getWidth()
+            + {static} boolean overlap(Rectangle r1, Rectangle r2)
+        }
+        basic_geometry.Rectangle *-- basic_geometry.Point
+
+        basic_geometry.Polygon <|-- basic_geometry.Rectangle
 
     }
 
