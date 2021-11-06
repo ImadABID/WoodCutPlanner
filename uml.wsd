@@ -1,0 +1,30 @@
+@startuml uml
+
+package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
+
+    package "actor"{
+
+        abstract class Actor{
+            # int id
+
+            + int getId()
+            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id)
+        }
+
+        class Cleint{
+
+        }
+
+        class Supplier{
+            
+        }
+
+        Actor <|-- Cleint
+        Actor <|-- Supplier
+
+    }
+
+}
+
+
+@enduml
