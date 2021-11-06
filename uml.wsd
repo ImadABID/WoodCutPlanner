@@ -1,5 +1,7 @@
 @startuml uml
 
+left to right direction
+
 package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
     package "basic_geometry"{
