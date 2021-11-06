@@ -90,18 +90,61 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
         class wood.Panel {
             + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
-            + Supplier getSupplier();
+            + Supplier getSupplier()
         }
         wood.Panel *-- actor.Supplier
 
         class wood.Board {
             + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tClient client)
-            + Client getClient();
+            + Client getClient()
         }
         wood.Board *-- actor.Client
 
         wood.WoodPiece <|-- wood.Panel
         wood.WoodPiece <|-- wood.Board
+
+    }
+
+    package "cut" {
+        
+        class cut.Cut {
+
+            + Cut(Panel panel, Board board, Point position)
+            + Panel getPanel()
+            + Board getBoard()
+            + Point getPosition()
+            + {static} void generateSVG(List<Cut> cuts, String path)
+            + {static} void generateXML(List<Cut> cuts, String path)
+
+        }
+        cut.Cut *-- wood.Panel
+        cut.Cut *-- wood.Board
+        cut.Cut *-- basic_geometry.Point
+
+        interface CutAlgos{
+            + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+        }
+
+        class CutStep2Algo {
+            + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+        }
+
+        class CutStep3Algo1 {
+            + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+        }
+
+        class CutStep3Algo2 {
+            + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+        }
+
+        class CutStep4Algo {
+            + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+        }
+
+        CutAlgos <|-- CutStep2Algo
+        CutAlgos <|-- CutStep3Algo1
+        CutAlgos <|-- CutStep3Algo2
+        CutAlgos <|-- CutStep4Algo
 
     }
 
