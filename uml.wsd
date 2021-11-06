@@ -4,23 +4,63 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
     package "actor"{
 
-        abstract class Actor{
+        abstract class actor.Actor{
             # int id
 
             + int getId()
             + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) \n\tthrows IllegalArgumentException
         }
 
-        class Cleint{
+        class actor.Client{
 
         }
 
-        class Supplier{
+        class actor.Supplier{
             
         }
 
-        Actor <|-- Cleint
-        Actor <|-- Supplier
+        actor.Actor <|-- actor.Client
+        actor.Actor <|-- actor.Supplier
+
+    }
+
+    package "wood"{
+
+        abstract class wood.RectuangularWoodPiece {
+
+            # int typeId
+            # int idInsideGroup
+            # int nbrPiecesFromType
+            # double length
+            # double width
+            # Date critical_date
+            # double price
+
+            + RectuangularWoodPiece(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price)\n\tthrows IllegalArgumentException
+            + double getLength()
+            + double getWidth()
+            + int getTypeId()
+            + int getIdInsideGroup()
+            + int getNbrPiecesFromType()
+            + Date getCritical_date()
+            + double getPrice()
+
+        }
+
+        class wood.Panel {
+            + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
+            + Supplier getSupplier();
+        }
+        wood.Panel o-- actor.Supplier
+
+        class wood.Board {
+            + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tdouble length, double width,\n\tDate critical_date,\n\tdouble price,\n\tClient client)
+            + Client getClient();
+        }
+        wood.Board o-- actor.Client
+
+        wood.RectuangularWoodPiece <|-- wood.Panel
+        wood.RectuangularWoodPiece <|-- wood.Board
 
     }
 
