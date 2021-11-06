@@ -9,7 +9,11 @@ public abstract class Actor {
         return this.id;
     }
 
-    public static Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id){
+    public static Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) throws IllegalArgumentException{
+
+        if(id < 0){
+            throw new IllegalArgumentException();
+        }
 
         // To implement later.
         

@@ -8,7 +8,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             # int id
 
             + int getId()
-            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id)
+            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) \n\tthrows IllegalArgumentException
         }
 
         class Cleint{
