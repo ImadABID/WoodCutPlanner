@@ -11,6 +11,8 @@ public class TestActorPackage {
 
 
         // Testing Client
+        
+        /*
 
         List<Client> cleintList = new ArrayList<Client>();
 
@@ -32,7 +34,10 @@ public class TestActorPackage {
         System.out.println("client id = " + String.valueOf(client.getId()));
         System.out.println("clientList size = " + String.valueOf(cleintList.size()));
 
+        */
+
         // Testing Client
+        /*
 
         List<Client> supplierList = new ArrayList<Client>();
 
@@ -53,5 +58,6 @@ public class TestActorPackage {
         supplier = (Client) Client.getByIdIfNExistCreateIt(supplierList, 3);
         System.out.println("supplier id = " + String.valueOf(supplier.getId()));
         System.out.println("clientList size = " + String.valueOf(supplierList.size()));
+        */
     }
 }

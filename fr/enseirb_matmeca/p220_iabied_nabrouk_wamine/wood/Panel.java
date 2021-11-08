@@ -1,6 +1,8 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.actor.Supplier;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
@@ -28,6 +30,11 @@ public class Panel extends WoodPiece{
 
     public Supplier getSupplier(){
         return this.supplier;
+    }
+
+    public static List<Panel> readFromXML(String path, String tagName){
+
+        return new ArrayList<Panel>();
     }
 
 }

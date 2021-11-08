@@ -93,12 +93,15 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         class wood.Panel {
             + Panel(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
             + Supplier getSupplier()
+            + {static} List<Panel> readFromXML(String path, String tagName)
         }
         wood.Panel *-- actor.Supplier
 
         class wood.Board {
             + Board(\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tClient client)
             + Client getClient()
+            + {static} List<Board> readFromXML(String path, String tagName)
+            
         }
         wood.Board *-- actor.Client
 
