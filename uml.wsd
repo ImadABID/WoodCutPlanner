@@ -153,6 +153,15 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
     }
 
+    package "io"{
+        class io.Communicate {
+            + {static} List<Client> readClients(String path, String tagName);
+            + {static}  List<Supplier> readSuppliers(String path, String tagName)
+            + {static} void generateCutsXML(List<Cut> cuts)
+            + {static} void generateCutsSVG(List<Cut> cuts);
+        }
+    }
+
 }
 
 

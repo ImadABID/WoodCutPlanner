@@ -20,11 +20,11 @@ public abstract class Actor {
 
         if(actors.get(0) instanceof Client){
             Client e = new Client();
-            //actors.add(e);
+            actors.add(e);
             return e;
         }else{
             Supplier e = new Supplier();
-            //actors.add(e);
+            actors.add(e);
             return e;
         }
 
