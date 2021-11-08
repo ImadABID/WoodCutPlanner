@@ -1,12 +1,12 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
 
 public abstract class WoodPiece {
+
+    protected int actorId;
 
     protected int typeId;
     protected int idInsideGroup;
@@ -19,15 +19,18 @@ public abstract class WoodPiece {
     protected double price;
 
     public WoodPiece(
+        int actorId,
         int typeId, int idInsideGroup, int nbrPiecesFromType,
         Polygon polygon,
         Date critical_date,
         double price
     ) throws IllegalArgumentException{
 
-        if(typeId < 0 || idInsideGroup >= nbrPiecesFromType || nbrPiecesFromType <= 0){
+        if(actorId < 0 || typeId < 0 || idInsideGroup >= nbrPiecesFromType || nbrPiecesFromType <= 0){
             throw new IllegalArgumentException();
         }
+
+        this.actorId = actorId;
 
         this.typeId = typeId;
         this.idInsideGroup = idInsideGroup;

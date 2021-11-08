@@ -1,10 +1,5 @@
 package Tests;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.actor.Client;
 
 public class TestActorPackage {
     public static void main(String[] args) {

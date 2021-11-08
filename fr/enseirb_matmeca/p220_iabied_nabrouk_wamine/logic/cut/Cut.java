@@ -1,10 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.cut;
-
-import java.util.List;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Point;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood.Panel;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
 public class Cut {
 
@@ -28,14 +26,6 @@ public class Cut {
 
     public Point getPosition(){
         return this.position;
-    }
-
-    public static void generateSVG(List<Cut> cuts, String path){
-        // To implement later.
-    }
-
-    public static void generateXML(List<Cut> cuts, String path){
-        // To implement later.
     }
 
 }

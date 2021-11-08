@@ -1,10 +1,9 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.wood;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.actor.Client;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
 
 public class Board extends WoodPiece{
@@ -12,6 +11,7 @@ public class Board extends WoodPiece{
     private Client client;
 
     public Board(
+        int actorId,
         int typeId, int idInsideGroup, int nbrPiecesFromType,
         Polygon polygon,
         Date critical_date,
@@ -19,6 +19,7 @@ public class Board extends WoodPiece{
         Client client
     ){
         super(
+            actorId,
             typeId, idInsideGroup, nbrPiecesFromType,
             polygon,
             critical_date,

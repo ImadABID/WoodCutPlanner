@@ -1,4 +1,4 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.actor;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.List;
 
@@ -20,11 +20,11 @@ public abstract class Actor {
 
         if(actors.get(0) instanceof Client){
             Client e = new Client();
-            actors.add(e);
+            //actors.add(e);
             return e;
         }else{
             Supplier e = new Supplier();
-            actors.add(e);
+            //actors.add(e);
             return e;
         }
 
