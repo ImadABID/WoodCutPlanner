@@ -1,26 +1,25 @@
 package Tests;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 
 import static fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate.readFromXML;
 
 
 public class TestActorPackage {
-     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, ParseException {
 
 
         // Testing Client
         readFromXML("clients.xml", "client");
-        
         /*
+
         List<Client> cleintList = new ArrayList<Client>();
 
         Client client;
-        S
+
 
         client = (Client) Client.getByIdIfNExistCreateIt(cleintList, 1);
         System.out.println("client id = " + String.valueOf(client.getId()));
@@ -64,4 +63,5 @@ public class TestActorPackage {
         System.out.println("clientList size = " + String.valueOf(supplierList.size()));
         */
     }
+
 }

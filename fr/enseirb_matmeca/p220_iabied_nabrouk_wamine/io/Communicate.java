@@ -1,5 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
+
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Point;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Rectangle;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
@@ -16,14 +17,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Communicate implements isValid{
+public class Communicate implements IsValid{
 
     // Input
 
-    static public ArrayList<WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException {
+    static public ArrayList<WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException, ParseException {
         List<WoodPiece> wood = new ArrayList<WoodPiece>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -34,6 +36,7 @@ public class Communicate implements isValid{
             Element elt = (Element) inf;
             String id1 = elt.getAttribute("id");             //get client or supplier id
             int actor_id = Integer.parseInt(id1);
+            IsValid.isPositive(actor_id, tagName + " id");
             NodeList boardsList = inf.getChildNodes();
             for(int j = 0; j < boardsList.getLength(); j++){
                 Node panel = boardsList.item(j);
@@ -43,9 +46,14 @@ public class Communicate implements isValid{
                     int panel_id = Integer.parseInt(id2);
                     String number = p.getAttribute("nombre");    //get board or panel number
                     int Number = Integer.parseInt(number);
+                    IsValid.isPositive(Number, "number");
                     String date = p.getAttribute("date");              //get board or panel date
                     String price = p.getAttribute("prix");                  //get board or panel price
                     float Price = Float.parseFloat(price);
+                    IsValid.isPositive(Price, "price");
+                    IsValid.isDateFormat(date);
+                    IsValid.isPriceFormat(price);
+                    //isValid.isFutureDate(date);
                     NodeList dimList = panel.getChildNodes();
                     for(int k = 0; k < dimList.getLength(); k++){
                         Node dim = dimList.item(k);
@@ -55,6 +63,10 @@ public class Communicate implements isValid{
                             String width = d.getAttribute("l");             //get board or panel width
                             float L = Float.parseFloat(length);
                             float l = Float.parseFloat(width);
+                            IsValid.isPositive(L, "length");
+                            IsValid.isPositive(l, "width");
+                            IsValid.isDimension(L, l);
+
                             WoodPiece w;
                             Point point = new Point();
                             Rectangle rect = new Rectangle(point, L, l);
@@ -76,8 +88,6 @@ public class Communicate implements isValid{
         return (ArrayList<WoodPiece>) wood;
     }
 
-
-
     // Output
 
     static public void generateCutsXML(List<Cut> cuts){
@@ -87,5 +97,4 @@ public class Communicate implements isValid{
     static public void generateCutsSVG(List<Cut> cuts){
 
     }
-
 }
