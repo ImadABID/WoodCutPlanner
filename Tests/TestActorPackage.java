@@ -8,10 +8,10 @@ public class TestActorPackage {
         // Testing Client
         
         /*
-
         List<Client> cleintList = new ArrayList<Client>();
 
         Client client;
+        S
 
         client = (Client) Client.getByIdIfNExistCreateIt(cleintList, 1);
         System.out.println("client id = " + String.valueOf(client.getId()));
