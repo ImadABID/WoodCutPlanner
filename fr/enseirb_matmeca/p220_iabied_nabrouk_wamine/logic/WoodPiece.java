@@ -14,7 +14,7 @@ public abstract class WoodPiece {
 
     protected Polygon polygon;
 
-    protected Date critical_date;
+    protected String critical_date;
 
     protected double price;
 
@@ -22,7 +22,7 @@ public abstract class WoodPiece {
         int actorId,
         int typeId, int idInsideGroup, int nbrPiecesFromType,
         Polygon polygon,
-        Date critical_date,
+        String critical_date,
         double price
     ) throws IllegalArgumentException{
 
@@ -44,6 +44,8 @@ public abstract class WoodPiece {
 
     }
 
+
+
     // geters
 
     public int getTypeId(){
@@ -62,7 +64,7 @@ public abstract class WoodPiece {
         return this.polygon;
     }
 
-    public Date getCritical_date(){
+    public String getCritical_date(){
         return this.critical_date;
     }
 

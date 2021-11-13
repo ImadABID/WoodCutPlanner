@@ -4,6 +4,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.Date;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Rectangle;
 
 public class Panel extends WoodPiece{
 
@@ -11,7 +12,7 @@ public class Panel extends WoodPiece{
         int actorId,
         int typeId, int idInsideGroup, int nbrPiecesFromType,
         Polygon polygon,
-        Date critical_date,
+        String critical_date,
         double price,
         Supplier supplier
     ){
@@ -24,4 +25,7 @@ public class Panel extends WoodPiece{
         );
     }
 
+    public Panel(int actor_id, int panel_id, int panel_id1, int number, Rectangle rect, String date, float price) {
+        super(actor_id,panel_id,panel_id1, number, rect, date, price);
+    }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Rectangle;
 
 public class Board extends WoodPiece{
     
@@ -14,7 +15,7 @@ public class Board extends WoodPiece{
         int actorId,
         int typeId, int idInsideGroup, int nbrPiecesFromType,
         Polygon polygon,
-        Date critical_date,
+        String critical_date,
         double price,
         Client client
     ){
@@ -29,13 +30,7 @@ public class Board extends WoodPiece{
         this.client = client;
     }
 
-    public Client getClient(){
-        return this.client;
+    public Board(int actor_id, int panel_id, int panel_id1, int number, Rectangle rect, String date, float price) {
+        super(actor_id,panel_id,panel_id1, number, rect, date, price);
     }
-
-    public static List<Board> readFromXML(String path, String tagName){
-
-        return new ArrayList<Board>();
-    }
-    
 }

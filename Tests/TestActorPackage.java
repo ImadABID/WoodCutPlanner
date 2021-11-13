@@ -1,11 +1,20 @@
 package Tests;
 
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
+import static fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate.readFromXML;
+
 
 public class TestActorPackage {
-    public static void main(String[] args) {
+     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
 
 
         // Testing Client
+        readFromXML("clients.xml", "client");
         
         /*
         List<Client> cleintList = new ArrayList<Client>();
