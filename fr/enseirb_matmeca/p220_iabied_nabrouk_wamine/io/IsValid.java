@@ -5,29 +5,37 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public interface IsValid {
-    public static void isPositive(int number, String item) {
+    public static boolean isPositive(int number, String item) {
         if (number < 0){
-            throw new IllegalArgumentException(item + " must be positive : " + number);
+            //throw new IllegalArgumentException(item + " must be positive : " + number);
+            return false;
         }
+        return true;
     }
 
-    public static void isPositive(float number, String item) {
+    public static boolean isPositive(float number, String item) {
         if (number < 0){
-            throw new IllegalArgumentException(item + " must be positive : " + number);
+            //throw new IllegalArgumentException(item + " must be positive : " + number);
+            return false;
         }
+        return true;
     }
 
-    public static void isDimension(float length, float width){
+    public static boolean isDimension(float length, float width){
         if (length < width){
-            throw new IllegalArgumentException("length " + length +" must be greater than width " + width);
+            //throw new IllegalArgumentException("length " + length +" must be greater than width " + width);
+            return false;
         }
+        return true;
 
     }
-    public static void isDateFormat(String date){
+    public static boolean isDateFormat(String date){
         final  String DateFormat = "^\\d\\d(\\.\\d\\d)(\\.\\d\\d)";
         if (!(date.matches(DateFormat))) {
-            throw new IllegalArgumentException("Invalid Date Format : " + date);
+            //throw new IllegalArgumentException("Invalid Date Format : " + date);
+            return false;
         }
+        return true;
     }
     public static void isFutureDate(String date) throws ParseException {
       //  SimpleDateFormat dformat = new SimpleDateFormat("yy.mm.dd");
@@ -38,11 +46,13 @@ public interface IsValid {
       //  }
 
     }
-    public static void isPriceFormat(String price){
+    public static boolean isPriceFormat(String price){
         final  String PriceFormat = "^\\d+(\\.\\d\\d)";
         if (!(price.matches(PriceFormat))) {
-            throw new IllegalArgumentException("Invalid Price Format : " + price);
+            //throw new IllegalArgumentException("Invalid Price Format : " + price);
+            return false;
         }
+        return true;
     }
 
 }
