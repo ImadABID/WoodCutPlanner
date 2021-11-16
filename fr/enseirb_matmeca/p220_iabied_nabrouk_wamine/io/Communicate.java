@@ -29,8 +29,10 @@ public class Communicate{
 
     // Input
 
-    static public ArrayList<WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException, ParseException {
-        List<WoodPiece> wood = new ArrayList<WoodPiece>();
+    static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException, ParseException {
+        
+        ArrayList<WoodPiece> wood = new ArrayList<WoodPiece>();
+        
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document info = builder.parse(path);
@@ -118,7 +120,7 @@ public class Communicate{
             }
         }
         
-        return (ArrayList<WoodPiece>) wood;
+        return wood;
     }
 
 
