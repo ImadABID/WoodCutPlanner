@@ -74,5 +74,17 @@ public abstract class WoodPiece {
         return this.price;
     }
 
+    // toString
+
+    public String toString(String actorType){
+        return 
+            actorType+"Id=" + this.getActorId().value
+            + "\ttypeId=" + this.getTypeId().value
+            + "\tinsideGroupId=" + this.getIdInsideGroup().value
+            + "\tnumber=" + this.getNbrPiecesFromType().value
+            + "\tdate=" + this.getCritical_date().date
+            + "\tprice=" + this.getPrice().value_2
+        ;
+    }
 
 }

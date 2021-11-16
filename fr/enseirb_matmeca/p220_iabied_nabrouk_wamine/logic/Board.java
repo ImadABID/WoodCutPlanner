@@ -27,13 +27,24 @@ public class Board extends WoodPiece {
         );
     }
 
+    public String toString(){
+        return this.toString("client");
+    }
+
+    public static void printList(ArrayList<Board> boards){
+        for(int i = 0 ; i < boards.size(); i++){
+            System.out.println(boards.get(i));
+        }
+    }
+
+
     public static ArrayList<Board> read(String path){
 
         ArrayList<Board> boards = new ArrayList<Board>();
 
         try {
 
-            ArrayList<? extends WoodPiece> woods = Communicate.readFromXML(path, "fournisseur");
+            ArrayList<? extends WoodPiece> woods = Communicate.readFromXML(path, "client");
             for(int i = 0; i<woods.size(); i++){
                 boards.add((Board) woods.get(i));
             }

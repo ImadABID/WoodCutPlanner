@@ -27,6 +27,17 @@ public class Panel extends WoodPiece{
         );
     }
 
+    public String toString(){
+        return this.toString("supplier");
+    }
+
+    public static void printList(ArrayList<Panel> panels){
+        for(int i = 0 ; i < panels.size(); i++){
+            Panel panel = panels.get(i);
+            System.out.println(panel);
+        }
+    }
+
     public static ArrayList<Panel> read(String path){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
