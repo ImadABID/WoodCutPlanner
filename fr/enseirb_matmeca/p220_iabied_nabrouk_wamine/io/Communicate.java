@@ -21,7 +21,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Communicate implements IsValid{
+public class Communicate{
 
     // Input
 
@@ -64,7 +64,6 @@ public abstract class Communicate implements IsValid{
                             dimension.length = Float.parseFloat(length);
                             dimension.width = Float.parseFloat(width);
 
-                            WoodPiece w;
                             Point point = new Point();
                             Rectangle rect = new Rectangle(point, dimension.length, dimension.width );
 
