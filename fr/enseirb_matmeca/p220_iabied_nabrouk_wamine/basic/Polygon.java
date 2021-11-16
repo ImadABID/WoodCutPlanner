@@ -1,9 +1,9 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Polygon {
+public class Polygon implements IsValid{
    
     protected List<Point> pts;
 
@@ -13,6 +13,11 @@ public class Polygon {
 
     public Polygon(){
         this(new ArrayList<Point>());
+    }
+
+    //isValid
+    public boolean isValid(){
+        return true;
     }
 
     // getters

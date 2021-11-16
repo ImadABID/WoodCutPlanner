@@ -1,6 +1,6 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
-public class Point {
+public class Point implements IsValid{
 
     private double x;
     private double y;
@@ -14,25 +14,24 @@ public class Point {
         this(.0, .0);
     }
 
+    //isValid
+    public boolean isValid(){
+        return true;
+    }
+
     //getters & setters
 
     public double getX(){
         return this.x;
     }
-    public void setX(double x) throws IllegalArgumentException{
-        if(x<.0){
-            throw new IllegalArgumentException();
-        }
+    public void setX(double x){
         this.x = x;
     }
 
     public double getY(){
         return this.y;
     }
-    public void setY(double y) throws IllegalArgumentException{
-        if(y<.0){
-            throw new IllegalArgumentException();
-        }
+    public void setY(double y){
         this.y = y;
     }
 

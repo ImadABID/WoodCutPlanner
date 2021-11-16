@@ -1,34 +1,32 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import java.util.Date;
-
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Polygon;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Date;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Polygon;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Price;
 
 public abstract class WoodPiece {
 
-    protected int actorId;
+    protected Id actorId;
 
-    protected int typeId;
-    protected int idInsideGroup;
-    protected int nbrPiecesFromType;
+    protected Id typeId;
+    protected Id idInsideGroup;
+    protected Number nbrPiecesFromType;
 
     protected Polygon polygon;
 
-    protected String critical_date;
+    protected Date critical_date;
 
-    protected double price;
+    protected Price price;
 
     public WoodPiece(
-        int actorId,
-        int typeId, int idInsideGroup, int nbrPiecesFromType,
+        Id actorId,
+        Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
-        String critical_date,
-        double price
-    ) throws IllegalArgumentException{
-
-        if(actorId < 0 || typeId < 0 || idInsideGroup >= nbrPiecesFromType || nbrPiecesFromType <= 0){
-            throw new IllegalArgumentException();
-        }
+        Date critical_date,
+        Price price
+    ){
 
         this.actorId = actorId;
 
@@ -48,15 +46,19 @@ public abstract class WoodPiece {
 
     // geters
 
-    public int getTypeId(){
+    public Id getActorId(){
+        return this.actorId;
+    }
+
+    public Id getTypeId(){
         return this.typeId;
     }
 
-    public int getIdInsideGroup(){
+    public Id getIdInsideGroup(){
         return this.idInsideGroup;
     }
 
-    public int getNbrPiecesFromType(){
+    public Number getNbrPiecesFromType(){
         return this.nbrPiecesFromType;
     }
 
@@ -64,11 +66,11 @@ public abstract class WoodPiece {
         return this.polygon;
     }
 
-    public String getCritical_date(){
+    public Date getCritical_date(){
         return this.critical_date;
     }
 
-    public double getPrice(){
+    public Price getPrice(){
         return this.price;
     }
 

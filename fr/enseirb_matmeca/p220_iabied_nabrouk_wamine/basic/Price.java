@@ -1,9 +1,10 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
-class Price implements IsValid {
+public class Price implements IsValid {
 
-    String value_1;
-    Float value_2;
+    public String value_1;
+    public Float value_2;
+
     @Override
     public boolean isValid()
     {
@@ -14,4 +15,5 @@ class Price implements IsValid {
         return true;
 
     }
+
 }

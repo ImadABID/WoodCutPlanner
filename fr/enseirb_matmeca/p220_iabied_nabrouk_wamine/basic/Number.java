@@ -1,7 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
-public class WoodId implements IsValid{
-    int value;
+public class Number implements IsValid{
+    public int value;
+
     @Override
     public boolean isValid() {
         if(value < 0)
@@ -10,4 +11,5 @@ public class WoodId implements IsValid{
         }
         return true;
     }
+
 }

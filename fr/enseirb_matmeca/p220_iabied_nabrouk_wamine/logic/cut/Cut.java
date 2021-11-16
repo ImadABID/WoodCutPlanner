@@ -1,6 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic_geometry.Point;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 

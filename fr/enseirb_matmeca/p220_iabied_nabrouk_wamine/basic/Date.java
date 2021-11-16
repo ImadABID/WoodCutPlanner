@@ -1,7 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
 public class Date implements IsValid{
-    String date;
+    public String date;
+
     @Override
     public boolean isValid()
     {
@@ -9,4 +10,5 @@ public class Date implements IsValid{
         return date.matches(DateFormat);
 
     }
+    
 }
