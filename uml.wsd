@@ -4,14 +4,18 @@ left to right direction
 
 package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
-    package "basic_geometry"{
+    package "basic"{
 
-        class basic_geometry.Point {
+        interface basic.IsValid {
+            + boolean isValid();
+        }
+
+        class basic.Point implements basic.IsValid{
 
             - double x
             - double y
 
-            + Point(double x, double y)\n\tthrows IllegalArgumentException
+            + Point(double x, double y)
             + Point()
             + double getX()
             + void setX(double x)
@@ -20,7 +24,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
         }
 
-        class basic_geometry.Polygon {
+        class basic.Polygon implements basic.IsValid{
 
             + Polygon(List<Point> pts)
             + Polygon()
@@ -28,9 +32,9 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             + {static} boolean overlap(Polygon p1, Polygon p2)
 
         }
-        basic_geometry.Polygon "1" *-- "*" basic_geometry.Point
+        basic.Polygon "1" *-- "*" basic.Point
 
-        class basic_geometry.Rectangle {
+        class basic.Rectangle {
 
             - double lenght
             - double width
@@ -41,9 +45,28 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             + double getWidth()
             + {static} boolean overlap(Rectangle r1, Rectangle r2)
         }
-        basic_geometry.Rectangle *-- basic_geometry.Point
+        basic.Rectangle *-- basic.Point
+        basic.Polygon <|-- basic.Rectangle
 
-        basic_geometry.Polygon <|-- basic_geometry.Rectangle
+        class basic.Id implements basic.IsValid{
+            + int value
+
+            + Id(int value)
+            + Id()
+        }
+
+        class basic.Date implements basic.IsValid{
+            + String date
+        }
+
+        class basic.Number implements basic.IsValid{
+            + int value
+        }
+
+        class basic.Price implements basic.IsValid {
+            + String value_1
+            + Float value_2
+        }
 
     }
 
@@ -68,39 +91,35 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         logic.Actor <|-- logic.Supplier
 
         abstract class logic.WoodPiece {
-            
-            # int actorId
-            # int typeId
-            # int idInsideGroup
-            # int nbrPiecesFromType
-            # Date critical_date
-            # double price
 
-            + WoodPiece(\n\tint actorId,\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone,\n\tDate critical_date,\n\tdouble price)\n\tthrows IllegalArgumentException
-            + int getTypeId()
-            + int getIdInsideGroup()
-            + int getNbrPiecesFromType()
-            + Polygon getPolygon()
-            + Date getCritical_date()
-            + double getPrice()
+            + WoodPiece(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone,\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + basic.Id getTypeId()
+            + basic.Id getIdInsideGroup()
+            + basic.Id getNbrPiecesFromType()
+            + basic.Polygon getPolygon()
+            + basic.Date getCritical_date()
+            + basic.Price getPrice()
 
         }
-        logic.WoodPiece *-- basic_geometry.Polygon
+        logic.WoodPiece *-- basic.Polygon
+        logic.WoodPiece "1" <-- "3" basic.Id
+        logic.WoodPiece <-- basic.Number
+        logic.WoodPiece <-- basic.Price
+        logic.WoodPiece <-- basic.Date
 
         class logic.Panel {
-            + Panel(\n\tint actorId,\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tSupplier supplier)
-            + Supplier getSupplier()
-            + {static} List<Panel> readFromXML(String path, String tagName)
+            + Panel(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + String toString()
+            + {static} void printList(ArrayList<Panel> panels)
+            + {static} ArrayList<Panel> read(String path)
         }
-        logic.Panel *-- logic.Supplier
 
         class logic.Board {
-            + Board(\n\tint actorId,\n\tint typeId, int idInsideGroup, int nbrPiecesFromType,\n\tPolygone  polygone\n\tDate critical_date,\n\tdouble price,\n\tClient client)
-            + Client getClient()
-            + {static} List<Board> readFromXML(String path, String tagName)
+            + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + {static} void printList(ArrayList<Board> boards)
+            + {static} ArrayList<Board> read(String path)
             
         }
-        logic.Board *-- logic.Client
 
         logic.WoodPiece <|-- logic.Panel
         logic.WoodPiece <|-- logic.Board
@@ -119,7 +138,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             }
             cut.Cut *-- logic.Panel
             cut.Cut *-- logic.Board
-            cut.Cut *-- basic_geometry.Point
+            cut.Cut *-- basic.Point
 
             interface CutAlgos{
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
@@ -152,7 +171,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
     package "io"{
         class io.Communicate {
-            + {static} List<WoodPiece> readFromXML(String path, String tagName)
+            + {static} ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)\t\nthrows ParserConfigurationException, IOException, SAXException, ParseException
             + {static} void generateCutsXML(List<Cut> cuts)
             + {static} void generateCutsSVG(List<Cut> cuts);
         }
