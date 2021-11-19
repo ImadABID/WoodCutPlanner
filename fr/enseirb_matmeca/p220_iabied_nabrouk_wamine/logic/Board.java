@@ -11,6 +11,8 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
 
 public class Board extends WoodPiece {
 
+    private boolean pulledOut;
+
     public Board(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
@@ -25,6 +27,16 @@ public class Board extends WoodPiece {
             critical_date,
             price
         );
+
+        this.pulledOut = false;
+    }
+
+    public boolean isPulledOut(){
+        return this.pulledOut;
+    }
+    
+    public void setAsPulledOut(){
+        this.pulledOut = true;
     }
 
     public String toString(){

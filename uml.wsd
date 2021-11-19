@@ -117,7 +117,10 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         }
 
         class logic.Board {
+            - boolean pulledOut
             + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + boolean isPulledOut()
+            + void setAsPulledOut()
             + {static} void printList(ArrayList<Board> boards)
             + {static} ArrayList<Board> read(String path)
             
