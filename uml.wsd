@@ -126,6 +126,14 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         logic.WoodPiece <|-- logic.Panel
         logic.WoodPiece <|-- logic.Board
 
+        package "comparator" {
+            class WoodPieceLengthWidthComparator implements java.util.Comparator {
+            }
+
+            class WoodPieceWidthLengthComparator implements java.util.Comparator {
+            }
+        }
+
         package "cut" {
             
             class cut.Cut {
@@ -146,26 +154,21 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
-            class CutStep2Algo {
+            class CutStep2Algo implements CutAlgos {
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
-            class CutStep3Algo1 {
+            class CutStep3Algo1 implements CutAlgos {
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
-            class CutStep3Algo2 {
+            class CutStep3Algo2 implements CutAlgos {
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
-            class CutStep4Algo {
+            class CutStep4Algo implements CutAlgos {
                 + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
-
-            CutAlgos <|-- CutStep2Algo
-            CutAlgos <|-- CutStep3Algo1
-            CutAlgos <|-- CutStep3Algo2
-            CutAlgos <|-- CutStep4Algo
 
         }
 
