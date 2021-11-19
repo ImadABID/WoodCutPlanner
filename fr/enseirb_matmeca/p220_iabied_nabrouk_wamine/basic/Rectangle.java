@@ -3,26 +3,26 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 public class Rectangle extends Polygon {
 
     private Point leftTopPt;
-    private double lenght;
+    private double length;
     private double width;
     
-    public Rectangle(Point leftTopPt, double lenght, double width){
+    public Rectangle(Point leftTopPt, double length, double width){
 
         super();
 
         this.pts.add(leftTopPt);
-        this.pts.add(new Point(leftTopPt.getX()+lenght, leftTopPt.getY()));
-        this.pts.add(new Point(leftTopPt.getX()+lenght, leftTopPt.getY()+width));
+        this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()));
+        this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()+width));
         this.pts.add(new Point(leftTopPt.getX(), leftTopPt.getY()+width));
 
-        this.lenght = lenght;
+        this.length = length;
         this.width = width;
 
     }
 
     //isValid
     public boolean isValid(){
-        return (lenght>0 && width>0 && lenght>width);
+        return (length>0 && width>0 && length>width);
     }
 
     // getters
@@ -31,8 +31,8 @@ public class Rectangle extends Polygon {
         return this.leftTopPt;
     }
 
-    public double getLenght(){
-        return this.lenght;
+    public double getLength(){
+        return this.length;
     }
 
     public double getWidth(){
@@ -45,5 +45,53 @@ public class Rectangle extends Polygon {
         // To implement later.
 
         return false;
+    }
+
+    public static int compareLexicalOrderLengthWith(Rectangle r1, Rectangle r2){
+        
+        // Decreasing order
+
+        if(r1.length > r2.length){
+            return -1;
+        }
+
+        if(r1.length < r2.length){
+            return 1;
+        }
+
+        if(r1.width > r2.width){
+            return -1;
+        }
+
+        if(r1.width < r2.width){
+            return 1;
+        }
+
+        return 0;
+        
+    }
+
+    public static int compareLexicalOrderWithLength(Rectangle r1, Rectangle r2){
+        
+        // Decreasing order
+
+        if(r1.width > r2.width){
+            return -1;
+        }
+
+        if(r1.width < r2.width){
+            return 1;
+        }
+
+        if(r1.length > r2.length){
+            return -1;
+        }
+
+        if(r1.length < r2.length){
+            return 1;
+        }
+
+        return 0;
+        
     }
 }
