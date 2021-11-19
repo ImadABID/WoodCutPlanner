@@ -101,6 +101,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             + basic.Polygon getPolygon()
             + basic.Date getCritical_date()
             + basic.Price getPrice()
+            + String toString()
 
         }
         logic.WoodPiece *-- basic.Polygon
@@ -121,6 +122,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
             + boolean isPulledOut()
             + void setAsPulledOut()
+            + String toString()
             + {static} void printList(ArrayList<Board> boards)
             + {static} ArrayList<Board> read(String path)
             
@@ -145,8 +147,8 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
                 + Panel getPanel()
                 + Board getBoard()
                 + Point getPosition()
-                + {static} void generateSVG(List<Cut> cuts, String path)
-                + {static} void generateXML(List<Cut> cuts, String path)
+                + String toString()
+                + {static} void printList(ArrayList<Cut> cuts)
 
             }
             cut.Cut *-- logic.Panel
@@ -154,23 +156,19 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             cut.Cut *-- basic.Point
 
             interface CutAlgos{
-                + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
             class CutStep2Algo implements CutAlgos {
-                + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
             class CutStep3Algo1 implements CutAlgos {
-                + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
+                - {static} boolean isCutPossible(Cut cut)
             }
 
             class CutStep3Algo2 implements CutAlgos {
-                + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
             class CutStep4Algo implements CutAlgos {
-                + List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels)
             }
 
         }
@@ -181,7 +179,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         class io.Communicate {
             + {static} ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)\t\nthrows ParserConfigurationException, IOException, SAXException, ParseException
             + {static} void generateCutsXML(List<Cut> cuts)
-            + {static} void generateCutsSVG(List<Cut> cuts);
+            + {static} void generateCutsSVG(List<Cut> cuts)
         }
     }
 
