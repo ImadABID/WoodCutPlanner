@@ -16,51 +16,53 @@ public class CutStep3Algo1 implements CutAlgos {
         panels.sort(new WoodPieceLengthWidthComparator());
         boards.sort(new WoodPieceLengthWidthComparator());
 
-        int panels_index = 0;
-        int bords_index;
-        Point cut_position;
+
         Panel panel;
-        Board board;
-        Cut cut;
 
         ArrayList<Cut> cuts = new ArrayList<Cut>();
 
-        while(panels_index < panels.size()){
-
+        for(int panels_index = 0; panels_index < panels.size(); panels_index++){
 
             panel = panels.get(panels_index);
+
+            ArrayList<Cut> pannelCuts = CutStep3Algo1.findBoardsForPanel(panel, (ArrayList<Board>)boards);
             
-            cut_position = new Point(0, 0);
+            cuts.addAll(pannelCuts);
 
-            bords_index = 0;
-            
-            while(bords_index < boards.size()){
 
-                board = boards.get(bords_index);
+        }
 
-                cut = new Cut(panel, board, cut_position);
+        return cuts;
+    }
 
-                if(CutStep3Algo1.isCutPossible(cut) && !board.isPulledOut()){
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
-                    board.setAsPulledOut();
-                    cuts.add(cut);
+        ArrayList<Cut> cuts = new ArrayList<Cut>();
+        Point cut_position = new Point(0, 0);
+        Board board;
+        Cut cut;
 
-                    cut_position.setY(
-                        cut_position.getY()
-                        + ((Rectangle) board.getPolygon()).getWidth()
-                        /*
-                        * The Polygon is a Rectangle for sure,
-                        * otherwise a runtime exception should have been raised at the sort stage.
-                        */
-                    );
+        for(int bords_index = 0; bords_index < boards.size(); bords_index++){
 
+            board = boards.get(bords_index);
+
+            cut = new Cut(panel, board, cut_position);
+
+            if(CutStep3Algo1.isCutPossible(cut) && !board.isPulledOut()){
+
+                board.setAsPulledOut();
+                cuts.add(cut);
+
+                if( ! (board.getPolygon() instanceof Rectangle)){
+                    throw new RuntimeException("Polygon must be a Rectangle.");
                 }
 
-                bords_index++;
+                cut_position.setY(
+                    cut_position.getY()
+                    + ((Rectangle) board.getPolygon()).getWidth()
+                );
 
             }
-
-            panels_index++;
         }
 
         return cuts;
