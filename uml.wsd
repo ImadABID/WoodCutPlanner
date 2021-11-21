@@ -163,6 +163,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
             class CutStep3Algo1 implements CutAlgos {
                 - {static} boolean isCutPossible(Cut cut)
+                + {static} ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards)
             }
 
             class CutStep3Algo2 implements CutAlgos {
