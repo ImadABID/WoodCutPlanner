@@ -35,4 +35,8 @@ public class Point implements IsValid{
         this.y = y;
     }
 
+    public Point deepCopy(){
+        return new Point(this.x, this.y);
+    }
+
 }

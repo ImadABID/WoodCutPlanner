@@ -46,7 +46,7 @@ public class CutStep3Algo1 implements CutAlgos {
 
             board = boards.get(bords_index);
 
-            cut = new Cut(panel, board, cut_position);
+            cut = new Cut(panel, board, cut_position.deepCopy());
 
             if(CutStep3Algo1.isCutPossible(cut) && !board.isPulledOut()){
 
