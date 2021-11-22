@@ -5,6 +5,12 @@ public class Rectangle extends Polygon {
     private Point leftTopPt;
     private double length;
     private double width;
+
+    private boolean orientation;
+    /*
+            if orientation = false : Length follows x & Width follows y. "horizontal"
+            if orientation = true : Length follows y & Width follows x. "vertical"
+    */
     
     public Rectangle(Point leftTopPt, double length, double width){
 
@@ -17,6 +23,8 @@ public class Rectangle extends Polygon {
 
         this.length = length;
         this.width = width;
+
+        this.orientation = false;
 
     }
 
@@ -39,6 +47,12 @@ public class Rectangle extends Polygon {
         return this.width;
     }
 
+    public boolean isVertical(){
+        return this.orientation;
+    }
+    public void setOrientation(String orientation){
+        this.orientation = (orientation == "vertical");
+    }
 
     public static boolean overlap(Rectangle r1, Rectangle r2){
 
