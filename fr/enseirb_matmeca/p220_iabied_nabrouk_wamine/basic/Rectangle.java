@@ -54,6 +54,37 @@ public class Rectangle extends Polygon {
         this.orientation = (orientation == "vertical");
     }
 
+    public boolean contains(Rectangle r){
+
+        if(this.isVertical()){
+            if(r.isVertical()){
+                return 
+                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getLength() &&
+                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getWidth()
+                ;
+            }else{
+                return 
+                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getWidth() &&
+                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getLength()
+                ;
+            }
+        }else{
+
+            if(r.isVertical()){
+                return 
+                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getWidth() &&
+                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getLength()
+                ;
+            }else{
+                return 
+                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getLength() &&
+                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getWidth()
+                ;
+            }
+
+        }
+    }
+
     public static boolean overlap(Rectangle r1, Rectangle r2){
 
         // To implement later.
