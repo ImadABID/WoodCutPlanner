@@ -7,9 +7,7 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Price;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.WoodPiece;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.*;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,8 +15,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Attr;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -29,7 +32,7 @@ public class Communicate{
 
     // Input
 
-    static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException, ParseException {
+    static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName) throws ParserConfigurationException, IOException, SAXException {
         
         ArrayList<WoodPiece> wood = new ArrayList<WoodPiece>();
         
@@ -126,8 +129,79 @@ public class Communicate{
 
     // Output
 
-    static public void generateCutsXML(List<Cut> cuts){
+    static public void generateCutsXML(ArrayList<Cut> cuts) throws ParserConfigurationException, TransformerException {
 
+        Board client_b;
+        Panel supplier_p;
+        Cut cut;
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        // racine
+        Document doc = builder.newDocument();
+        Element racine = doc.createElement("decoupes");
+        doc.appendChild(racine);
+
+        for(int i=0;i<cuts.size();i++){
+            cut = cuts.get(i);
+            client_b=cut.getBoard();
+            supplier_p=cut.getPanel();
+            // decoupes
+            Element decoupe = doc.createElement("decoupe");
+            racine.appendChild(decoupe);
+
+            // client
+            Element client = doc.createElement("client");
+            decoupe.appendChild(client);
+
+            // attributs de client id
+            Attr attr_id = doc.createAttribute("id");
+            attr_id.setValue(String.valueOf(client_b.getActorId().value));
+            client.setAttributeNode(attr_id);
+
+            // attributs de commande planche
+            Attr planche = doc.createAttribute("planche");
+            planche.setValue(String.valueOf(client_b.getTypeId().value)); //?
+            client.setAttributeNode(planche);
+
+            // fournisseur
+            Element fournisseur = doc.createElement("fournisseur");
+            decoupe.appendChild(fournisseur);
+
+            // attributs de commande id
+            attr_id = doc.createAttribute("id");
+            attr_id.setValue(String.valueOf(supplier_p.getActorId().value));
+            fournisseur.setAttributeNode(attr_id);
+
+            // attributs de commande panneau
+            Attr panneau = doc.createAttribute("panneau");
+            panneau.setValue(String.valueOf(supplier_p.getTypeId().value)); //?
+            fournisseur.setAttributeNode(panneau);
+
+            // position
+            Element position = doc.createElement("position");
+            decoupe.appendChild(position);
+
+            // attributs de position x
+            Attr x = doc.createAttribute("x");
+            x.setValue(String.valueOf(cut.getPosition().getX())); //?
+            position.setAttributeNode(x);
+
+            // attributs de position y
+            Attr y = doc.createAttribute("y");
+            y.setValue(String.valueOf(cut.getPosition().getY())); //?
+            position.setAttributeNode(y);
+
+        }
+
+        // write the content into xml file
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        StreamResult resultat = new StreamResult(new File("decoupes.xml"));
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.transform(source, resultat);
     }
 
     static public void generateCutsSVG(List<Cut> cuts){
