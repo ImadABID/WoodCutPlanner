@@ -4,6 +4,8 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
+import java.util.ArrayList;
+
 public class Cut {
 
     private Panel panel;
@@ -27,5 +29,13 @@ public class Cut {
     public Point getPosition(){
         return this.position;
     }
+
+    public static void printList(ArrayList<Cut> cuts){
+        for(int i = 0 ; i < cuts.size(); i++){
+            Cut cut = cuts.get(i);
+            System.out.println(cut);
+        }
+    }
+
 
 }
