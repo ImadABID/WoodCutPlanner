@@ -1,6 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Date;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Polygon;
@@ -16,7 +16,7 @@ public abstract class WoodPiece {
 
     protected Polygon polygon;
 
-    protected Date critical_date;
+    protected Deadline critical_date;
 
     protected Price price;
 
@@ -24,7 +24,7 @@ public abstract class WoodPiece {
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
-        Date critical_date,
+        Deadline critical_date,
         Price price
     ){
 
@@ -66,7 +66,7 @@ public abstract class WoodPiece {
         return this.polygon;
     }
 
-    public Date getCritical_date(){
+    public Deadline getCritical_date(){
         return this.critical_date;
     }
 

@@ -2,7 +2,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Date;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Polygon;
@@ -15,7 +15,7 @@ public class Panel extends WoodPiece{
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
-        Date critical_date,
+        Deadline critical_date,
         Price price
     ){
         super(

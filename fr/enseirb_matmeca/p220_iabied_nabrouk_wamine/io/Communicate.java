@@ -1,6 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Date;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.IsValid;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
@@ -58,7 +58,7 @@ public class Communicate{
                     String num = p.getAttribute("nombre");    //get board or panel number
                     number.value = Integer.parseInt(num);
                     
-                    Date date = new Date();
+                    Deadline date = new Deadline();
                     date.date = p.getAttribute("date");              //get board or panel date
                     
                     Price price = new Price();
