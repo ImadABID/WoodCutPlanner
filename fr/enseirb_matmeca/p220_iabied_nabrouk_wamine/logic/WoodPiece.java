@@ -87,4 +87,9 @@ public abstract class WoodPiece {
         ;
     }
 
+    //seters
+
+    public void setNbrPiecesFromType(Number nbrPiecesFromType){
+        this.nbrPiecesFromType=nbrPiecesFromType;
+    }
 }

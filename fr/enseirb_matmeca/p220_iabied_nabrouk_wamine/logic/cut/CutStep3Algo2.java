@@ -8,7 +8,7 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
 public class CutStep3Algo2 implements CutAlgos {
 
-    public List<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels){
+    public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels){
 
         // To implement later.
 
