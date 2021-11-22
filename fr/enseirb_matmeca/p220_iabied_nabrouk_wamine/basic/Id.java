@@ -20,4 +20,10 @@ public class Id implements IsValid{
         return true;
     }
 
+    //getters
+
+    public int getId(){
+        return this.value;
+    }
+
 }

@@ -78,12 +78,12 @@ public abstract class WoodPiece {
 
     public String toString(String actorType){
         return 
-            actorType+"Id=" + this.getActorId().value
-            + "\ttypeId=" + this.getTypeId().value
-            + "\tinsideGroupId=" + this.getIdInsideGroup().value
-            + "\tnumber=" + this.getNbrPiecesFromType().value
-            + "\tdate=" + this.getCritical_date().date
-            + "\tprice=" + this.getPrice().value_2
+            actorType+"Id = " + this.getActorId().value
+            + "\t\ttypeId = " + this.getTypeId().value
+            + "\t\tinsideGroupId = " + this.getIdInsideGroup().value
+            + "\t\tnumber = " + this.getNbrPiecesFromType().value
+            + "\t\tdate = " + this.getCritical_date().date
+            + "\t\tprice = " + this.getPrice().value_2
         ;
     }
 

@@ -15,5 +15,14 @@ public class Price implements IsValid {
         return true;
 
     }
+    
+     //getters & setters
+
+    public Float getPrice(){
+        return this.value_2;
+    }
+    public void setPrice(Float price){
+        this.value_2 = price;
+    }
 
 }

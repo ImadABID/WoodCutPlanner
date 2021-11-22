@@ -12,4 +12,13 @@ public class Number implements IsValid{
         return true;
     }
 
+    //getters & setters
+
+    public int getNumber(){
+        return this.value;
+    }
+    public void setNumber(int value){
+        this.value = value;
+    }
+
 }
