@@ -42,6 +42,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
             
             + Rectangle(Point leftTopPt, double length, double width)\n\tthrows IllegalArgumentException
             + Point getLeftTopPt()
+            + void setLeftTopPt(Point pt)
             + double getLength()
             + double getWidth()
             + boolean isVertical()

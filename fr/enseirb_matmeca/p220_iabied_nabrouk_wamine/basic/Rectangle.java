@@ -38,6 +38,9 @@ public class Rectangle extends Polygon {
     public Point getLeftTopPt(){
         return this.leftTopPt;
     }
+    public void setLeftTopPt(Point pt){
+        this.leftTopPt = pt;
+    }
 
     public double getLength(){
         return this.length;
