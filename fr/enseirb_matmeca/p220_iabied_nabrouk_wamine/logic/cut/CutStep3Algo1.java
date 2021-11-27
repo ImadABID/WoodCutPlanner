@@ -36,6 +36,23 @@ public class CutStep3Algo1 implements CutAlgos {
 
     public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
+        if(! (panel.getPolygon() instanceof Rectangle)){
+            throw new RuntimeException("Polygon must be a Rectangle.");
+        }
+
+        Rectangle panelRect = (Rectangle) panel.getPolygon();
+        boolean isPanelVertical = panelRect.isVertical();
+
+        /*
+            Cuts are optimised if their direction is the inverse of the panel's orientation.
+        */
+
+        return findBoardsForPanel(panel, boards, !isPanelVertical);
+
+    }
+
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical) throws RuntimeException{
+
         /*
          * At the cut, the board has the panel's orientation.
         */
@@ -54,7 +71,7 @@ public class CutStep3Algo1 implements CutAlgos {
         }
 
         panelRect = (Rectangle) panel.getPolygon();
-        boolean isVertical = panelRect.isVertical();
+        boolean isPanelVertical = panelRect.isVertical();
 
         for(int bords_index = 0; bords_index < boards.size(); bords_index++){
 
@@ -72,16 +89,16 @@ public class CutStep3Algo1 implements CutAlgos {
                 }
 
                 boardRect = (Rectangle) board.getPolygon();
-                boardRect.setOrientation(isVertical);
+                boardRect.setOrientation(isPanelVertical);
 
-                if(isVertical){
-                    cut_position.setX(
-                        cut_position.getX()
+                if(cuts_direction_vertical){
+                    cut_position.setY(
+                        cut_position.getY()
                         + boardRect.getWidth()
                     );
                 }else{
-                    cut_position.setY(
-                        cut_position.getY()
+                    cut_position.setX(
+                        cut_position.getX()
                         + boardRect.getWidth()
                     );
                 }
