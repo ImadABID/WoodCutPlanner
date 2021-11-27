@@ -7,7 +7,6 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
-import java.util.ArrayList;
 
 public class Cut {
 
@@ -36,9 +35,11 @@ public class Cut {
     public String toString(){
         if(this.board.getPolygon() instanceof Rectangle){
             return
-                "The board (typeId=" + String.valueOf(this.board.getTypeId().value)
+                "The board (clientId=" + String.valueOf(this.board.getActorId().value)
+                + ", typeId=" + String.valueOf(this.board.getTypeId().value)
                 + ", insideGroupId=" + String.valueOf(this.board.getIdInsideGroup().value)
-                + ") is going to be pulled out from the pannel (typeId=" + String.valueOf(this.panel.getTypeId().value)
+                + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().value)
+                + ", typeId=" + String.valueOf(this.panel.getTypeId().value)
                 + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().value)
                 + ")"
                 + "from the position(" + String.valueOf(this.position.getX())

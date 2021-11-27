@@ -26,9 +26,8 @@ public class CutStep3Algo1 implements CutAlgos {
             panel = panels.get(panels_index);
 
             ArrayList<Cut> pannelCuts = CutStep3Algo1.findBoardsForPanel(panel, (ArrayList<Board>)boards);
-            
-            cuts.addAll(pannelCuts);
 
+            cuts.addAll(pannelCuts);
 
         }
 
@@ -37,10 +36,25 @@ public class CutStep3Algo1 implements CutAlgos {
 
     public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
+        /*
+         * At the cut, the board has the panel's orientation.
+        */
+
+
         ArrayList<Cut> cuts = new ArrayList<Cut>();
         Point cut_position = new Point(0, 0);
         Board board;
         Cut cut;
+
+        Rectangle panelRect;
+        Rectangle boardRect;
+
+        if(! (panel.getPolygon() instanceof Rectangle)){
+            throw new RuntimeException("Polygon must be a Rectangle.");
+        }
+
+        panelRect = (Rectangle) panel.getPolygon();
+        boolean isVertical = panelRect.isVertical();
 
         for(int bords_index = 0; bords_index < boards.size(); bords_index++){
 
@@ -57,10 +71,20 @@ public class CutStep3Algo1 implements CutAlgos {
                     throw new RuntimeException("Polygon must be a Rectangle.");
                 }
 
-                cut_position.setY(
-                    cut_position.getY()
-                    + ((Rectangle) board.getPolygon()).getWidth()
-                );
+                boardRect = (Rectangle) board.getPolygon();
+                boardRect.setOrientation(isVertical);
+
+                if(isVertical){
+                    cut_position.setX(
+                        cut_position.getX()
+                        + boardRect.getWidth()
+                    );
+                }else{
+                    cut_position.setY(
+                        cut_position.getY()
+                        + boardRect.getWidth()
+                    );
+                }
 
             }
         }
@@ -74,19 +98,20 @@ public class CutStep3Algo1 implements CutAlgos {
         *   That's why this method is implemented here and not in the class Cut.
         */
 
-
-        double bl = ( (Rectangle) cut.getBoard().getPolygon()).getWidth();
-        double bL = ( (Rectangle) cut.getBoard().getPolygon()).getLength();
-
-        double pl = ( (Rectangle) cut.getBoard().getPolygon()).getWidth() - cut.getPosition().getY();
-        double pL = ( (Rectangle) cut.getBoard().getPolygon()).getLength();
-
         /*
          * This method is private and all calls inside this class ensure that 
          * the Polygon of a WoodPiece is a Rectangle.
         */
 
-        return pl>=bl && pL >= bL;
+        Rectangle panelRect = (Rectangle) cut.getPanel().getPolygon();
+        Rectangle boardRect = (Rectangle) cut.getBoard().getPolygon();
+
+        /*
+        * We ignore board.position. The cut is always preformed from cut.position.
+        */
+        boardRect.setLeftTopPt(cut.getPosition());
+
+        return panelRect.contains(boardRect);
     }
 
 }
