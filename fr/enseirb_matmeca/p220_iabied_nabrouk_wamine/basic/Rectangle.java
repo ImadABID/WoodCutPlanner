@@ -5,6 +5,12 @@ public class Rectangle extends Polygon {
     private Point leftTopPt;
     private double length;
     private double width;
+
+    private boolean orientation;
+    /*
+            if orientation = false : Length follows x & Width follows y. "horizontal"
+            if orientation = true : Length follows y & Width follows x. "vertical"
+    */
     
     public Rectangle(Point leftTopPt, double length, double width){
 
@@ -18,6 +24,8 @@ public class Rectangle extends Polygon {
         this.length = length;
         this.width = width;
 
+        this.orientation = false;
+
     }
 
     //isValid
@@ -30,6 +38,9 @@ public class Rectangle extends Polygon {
     public Point getLeftTopPt(){
         return this.leftTopPt;
     }
+    public void setLeftTopPt(Point pt){
+        this.leftTopPt = pt;
+    }
 
     public double getLength(){
         return this.length;
@@ -39,6 +50,43 @@ public class Rectangle extends Polygon {
         return this.width;
     }
 
+    public boolean isVertical(){
+        return this.orientation;
+    }
+    public void setOrientation(String orientation){
+        this.orientation = (orientation == "vertical");
+    }
+
+    public boolean contains(Rectangle r){
+
+        if(this.isVertical()){
+            if(r.isVertical()){
+                return 
+                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getLength() &&
+                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getWidth()
+                ;
+            }else{
+                return 
+                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getWidth() &&
+                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getLength()
+                ;
+            }
+        }else{
+
+            if(r.isVertical()){
+                return 
+                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getWidth() &&
+                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getLength()
+                ;
+            }else{
+                return 
+                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  this.getLength() &&
+                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  this.getWidth()
+                ;
+            }
+
+        }
+    }
 
     public static boolean overlap(Rectangle r1, Rectangle r2){
 

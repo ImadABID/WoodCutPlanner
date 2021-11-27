@@ -38,11 +38,16 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
             - double length
             - double width
+            - boolean orientation;
             
             + Rectangle(Point leftTopPt, double length, double width)\n\tthrows IllegalArgumentException
             + Point getLeftTopPt()
+            + void setLeftTopPt(Point pt)
             + double getLength()
             + double getWidth()
+            + boolean isVertical()
+            + void setOrientation(String orientation)
+            + boolean contains(Rectangle r)
             + {static} boolean overlap(Rectangle r1, Rectangle r2)
             + {static} int compareLexicalOrderLengthWith(Rectangle r1, Rectangle r2)
             + {static} int compareLexicalOrderWithLength(Rectangle r1, Rectangle r2)
