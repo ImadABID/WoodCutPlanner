@@ -5,6 +5,18 @@ public class Price implements IsValid {
     public String value_1;
     public Float value_2;
 
+    public Price(Float value_2){
+        this.value_2 = value_2;
+    }
+
+    public Price(String value_1){
+        this.value_1 = value_1;
+    }
+
+    public Price(){
+        this("-1.0");
+    }
+
     @Override
     public boolean isValid()
     {

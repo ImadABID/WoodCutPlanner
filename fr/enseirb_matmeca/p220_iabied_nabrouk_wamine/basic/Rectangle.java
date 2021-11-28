@@ -30,9 +30,23 @@ public class Rectangle extends Polygon {
 
     }
 
+    /*
+        It keeps orientation.
+    */
+    public Rectangle(Point leftTopPt, double dimx, double dimy, boolean autoDetectLengthWidth){
+
+        this(leftTopPt, dimy, dimx);
+
+        if(autoDetectLengthWidth && dimy > dimx){
+            this.length = dimy;
+            this.width = dimx;
+            this.orientation = true;
+        }
+    }
+
     //isValid
     public boolean isValid(){
-        return (length>0 && width>0 && length>width);
+        return (length>0 && width>0 && length>=width);
     }
 
     // getters
@@ -52,6 +66,20 @@ public class Rectangle extends Polygon {
         return this.width;
     }
 
+    public double getDimX(){
+        if(this.orientation){
+            return this.width;
+        }
+        return this.length;
+    }
+
+    public double getDimY(){
+        if(this.orientation){
+            return this.length;
+        }
+        return this.width;
+    }
+
     public boolean isVertical(){
         return this.orientation;
     }
@@ -60,6 +88,14 @@ public class Rectangle extends Polygon {
     }
     public void setOrientation(String orientation){
         this.orientation = (orientation == "vertical");
+    }
+
+    public Rectangle deepCopy(){
+        return new Rectangle(
+            this.leftTopPt.deepCopy(),
+            this.length,
+            this.width
+        );
     }
 
     public boolean contains(Rectangle r){

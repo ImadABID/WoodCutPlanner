@@ -65,6 +65,9 @@ public abstract class WoodPiece {
     public Polygon getPolygon(){
         return this.polygon;
     }
+    public void setPolygone(Polygon p){
+        this.polygon = p;
+    }
 
     public Deadline getCritical_date(){
         return this.critical_date;

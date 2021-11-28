@@ -25,6 +25,10 @@ public class Polygon implements IsValid{
         return this.pts;
     }
 
+    public Polygon deepCopy() throws RuntimeException{
+        throw new RuntimeException("Polygon.deepCopy not implemented yet.");
+    }
+
     public static boolean overlap(Polygon p1, Polygon p2){
 
         // To implement later.
