@@ -57,9 +57,8 @@ public class CutStep3Algo1 implements CutAlgos {
          * At the cut, the board has the panel's orientation.
         */
 
-
         ArrayList<Cut> cuts = new ArrayList<Cut>();
-        Point cut_position = new Point(0, 0);
+        Point cut_position;
         Board board;
         Cut cut;
 
@@ -72,6 +71,8 @@ public class CutStep3Algo1 implements CutAlgos {
 
         panelRect = (Rectangle) panel.getPolygon();
         boolean isPanelVertical = panelRect.isVertical();
+
+        cut_position = panelRect.getLeftTopPt().deepCopy();
 
         for(int bords_index = 0; bords_index < boards.size(); bords_index++){
 
