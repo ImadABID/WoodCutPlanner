@@ -41,8 +41,7 @@ public class Cut {
                 + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().value)
                 + ", typeId=" + String.valueOf(this.panel.getTypeId().value)
                 + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().value)
-                + ")"
-                + "from the position(" + String.valueOf(this.position.getX())
+                + ") from the position(" + String.valueOf(this.position.getX())
                 + ", " + String.valueOf(this.position.getY())
                 + ")."
             ;

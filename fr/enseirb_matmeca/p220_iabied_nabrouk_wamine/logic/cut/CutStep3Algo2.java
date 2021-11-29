@@ -83,7 +83,7 @@ public class CutStep3Algo2 implements CutAlgos {
             boardRect.setOrientation("horizontal");
 
 
-            cut_position = new Point(currentWidth, 0);
+            cut_position = new Point(0, currentWidth);
 
             possibleCutZoneRect = new Rectangle(
                 cut_position, 
@@ -152,7 +152,6 @@ public class CutStep3Algo2 implements CutAlgos {
         if(!panelRect.contains(cutZoneRect)){
             return false;
         }
-
 
         return cutZoneRect.contains(boardRect);
 

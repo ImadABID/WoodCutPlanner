@@ -87,6 +87,7 @@ public abstract class WoodPiece {
             + "\t\tnumber = " + this.getNbrPiecesFromType().value
             + "\t\tdate = " + this.getCritical_date().date
             + "\t\tprice = " + this.getPrice().value_2
+            + "\n\t " + this.getPolygon().toString()
         ;
     }
 

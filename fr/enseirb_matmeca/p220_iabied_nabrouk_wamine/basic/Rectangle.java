@@ -35,7 +35,7 @@ public class Rectangle extends Polygon {
     */
     public Rectangle(Point leftTopPt, double dimx, double dimy, boolean autoDetectLengthWidth){
 
-        this(leftTopPt, dimy, dimx);
+        this(leftTopPt, dimx, dimy);
 
         if(autoDetectLengthWidth && dimy > dimx){
             this.length = dimy;
@@ -98,31 +98,42 @@ public class Rectangle extends Polygon {
         );
     }
 
+    public String toString(){
+        return 
+        
+            "Rectangle :(Length=" + String.valueOf(this.getLength())
+            +",Width=" + String.valueOf(this.getWidth())
+            +") (dimX=" + String.valueOf(this.getDimX())
+            +", dimY=" + String.valueOf(this.getDimY())
+            +")."
+        ;
+    }
+
     public boolean contains(Rectangle r){
 
         if(this.isVertical()){
             if(r.isVertical()){
                 return 
-                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getLength() &&
-                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getWidth()
+                    this.getLength() >=  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getLength() &&
+                    this.getWidth() >=  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getWidth()
                 ;
             }else{
                 return 
-                    this.getLength() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getWidth() &&
-                    this.getWidth() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getLength()
+                    this.getLength() >=  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getWidth() &&
+                    this.getWidth() >=  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getLength()
                 ;
             }
         }else{
 
             if(r.isVertical()){
                 return 
-                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getWidth() &&
-                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getLength()
+                    this.getLength() >=  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getWidth() &&
+                    this.getWidth() >=  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getLength()
                 ;
             }else{
                 return 
-                    this.getLength() >  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getLength() &&
-                    this.getWidth() >  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getWidth()
+                    this.getLength() >=  r.getLeftTopPt().getX() - this.getLeftTopPt().getX() +  r.getLength() &&
+                    this.getWidth() >=  r.getLeftTopPt().getY() - this.getLeftTopPt().getY() +  r.getWidth()
                 ;
             }
 
