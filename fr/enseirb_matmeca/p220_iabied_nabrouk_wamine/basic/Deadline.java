@@ -3,11 +3,18 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.lang.*;
- 
+
 
 public class Deadline implements IsValid {
     public String date;
+
+    public Deadline(String date){
+        this.date = date;
+    }
+
+    public Deadline(){
+        this("");
+    }
 
     @Override
     public boolean isValid()
@@ -57,6 +64,6 @@ public class Deadline implements IsValid {
         this.date = date;
     }
 
-    }
+}
 
 

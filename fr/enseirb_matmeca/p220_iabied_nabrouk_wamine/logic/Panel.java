@@ -27,6 +27,16 @@ public class Panel extends WoodPiece{
         );
     }
 
+    public Panel deepCopy(){
+        return new Panel(
+            new Id(this.actorId.value),
+            new Id(this.typeId.value), new Id(this.idInsideGroup.value), new Number(this.nbrPiecesFromType.value),
+            this.polygon.deepCopy(),
+            new Deadline(this.critical_date.date),
+            new Price(this.price.value_2)
+        );
+    }
+
     public String toString(){
         return this.toString("supplier");
     }
