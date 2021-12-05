@@ -26,19 +26,16 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class Communicate{
-    public Communicate() {
-    }
 
     // Input
 
     static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)  throws SAXException,
     IOException, ParserConfigurationException {
         
-        ArrayList<WoodPiece> wood = new ArrayList<>();
-        
+        ArrayList<WoodPiece> wood = new ArrayList<>();        
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document info = builder.parse(path);
@@ -48,7 +45,6 @@ public class Communicate{
             Element elt = (Element) inf;
             Id actorId = new Id();
             actorId.setId(elt.getAttribute("id"));             //get client or supplier id
-            //actorId.value = Integer.parseInt(id1);
             NodeList boardsList = inf.getChildNodes();
             for(int j = 0; j < boardsList.getLength(); j++){
                 Node panel = boardsList.item(j);
@@ -58,19 +54,12 @@ public class Communicate{
 
                     Id woodId = new Id();
                     woodId.setId(p.getAttribute("id"));   //get board or panel id
-                    //woodId.value = Integer.parseInt(id2);
-
                     Number number = new Number();
-                    number.setNumber( p.getAttribute("nombre"));    //get board or panel number
-                    //number.value = Integer.parseInt(num);
-                    
+                    number.setNumber( p.getAttribute("nombre"));    //get board or panel number                    
                     Deadline date = new Deadline();
                     date.setDeadline(p.getAttribute("date"));              //get board or panel date
-                    
                     Price price = new Price();
                     price.setPrice(p.getAttribute("prix"));                  //get board or panel price
-                    //price.value_2 = Float.parseFloat(price.value_1);
-
                     Rectangle rect = null;
                     NodeList dimList = panel.getChildNodes();
                     for(int k = 0; k < dimList.getLength(); k++){
