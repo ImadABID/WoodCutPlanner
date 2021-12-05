@@ -61,19 +61,29 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
             + Id(int value)
             + Id()
+            + int getId()
         }
 
-        class basic.Date implements basic.IsValid{
-            + String date
+        class basic.Deadline implements basic.IsValid{
+            + String Deadline
+
+            + String getDeadline()
+            + void setDeadline(String date)
         }
 
         class basic.Number implements basic.IsValid{
             + int value
+
+            + int getNumber()
+            + void setNumber(int value)
         }
 
         class basic.Price implements basic.IsValid {
             + String value_1
             + Float value_2
+
+            + Float getPrice()
+            + void setPrice(Float price)
         }
 
     }
@@ -100,12 +110,12 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
         abstract class logic.WoodPiece {
 
-            + WoodPiece(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone,\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + WoodPiece(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone,\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
             + basic.Id getTypeId()
             + basic.Id getIdInsideGroup()
             + basic.Id getNbrPiecesFromType()
             + basic.Polygon getPolygon()
-            + basic.Date getCritical_date()
+            + basic.Deadline getCritical_date()
             + basic.Price getPrice()
             + String toString()
 
@@ -114,10 +124,10 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
         logic.WoodPiece "1" <-- "3" basic.Id
         logic.WoodPiece <-- basic.Number
         logic.WoodPiece <-- basic.Price
-        logic.WoodPiece <-- basic.Date
+        logic.WoodPiece <-- basic.Deadline
 
         class logic.Panel {
-            + Panel(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + Panel(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
             + String toString()
             + {static} void printList(ArrayList<Panel> panels)
             + {static} ArrayList<Panel> read(String path)
@@ -125,7 +135,7 @@ package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
         class logic.Board {
             - boolean pulledOut
-            + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Date critical_date,\n\tbasic.Price price)
+            + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
             + boolean isPulledOut()
             + void setAsPulledOut()
             + String toString()

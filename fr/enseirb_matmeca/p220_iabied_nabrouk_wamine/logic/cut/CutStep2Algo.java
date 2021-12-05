@@ -19,7 +19,7 @@ public class CutStep2Algo implements CutAlgos {
 
         for (Panel panel : panels) {
 
-            quantity = panel.getNbrPiecesFromType().value;
+            quantity = panel.getNbrPiecesFromType().getNumber();
             corresponding_boards = CorrespondingBoardsForPanel(boards, panel, quantity);
             for (Board corresponding_board : corresponding_boards) {
                 cut = new Cut(panel, corresponding_board, position);

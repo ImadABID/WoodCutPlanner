@@ -29,11 +29,11 @@ public class Panel extends WoodPiece{
 
     public Panel deepCopy(){
         return new Panel(
-            new Id(this.actorId.value),
-            new Id(this.typeId.value), new Id(this.idInsideGroup.value), new Number(this.nbrPiecesFromType.value),
+            new Id(this.actorId.getId()),
+            new Id(this.typeId.getId()), new Id(this.idInsideGroup.getId()), new Number(this.nbrPiecesFromType.getNumber()),
             this.polygon.deepCopy(),
-            new Deadline(this.critical_date.date),
-            new Price(this.price.value_2)
+            new Deadline(this.critical_date.getDeadline()),
+            new Price(this.price.getPrice())
         );
     }
 
