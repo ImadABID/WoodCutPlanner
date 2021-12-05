@@ -1,5 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
@@ -7,6 +9,8 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
+
+import java.util.Date;
 
 public class Cut {
 
@@ -54,6 +58,16 @@ public class Cut {
         for(int i = 0 ; i < cuts.size(); i++){
             System.out.println(cuts.get(i));
         }
+    }
+
+    public static boolean is_delivery_possible(Panel panel, Board board) throws ParseException {
+        String d_client = board.getCritical_date().date;
+        String d_supplier = panel.getCritical_date().date;
+        Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
+        Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
+
+        return date_supplier.before(date_client);
+
     }
 
 }

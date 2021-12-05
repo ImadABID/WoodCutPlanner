@@ -13,10 +13,15 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 public class Step3Algo1{
-    public static void main(String[] args) throws ParserConfigurationException, IOException, ParseException, TransformerException, SAXException {
-        
+    public static void main(String[] args) throws ParserConfigurationException, IOException, ParseException, TransformerException, SAXException, XPathExpressionException {
+
         ArrayList<Panel> panels = Panel.read("fournisseurs.xml");
         ArrayList<Board> boards = Board.read("clients.xml");
         
@@ -24,6 +29,7 @@ public class Step3Algo1{
 
         Cut.printList(cuts);
         Communicate.generateCutsXML(cuts);
+        //Communicate.generateCutsSVG("decoupes.xml");
 
     }
 }
