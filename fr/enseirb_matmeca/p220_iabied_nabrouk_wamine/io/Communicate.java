@@ -26,16 +26,18 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class Communicate{
+    public Communicate() {
+    }
 
     // Input
 
     static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)  throws SAXException,
     IOException, ParserConfigurationException {
         
-        ArrayList<WoodPiece> wood = new ArrayList<WoodPiece>();
+        ArrayList<WoodPiece> wood = new ArrayList<>();
         
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -144,10 +146,10 @@ public class Communicate{
         Element racine = doc.createElement("decoupes");
         doc.appendChild(racine);
 
-        for(int i=0;i<cuts.size();i++){
-            cut = cuts.get(i);
-            client_b=cut.getBoard();
-            supplier_p=cut.getPanel();
+        for (Cut value : cuts) {
+            cut = value;
+            client_b = cut.getBoard();
+            supplier_p = cut.getPanel();
             // decoupes
             Element decoupe = doc.createElement("decoupe");
             racine.appendChild(decoupe);
@@ -203,9 +205,88 @@ public class Communicate{
         StreamResult resultat = new StreamResult(new File("decoupes.xml"));
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(source, resultat);
+
+        // write the content into xml file
+        /*TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(doc);
+        StreamResult resultat = new StreamResult(new File("decoupes.xml"));*/
+        //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        //transformer.transform(source, resultat);
+
+        //SVG
+//        XPathFactory sfactory = XPathFactory.newInstance();
+//        XPath xpath = sfactory.newXPath();
+//        String xpathQuery = "./svg";
+//        XPathExpression exp = xpath.compile(xpathQuery);
+//        Node svgNode = (Node) exp.evaluate(doc, XPathConstants.NODE);
+
+
     }
 
-    static public void generateCutsSVG(List<Cut> cuts){
+    static public void generateCutsSVG(ArrayList<Cut> cuts, String path, String tagName) throws IOException, SAXException, ParserConfigurationException, TransformerException {
+
+        //Document doc = new Document("decoupes.xml");
+        //doc.save("decoupes.svg", SaveFormat.Svg);
+
+        // DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        // DocumentBuilder builder = factory.newDocumentBuilder();
+        // Document doc = builder.parse(path);  //decoupes.xml
+
+        // Id client_id = new Id(), supplier_id = new Id(), board_id = new Id(), panel_id = new Id();
+        // //int panel_length, panel_width, board_length, board_width;
+        // int x, y;
+
+        // NodeList decoupes = doc.getElementsByTagName(tagName);
+        // for (int i=0; i<decoupes.getLength(); i++){
+        //     Node decoupe = decoupes.item(i);
+        //     NodeList clients = decoupe.getChildNodes();
+        //     for (int j=0; j< clients.getLength(); j++){
+        //         Node client = clients.item(j);
+        //         Element c = (Element) client;
+        //         String c_id = c.getAttribute("id");
+        //         String board = c.getAttribute("planche");
+        //         client_id.getId() = Integer.parseInt(c_id);
+        //         board_id.getId() = Integer.parseInt(board);
+
+        //         NodeList suppliers = doc.getChildNodes();
+        //         for (int k=0; k< suppliers.getLength();k++){
+        //             Node supplier = suppliers.item(j);
+        //             Element s = (Element) supplier;
+        //             String s_id = s.getAttribute("id");
+        //             String panel = s.getAttribute("panneau");
+        //             supplier_id.getId() = Integer.parseInt(s_id);
+        //             panel_id.getId() = Integer.parseInt(panel);
+        //         }
+
+        //         NodeList positions = doc.getChildNodes();
+        //         for (int ii=0; ii< positions.getLength();ii++){
+        //             Node position = positions.item(ii);
+        //             Element pos = (Element) position;
+        //             String x_str = pos.getAttribute("x");
+        //             String y_str = pos.getAttribute("y");
+        //             x = Integer.parseInt(x_str);
+        //             y = Integer.parseInt(y_str);
+        //         }
+        //     }
+        //     //construction de n fichier svg pour n decoupes
+        //     //panel_length =
+
+        // }
+
+        // Transformer t = TransformerFactory.newInstance().newTransformer();
+        // t.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM,
+        //         "http://www.w3.org/TR/2000/CR-SVG-20000802/DTD/svg-20000802.dtd");
+        // t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "-//W3C//DTD SVG 20000802//EN");
+        // t.setOutputProperty(OutputKeys.INDENT, "yes");
+        // t.setOutputProperty(OutputKeys.METHOD, "xml");
+        // t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+        // DOMSource source = new DOMSource(doc);
+        // StreamResult resultat = new StreamResult(new File("decoupes.svg"));
+
+        // t.transform(source, resultat);
+
 
     }
 }
