@@ -116,6 +116,15 @@ public class CutStep3Algo1 implements CutAlgos {
         *   That's why this method is implemented here and not in the class Cut.
         */
 
+        // is_delevery_possible
+        try{
+            if(!cut.is_delivery_possible()){
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
         /*
          * This method is private and all calls inside this class ensure that 
          * the Polygon of a WoodPiece is a Rectangle.
