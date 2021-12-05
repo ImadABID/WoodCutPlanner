@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.WoodPiece;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.*;
 import org.xml.sax.SAXException;
