@@ -38,6 +38,8 @@ public class CutStep2Algo implements CutAlgos {
         Board curr_board;
         int panel_quantity = quantity;
 
+        Cut cut;
+
         for (Board board : boards) {
             curr_board = board;
             if (is_rectangle(curr_board.getPolygon())) {
@@ -46,7 +48,9 @@ public class CutStep2Algo implements CutAlgos {
                 board_length = b_rect.getLength();
                 board_width = b_rect.getWidth();
 
-                if (panel_length >= board_length && panel_width >= board_width && Cut.is_delivery_possible(panel, curr_board) && panel_quantity > 0 && !curr_board.isPulledOut()) {
+                cut = new Cut(panel, board, new Point(0,0));
+
+                if (panel_length >= board_length && panel_width >= board_width && cut.is_delivery_possible() && panel_quantity > 0 && !curr_board.isPulledOut()) {
                     corresponding_boards.add(curr_board);
                     panel_quantity--;
                     curr_board.setAsPulledOut();

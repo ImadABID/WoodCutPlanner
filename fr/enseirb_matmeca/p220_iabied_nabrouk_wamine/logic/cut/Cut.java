@@ -60,9 +60,9 @@ public class Cut {
         }
     }
 
-    public static boolean is_delivery_possible(Panel panel, Board board) throws ParseException {
-        String d_client = board.getCritical_date().date;
-        String d_supplier = panel.getCritical_date().date;
+    public boolean is_delivery_possible() throws ParseException {
+        String d_client = this.board.getCritical_date().date;
+        String d_supplier = this.panel.getCritical_date().date;
         Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
         Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
 
