@@ -43,7 +43,6 @@ public class CutStep2Algo implements CutAlgos {
         for (Board board : boards) {
             curr_board = board;
             if (is_rectangle(curr_board.getPolygon())) {
-                System.out.println(curr_board.getNbrPiecesFromType().getNumber());
                 b_rect = (Rectangle) curr_board.getPolygon();
                 board_length = b_rect.getLength();
                 board_width = b_rect.getWidth();

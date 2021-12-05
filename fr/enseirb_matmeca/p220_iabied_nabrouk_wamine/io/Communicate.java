@@ -25,8 +25,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Objects;
 
 public class Communicate{
 
@@ -35,7 +36,7 @@ public class Communicate{
     static public ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)  throws SAXException,
     IOException, ParserConfigurationException {
         
-        ArrayList<WoodPiece> wood = new ArrayList<>();        
+        ArrayList<WoodPiece> wood = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document info = builder.parse(path);
@@ -55,7 +56,7 @@ public class Communicate{
                     Id woodId = new Id();
                     woodId.setId(p.getAttribute("id"));   //get board or panel id
                     Number number = new Number();
-                    number.setNumber( p.getAttribute("nombre"));    //get board or panel number                    
+                    number.setNumber( p.getAttribute("nombre"));    //get board or panel number
                     Deadline date = new Deadline();
                     date.setDeadline(p.getAttribute("date"));              //get board or panel date
                     Price price = new Price();
@@ -69,7 +70,7 @@ public class Communicate{
                             rect = new Rectangle(new Point(0, 0), 0,0);
                             rect.setLength(d.getAttribute("L"));      //get board or panel length
                             rect.setWidth(d.getAttribute("l"));          //get board or panel width
-                            
+
                         }
                     }
 
@@ -115,10 +116,10 @@ public class Communicate{
                 }
             }
 
-        }   
+        }
         return wood;
     }
-    
+
     // Output
 
     static public void generateCutsXML(ArrayList<Cut> cuts) throws ParserConfigurationException, TransformerException {
@@ -215,66 +216,66 @@ public class Communicate{
 
     static public void generateCutsSVG(ArrayList<Cut> cuts, String path, String tagName) throws IOException, SAXException, ParserConfigurationException, TransformerException {
 
-        //Document doc = new Document("decoupes.xml");
+        /*//Document doc = new Document("decoupes.xml");
         //doc.save("decoupes.svg", SaveFormat.Svg);
 
-        // DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        // DocumentBuilder builder = factory.newDocumentBuilder();
-        // Document doc = builder.parse(path);  //decoupes.xml
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(path);  //decoupes.xml
 
-        // Id client_id = new Id(), supplier_id = new Id(), board_id = new Id(), panel_id = new Id();
-        // //int panel_length, panel_width, board_length, board_width;
-        // int x, y;
+        Id client_id = new Id(), supplier_id = new Id(), board_id = new Id(), panel_id = new Id();
+        //int panel_length, panel_width, board_length, board_width;
+        int x, y;
 
-        // NodeList decoupes = doc.getElementsByTagName(tagName);
-        // for (int i=0; i<decoupes.getLength(); i++){
-        //     Node decoupe = decoupes.item(i);
-        //     NodeList clients = decoupe.getChildNodes();
-        //     for (int j=0; j< clients.getLength(); j++){
-        //         Node client = clients.item(j);
-        //         Element c = (Element) client;
-        //         String c_id = c.getAttribute("id");
-        //         String board = c.getAttribute("planche");
-        //         client_id.getId() = Integer.parseInt(c_id);
-        //         board_id.getId() = Integer.parseInt(board);
+        NodeList decoupes = doc.getElementsByTagName(tagName);
+        for (int i=0; i<decoupes.getLength(); i++){
+            Node decoupe = decoupes.item(i);
+            NodeList clients = decoupe.getChildNodes();
+            for (int j=0; j< clients.getLength(); j++){
+                Node client = clients.item(j);
+                Element c = (Element) client;
+                String c_id = c.getAttribute("id");
+                String board = c.getAttribute("planche");
+                client_id.value = Integer.parseInt(c_id);
+                board_id.value = Integer.parseInt(board);
 
-        //         NodeList suppliers = doc.getChildNodes();
-        //         for (int k=0; k< suppliers.getLength();k++){
-        //             Node supplier = suppliers.item(j);
-        //             Element s = (Element) supplier;
-        //             String s_id = s.getAttribute("id");
-        //             String panel = s.getAttribute("panneau");
-        //             supplier_id.getId() = Integer.parseInt(s_id);
-        //             panel_id.getId() = Integer.parseInt(panel);
-        //         }
+                NodeList suppliers = doc.getChildNodes();
+                for (int k=0; k< suppliers.getLength();k++){
+                    Node supplier = suppliers.item(j);
+                    Element s = (Element) supplier;
+                    String s_id = s.getAttribute("id");
+                    String panel = s.getAttribute("panneau");
+                    supplier_id.value = Integer.parseInt(s_id);
+                    panel_id.value = Integer.parseInt(panel);
+                }
 
-        //         NodeList positions = doc.getChildNodes();
-        //         for (int ii=0; ii< positions.getLength();ii++){
-        //             Node position = positions.item(ii);
-        //             Element pos = (Element) position;
-        //             String x_str = pos.getAttribute("x");
-        //             String y_str = pos.getAttribute("y");
-        //             x = Integer.parseInt(x_str);
-        //             y = Integer.parseInt(y_str);
-        //         }
-        //     }
-        //     //construction de n fichier svg pour n decoupes
-        //     //panel_length =
+                NodeList positions = doc.getChildNodes();
+                for (int ii=0; ii< positions.getLength();ii++){
+                    Node position = positions.item(ii);
+                    Element pos = (Element) position;
+                    String x_str = pos.getAttribute("x");
+                    String y_str = pos.getAttribute("y");
+                    x = Integer.parseInt(x_str);
+                    y = Integer.parseInt(y_str);
+                }
+            }
+            //construction de n fichier svg pour n decoupes
+            //panel_length =
 
-        // }
+        }
 
-        // Transformer t = TransformerFactory.newInstance().newTransformer();
-        // t.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM,
-        //         "http://www.w3.org/TR/2000/CR-SVG-20000802/DTD/svg-20000802.dtd");
-        // t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "-//W3C//DTD SVG 20000802//EN");
-        // t.setOutputProperty(OutputKeys.INDENT, "yes");
-        // t.setOutputProperty(OutputKeys.METHOD, "xml");
-        // t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+        Transformer t = TransformerFactory.newInstance().newTransformer();
+        t.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM,
+                "http://www.w3.org/TR/2000/CR-SVG-20000802/DTD/svg-20000802.dtd");
+        t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "-//W3C//DTD SVG 20000802//EN");
+        t.setOutputProperty(OutputKeys.INDENT, "yes");
+        t.setOutputProperty(OutputKeys.METHOD, "xml");
+        t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
-        // DOMSource source = new DOMSource(doc);
-        // StreamResult resultat = new StreamResult(new File("decoupes.svg"));
+        DOMSource source = new DOMSource(doc);
+        StreamResult resultat = new StreamResult(new File("decoupes.svg"));
 
-        // t.transform(source, resultat);
+        t.transform(source, resultat);*/
 
 
     }
