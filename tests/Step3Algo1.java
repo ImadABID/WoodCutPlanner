@@ -14,10 +14,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 public class Step3Algo1{
     public static void main(String[] args) throws ParserConfigurationException, IOException, ParseException, TransformerException, SAXException, XPathExpressionException {
