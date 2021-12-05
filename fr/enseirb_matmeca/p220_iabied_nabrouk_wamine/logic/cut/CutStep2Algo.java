@@ -19,7 +19,7 @@ public class CutStep2Algo implements CutAlgos {
 
         for (Panel panel : panels) {
 
-            quantity = panel.getNbrPiecesFromType().value;
+            quantity = panel.getNbrPiecesFromType().getNumber();
             corresponding_boards = CorrespondingBoardsForPanel(boards, panel, quantity);
             for (Board corresponding_board : corresponding_boards) {
                 cut = new Cut(panel, corresponding_board, position);
@@ -43,7 +43,7 @@ public class CutStep2Algo implements CutAlgos {
         for (Board board : boards) {
             curr_board = board;
             if (is_rectangle(curr_board.getPolygon())) {
-                System.out.println(curr_board.getNbrPiecesFromType().value);
+                System.out.println(curr_board.getNbrPiecesFromType().getNumber());
                 b_rect = (Rectangle) curr_board.getPolygon();
                 board_length = b_rect.getLength();
                 board_width = b_rect.getWidth();

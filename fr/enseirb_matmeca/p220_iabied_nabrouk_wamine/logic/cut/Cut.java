@@ -39,12 +39,12 @@ public class Cut {
     public String toString(){
         if(this.board.getPolygon() instanceof Rectangle){
             return
-                "The board (clientId=" + String.valueOf(this.board.getActorId().value)
-                + ", typeId=" + String.valueOf(this.board.getTypeId().value)
-                + ", insideGroupId=" + String.valueOf(this.board.getIdInsideGroup().value)
-                + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().value)
-                + ", typeId=" + String.valueOf(this.panel.getTypeId().value)
-                + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().value)
+                "The board (clientId=" + String.valueOf(this.board.getActorId().getId())
+                + ", typeId=" + String.valueOf(this.board.getTypeId().getId())
+                + ", insideGroupId=" + String.valueOf(this.board.getIdInsideGroup().getId())
+                + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().getId())
+                + ", typeId=" + String.valueOf(this.panel.getTypeId().getId())
+                + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().getId())
                 + ") from the position(" + String.valueOf(this.position.getX())
                 + ", " + String.valueOf(this.position.getY())
                 + ")."
@@ -61,8 +61,8 @@ public class Cut {
     }
 
     public boolean is_delivery_possible() throws ParseException {
-        String d_client = this.board.getCritical_date().date;
-        String d_supplier = this.panel.getCritical_date().date;
+        String d_client = this.board.getCritical_date().getDeadline();
+        String d_supplier = this.panel.getCritical_date().getDeadline();
         Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
         Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
 

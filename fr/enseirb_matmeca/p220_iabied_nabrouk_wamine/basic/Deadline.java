@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 public class Deadline implements IsValid {
-    public String date;
+    private String date;
 
     public Deadline(String date){
         this.date = date;
@@ -54,6 +54,7 @@ public class Deadline implements IsValid {
         }
         return false;
     }
+
     
     //getters & setters
 

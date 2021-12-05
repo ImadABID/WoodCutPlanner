@@ -3,8 +3,10 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
 public class Rectangle extends Polygon {
 
     private Point leftTopPt;
-    private double length;
-    private double width;
+    private  double length;
+    private  double width;
+    private  String length_str;
+    private  String width_str;
 
     private boolean orientation;
     /*
@@ -46,9 +48,24 @@ public class Rectangle extends Polygon {
 
     //isValid
     public boolean isValid(){
+        try {
+            length = Double.parseDouble(length_str);
+            width = Double.parseDouble(width_str);
+        } catch(NumberFormatException e){
+            System.out.println(e);
+            return false;
+        }
         return (length>0 && width>0 && length>=width);
     }
 
+    // setters
+    public void setLength(String length){
+        this.length_str = length;
+    }
+
+    public void setWidth(String width){
+        this.width_str = width;
+    }
     // getters
 
     public Point getLeftTopPt(){
