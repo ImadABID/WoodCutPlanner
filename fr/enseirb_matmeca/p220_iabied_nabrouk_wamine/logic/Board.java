@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
 
-public class Board extends WoodPiece {
+class Board extends WoodPiece {
 
     private boolean pulledOut;
 
-    public Board(
+    protected Board(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
@@ -26,11 +26,11 @@ public class Board extends WoodPiece {
         this.pulledOut = false;
     }
 
-    public boolean isPulledOut(){
+    protected boolean isPulledOut(){
         return this.pulledOut;
     }
     
-    public void setAsPulledOut(){
+    protected void setAsPulledOut(){
         this.pulledOut = true;
     }
 
@@ -38,14 +38,14 @@ public class Board extends WoodPiece {
         return this.toString("client");
     }
 
-    public static void printList(ArrayList<Board> boards){
+    protected static void printList(ArrayList<Board> boards){
         for(int i = 0 ; i < boards.size(); i++){
             System.out.println(boards.get(i));
         }
     }
 
 
-    public static ArrayList<Board> read(String path){
+    protected static ArrayList<Board> read(String path){
 
         ArrayList<Board> boards = new ArrayList<Board>();
 

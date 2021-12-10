@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CutStep4Algo implements CutAlgos {
+class CutStep4Algo implements CutAlgos {
 
     public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels){
 

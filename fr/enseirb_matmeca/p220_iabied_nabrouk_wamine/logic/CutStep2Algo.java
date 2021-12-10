@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CutStep2Algo implements CutAlgos {
+class CutStep2Algo implements CutAlgos {
 
     public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> panels)throws ParseException{
         ArrayList<Cut> cuts = new ArrayList<>();
@@ -26,7 +26,7 @@ public class CutStep2Algo implements CutAlgos {
         return cuts;
     }
 
-    public static ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity) throws ParseException {
+    protected static ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity) throws ParseException {
 
         ArrayList<Board> corresponding_boards = new ArrayList<>();
         Rectangle rect = (Rectangle) panel.getPolygon(), b_rect;
@@ -59,7 +59,7 @@ public class CutStep2Algo implements CutAlgos {
 
     }
 
-    public static boolean is_rectangle(Polygon p){
+    protected static boolean is_rectangle(Polygon p){
         return (p instanceof Rectangle);
     }
 

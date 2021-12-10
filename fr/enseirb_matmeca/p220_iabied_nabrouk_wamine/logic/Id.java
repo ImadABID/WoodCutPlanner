@@ -1,4 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
+import java.util.ArrayList;
 
 class Id implements IsValid{   
     private int value_num;
@@ -10,6 +11,10 @@ class Id implements IsValid{
 
     protected Id(){
         this(-1);
+    }
+    protected Id(ArrayList<String> id){
+        this.value_str = id.get(0);
+        this.value_num = Integer.parseInt(id.get(0));
     }
 
     @Override

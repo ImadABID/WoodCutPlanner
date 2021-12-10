@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Deadline implements IsValid {
+class Deadline implements IsValid {
     private String date;
 
-    public Deadline(String date){
+    protected Deadline(String date){
         this.date = date;
     }
 
-    public Deadline(){
+    protected Deadline(){
         this("");
     }
 
@@ -58,10 +58,10 @@ public class Deadline implements IsValid {
     
     //getters & setters
 
-    public String getDeadline(){
+    protected String getDeadline(){
         return this.date;
     }
-    public void setDeadline(String date){
+    protected void setDeadline(String date){
         this.date = date;
     }
 
