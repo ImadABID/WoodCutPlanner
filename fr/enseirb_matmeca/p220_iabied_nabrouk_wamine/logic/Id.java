@@ -1,7 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 
-class Id implements IsValid{   
+class Id implements BasicObject{   
     private int value_num;
     private String value_str;
 

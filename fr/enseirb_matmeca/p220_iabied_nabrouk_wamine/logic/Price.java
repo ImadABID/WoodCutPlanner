@@ -1,7 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 
-class Price implements IsValid {
+class Price implements BasicObject {
 
     private String value_str;
     private Float value_num;

@@ -3,7 +3,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-class Polygon implements IsValid{
+class Polygon implements BasicObject{
    
     protected List<Point> pts;
 

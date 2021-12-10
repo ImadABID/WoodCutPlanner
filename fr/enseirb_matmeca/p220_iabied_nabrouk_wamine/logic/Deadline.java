@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-class Deadline implements IsValid {
+class Deadline implements BasicObject {
     private String date;
 
     protected Deadline(String date){

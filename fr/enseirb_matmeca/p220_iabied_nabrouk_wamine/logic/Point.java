@@ -1,7 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 
-class Point implements IsValid{
+class Point implements BasicObject{
 
     private double x;
     private double y;
