@@ -2,16 +2,11 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Polygon;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Price;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
 
-public class Panel extends WoodPiece{
+class Panel extends WoodPiece{
 
-    public Panel(
+    protected Panel(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
@@ -27,7 +22,7 @@ public class Panel extends WoodPiece{
         );
     }
 
-    public Panel deepCopy(){
+    protected Panel deepCopy(){
         return new Panel(
             new Id(this.actorId.getId()),
             new Id(this.typeId.getId()), new Id(this.idInsideGroup.getId()), new Number(this.nbrPiecesFromType.getNumber()),
@@ -41,14 +36,14 @@ public class Panel extends WoodPiece{
         return this.toString("supplier");
     }
 
-    public static void printList(ArrayList<Panel> panels){
+    protected static void printList(ArrayList<Panel> panels){
         for(int i = 0 ; i < panels.size(); i++){
             Panel panel = panels.get(i);
             System.out.println(panel);
         }
     }
 
-    public static ArrayList<Panel> read(String path){
+    protected static ArrayList<Panel> read(String path){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
 

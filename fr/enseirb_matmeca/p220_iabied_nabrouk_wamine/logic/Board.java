@@ -2,11 +2,11 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Polygon;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Price;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Deadline;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Id;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Number;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Polygon;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Price;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
 
 public class Board extends WoodPiece {

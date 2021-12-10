@@ -1,13 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
 
 import java.util.Date;

@@ -2,7 +2,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.comparator;
 
 import java.util.Comparator;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Rectangle;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.WoodPiece;
 
 public class WoodPieceLengthWidthComparator implements Comparator<WoodPiece> {

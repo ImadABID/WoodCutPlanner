@@ -1,17 +1,17 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Polygon implements IsValid{
+class Polygon implements IsValid{
    
     protected List<Point> pts;
 
-    public Polygon(List<Point> pts){
+    protected Polygon(List<Point> pts){
         this.pts = pts;
     }
 
-    public Polygon(){
+    protected Polygon(){
         this(new ArrayList<Point>());
     }
 
@@ -21,15 +21,15 @@ public class Polygon implements IsValid{
     }
 
     // getters
-    public List<Point> getPts(){
+    protected List<Point> getPts(){
         return this.pts;
     }
 
-    public Polygon deepCopy() throws RuntimeException{
+    protected Polygon deepCopy() throws RuntimeException{
         throw new RuntimeException("Polygon.deepCopy not implemented yet.");
     }
 
-    public static boolean overlap(Polygon p1, Polygon p2){
+    protected static boolean overlap(Polygon p1, Polygon p2){
 
         // To implement later.
 

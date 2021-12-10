@@ -1,14 +1,14 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-public class Id implements IsValid{   
+class Id implements IsValid{   
     private int value_num;
     private String value_str;
 
-    public Id(int value){
+    protected Id(int value){
         this.value_num = value;
     }
 
-    public Id(){
+    protected Id(){
         this(-1);
     }
 
@@ -31,10 +31,10 @@ public class Id implements IsValid{
 
     //getters
 
-    public int getId(){
+    protected int getId(){
         return this.value_num;
     }
-    public void setId(String id){
+    protected void setId(String id){
         this.value_str = id;
     }
 
