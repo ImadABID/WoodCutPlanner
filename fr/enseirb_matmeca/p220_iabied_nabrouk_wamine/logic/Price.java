@@ -1,4 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
+import java.util.ArrayList;
 
 class Price implements IsValid {
 
@@ -15,6 +16,10 @@ class Price implements IsValid {
 
     protected Price(){
         this("-1.0");
+    }
+    protected Price(ArrayList<String> price){
+        this.value_str = price.get(0);
+        this.value_num = Float.parseFloat(price.get(0));
     }
 
     @Override

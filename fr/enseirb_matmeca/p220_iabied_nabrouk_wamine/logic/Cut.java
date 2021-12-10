@@ -7,27 +7,27 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
-public class Cut {
+class Cut {
 
     private Panel panel;
     private Board board;
     private Point position; // board's decalage
 
-    public Cut(Panel panel, Board board, Point position){
+    protected Cut(Panel panel, Board board, Point position){
         this.panel = panel;
         this.board = board;
         this.position = position;
     }
 
-    public Panel getPanel(){
+    protected Panel getPanel(){
         return this.panel;
     }
 
-    public Board getBoard(){
+    protected Board getBoard(){
         return this.board;
     }
 
-    public Point getPosition(){
+    protected Point getPosition(){
         return this.position;
     }
 
@@ -49,13 +49,13 @@ public class Cut {
         return "Displaying Cut info for non Rectangle Polygon is not implemented yet.";
     }
 
-    public static void printList(ArrayList<Cut> cuts){
+    protected static void printList(ArrayList<Cut> cuts){
         for(int i = 0 ; i < cuts.size(); i++){
             System.out.println(cuts.get(i));
         }
     }
 
-    public boolean is_delivery_possible() throws ParseException {
+    protected boolean is_delivery_possible() throws ParseException {
         String d_client = this.board.getCritical_date().getDeadline();
         String d_supplier = this.panel.getCritical_date().getDeadline();
         Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);

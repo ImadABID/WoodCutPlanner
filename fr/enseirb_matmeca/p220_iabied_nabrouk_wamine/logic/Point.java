@@ -1,4 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
+import java.util.ArrayList;
 
 class Point implements IsValid{
 
@@ -12,6 +13,10 @@ class Point implements IsValid{
 
     protected Point(){
         this(.0, .0);
+    }
+    protected Point(ArrayList<String> point){
+        this.x = Double.parseDouble(point.get(0));
+        this.y = Double.parseDouble(point.get(1));
     }
 
     //isValid

@@ -3,7 +3,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CutStep3Algo1 implements CutAlgos {
+class CutStep3Algo1 implements CutAlgos {
 
     public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> panels){
 
@@ -28,7 +28,7 @@ public class CutStep3Algo1 implements CutAlgos {
         return cuts;
     }
 
-    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
+    protected static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
         if(! (panel.getPolygon() instanceof Rectangle)){
             throw new RuntimeException("Polygon must be a Rectangle.");
@@ -45,7 +45,7 @@ public class CutStep3Algo1 implements CutAlgos {
 
     }
 
-    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical) throws RuntimeException{
+    protected static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical) throws RuntimeException{
 
         /*
          * At the cut, the board has the panel's orientation.

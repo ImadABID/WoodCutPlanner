@@ -1,10 +1,8 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-
 public abstract class WoodPiece {
 
     protected Id actorId;
-
     protected Id typeId;
     protected Id idInsideGroup;
     protected Number nbrPiecesFromType;

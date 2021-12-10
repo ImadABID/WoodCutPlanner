@@ -1,9 +1,9 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-public abstract class Actor {
-    public Id id;
+abstract class Actor {
+    protected Id id;
 
-    public Id getId(){
+    protected Id getId(){
         return this.id;
     }
 
