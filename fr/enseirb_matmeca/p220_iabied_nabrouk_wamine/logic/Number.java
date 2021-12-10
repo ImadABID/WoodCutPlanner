@@ -1,14 +1,14 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-public class Number implements IsValid{
+class Number implements IsValid{
     private int value_num;
     private String value_str;
 
-    public Number(int value){
+    protected Number(int value){
         this.value_num = value;
     }
 
-    public Number(){
+    protected Number(){
         this(-1);
     }
 
@@ -31,13 +31,13 @@ public class Number implements IsValid{
 
     //getters & setters
 
-    public int getNumber(){
+    protected int getNumber(){
         return this.value_num;
     }
-    public void setNumber(String value){
+    protected void setNumber(String value){
         this.value_str = value;
     }
-    public void setNumber(int value){
+    protected void setNumber(int value){
         this.value_num = value;
     }
 

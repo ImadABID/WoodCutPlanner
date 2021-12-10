@@ -1,11 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.comparator;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.Comparator;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.WoodPiece;
-
-public class WoodPieceWidthLengthComparator implements Comparator<WoodPiece> {
+public class WoodPieceLengthWidthComparator implements Comparator<WoodPiece> {
 
     @Override
     public int compare(WoodPiece w1, WoodPiece w2) throws RuntimeException {
@@ -14,7 +11,7 @@ public class WoodPieceWidthLengthComparator implements Comparator<WoodPiece> {
             throw new RuntimeException("Comparing two plygones is not implemented.");
         }
 
-        return Rectangle.compareLexicalOrderWithLength(
+        return Rectangle.compareLexicalOrderLengthWith(
             (Rectangle) w1.getPolygon(),
             (Rectangle) w2.getPolygon()
         );

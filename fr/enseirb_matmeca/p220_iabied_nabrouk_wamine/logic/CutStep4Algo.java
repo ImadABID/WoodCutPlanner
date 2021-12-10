@@ -1,10 +1,8 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
 
 public class CutStep4Algo implements CutAlgos {
 

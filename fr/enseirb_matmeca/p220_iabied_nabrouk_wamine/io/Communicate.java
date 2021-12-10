@@ -1,14 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Deadline;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.IsValid;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Number;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Point;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Price;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Rectangle;
+
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.*;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -50,9 +43,7 @@ public class Communicate{
             for(int j = 0; j < boardsList.getLength(); j++){
                 Node panel = boardsList.item(j);
                 if (panel.getNodeType() == Node.ELEMENT_NODE){
-
                     Element p = (Element) panel;
-
                     Id woodId = new Id();
                     woodId.setId(p.getAttribute("id"));   //get board or panel id
                     Number number = new Number();

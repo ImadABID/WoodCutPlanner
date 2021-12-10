@@ -1,19 +1,19 @@
-package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic;
+package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-public class Price implements IsValid {
+class Price implements IsValid {
 
     private String value_str;
     private Float value_num;
 
-    public Price(Float value){
+    protected Price(Float value){
         this.value_num = value;
     }
 
-    public Price(String value){
+    protected Price(String value){
         this.value_str = value;
     }
 
-    public Price(){
+    protected Price(){
         this("-1.0");
     }
 
@@ -40,10 +40,10 @@ public class Price implements IsValid {
     
      //getters & setters
 
-    public Float getPrice(){
+    protected Float getPrice(){
         return this.value_num;
     }
-    public void setPrice(String price){
+    protected void setPrice(String price){
         this.value_str = price;
     }
 
