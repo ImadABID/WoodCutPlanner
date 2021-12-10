@@ -3,6 +3,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 
 
 class Deadline implements IsValid {
@@ -14,6 +15,10 @@ class Deadline implements IsValid {
 
     protected Deadline(){
         this("");
+    }
+
+    protected Deadline(ArrayList<String> date){
+        this.date = date.get(0);
     }
 
     @Override

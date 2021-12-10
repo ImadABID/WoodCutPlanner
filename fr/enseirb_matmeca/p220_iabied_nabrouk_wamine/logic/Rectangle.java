@@ -1,4 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
+import java.util.ArrayList;
 
 class Rectangle extends Polygon {
 
@@ -30,6 +31,14 @@ class Rectangle extends Polygon {
 
         this.orientation = false;
 
+    }
+    protected Rectangle(ArrayList<String> rectangle){
+        this.leftTopPt.setX(Double.parseDouble(rectangle.get(0)));
+        this.leftTopPt.setX(Double.parseDouble(rectangle.get(1)));
+        this.length_str = rectangle.get(2);
+        this.width_str = rectangle.get(3);
+        this.length = Double.parseDouble(rectangle.get(2));
+        this.width = Double.parseDouble(rectangle.get(3));
     }
 
     /*
