@@ -1,6 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writeable;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class XMLWriter implements Writer{
 
     // rmq: ne pas mettre le path en dur
-    public void write(ArrayList<Writeable> cuts, String path){
+    public void write(ArrayList<Writable> cuts, String path){
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -31,7 +31,7 @@ public class XMLWriter implements Writer{
 
             ArrayList<String> fields;
 
-            for (Writeable cut : cuts) {
+            for (Writable cut : cuts) {
 
                 fields = cut.getFields();
 
