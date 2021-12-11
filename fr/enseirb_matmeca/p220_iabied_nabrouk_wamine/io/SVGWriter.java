@@ -6,7 +6,7 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 // import org.w3c.dom.NodeList;
 // import org.xml.sax.SAXException;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writeable;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
 
 // import javax.xml.parsers.DocumentBuilder;
 // import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class SVGWriter implements Writer{
 
-     public void write(ArrayList<Writeable> cuts, String path) {
+     public void write(ArrayList<Writable> cuts, String path) {
          try {
 //        //Document doc = new Document("decoupes.xml");
 //        //doc.save("decoupes.svg", SaveFormat.Svg);

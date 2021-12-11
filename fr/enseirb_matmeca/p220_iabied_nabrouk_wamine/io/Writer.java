@@ -16,5 +16,5 @@ public interface Writer {
         throw new IllegalArgumentException("Uknown type.");
     }
 
-    public void write(ArrayList<Writeable> cuts, String path);
+    public void write(ArrayList<Writable> cuts, String path);
 }

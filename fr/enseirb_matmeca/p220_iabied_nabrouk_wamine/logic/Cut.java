@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
-class Cut implements Writeable{
+class Cut implements Writable{
 
     private Panel panel;
     private Board board;
