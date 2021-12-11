@@ -1,29 +1,29 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.basic.Id;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+// import org.w3c.dom.Document;
+// import org.w3c.dom.Element;
+// import org.w3c.dom.Node;
+// import org.w3c.dom.NodeList;
+// import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.IOException;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writeable;
+
+// import javax.xml.parsers.DocumentBuilder;
+// import javax.xml.parsers.DocumentBuilderFactory;
+// import javax.xml.parsers.ParserConfigurationException;
+// import javax.xml.transform.OutputKeys;
+// import javax.xml.transform.Transformer;
+// import javax.xml.transform.TransformerException;
+// import javax.xml.transform.TransformerFactory;
+// import javax.xml.transform.dom.DOMSource;
+// import javax.xml.transform.stream.StreamResult;
+// import java.io.File;
+// import java.io.IOException;
 import java.util.ArrayList;
 
 public class SVGWriter implements Writer{
 
-     public void write(ArrayList<Cut> cuts, String path) {
+     public void write(ArrayList<Writeable> cuts, String path) {
          try {
 //        //Document doc = new Document("decoupes.xml");
 //        //doc.save("decoupes.svg", SaveFormat.Svg);
