@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
-class Cut {
+class Cut implements Writeable{
 
     private Panel panel;
     private Board board;
@@ -29,6 +29,23 @@ class Cut {
 
     protected Point getPosition(){
         return this.position;
+    }
+
+    public ArrayList<String> getFields(){
+        ArrayList<String> field_string = new ArrayList<String>();
+
+        field_string.add(String.valueOf(this.board.getActorId().getId()));
+        field_string.add(String.valueOf(this.board.getTypeId().getId()));
+        field_string.add(String.valueOf(this.board.getIdInsideGroup().getId()));
+
+        field_string.add(String.valueOf(this.panel.getActorId().getId()));
+        field_string.add(String.valueOf(this.panel.getTypeId().getId()));
+        field_string.add(String.valueOf(this.panel.getIdInsideGroup().getId()));
+
+        field_string.add(String.valueOf(this.position.getX()));
+        field_string.add(String.valueOf(this.position.getY()));
+
+        return field_string;
     }
 
     public String toString(){
