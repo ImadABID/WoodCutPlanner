@@ -11,6 +11,10 @@ class Polygon implements BasicObject{
         this.pts = pts;
     }
 
+    protected Polygon(ArrayList<String> pts_str){
+        throw new RuntimeException("Polygon(ArrayList<String> pts_str) not implemented yet.");
+    }
+
     protected Polygon(){
         this(new ArrayList<Point>());
     }
