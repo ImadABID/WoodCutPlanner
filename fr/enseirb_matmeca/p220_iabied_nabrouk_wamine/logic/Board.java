@@ -2,8 +2,6 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
-
 class Board extends WoodPiece {
 
     private boolean pulledOut;
@@ -26,6 +24,11 @@ class Board extends WoodPiece {
         this.pulledOut = false;
     }
 
+    protected Board(ArrayList<BasicObject> paramList){
+        super(paramList);
+        this.pulledOut = false;
+    }
+
     protected boolean isPulledOut(){
         return this.pulledOut;
     }
@@ -45,6 +48,7 @@ class Board extends WoodPiece {
     }
 
 
+    /*
     protected static ArrayList<Board> read(String path){
 
         ArrayList<Board> boards = new ArrayList<Board>();
@@ -63,5 +67,6 @@ class Board extends WoodPiece {
         return boards;
 
     }
+    */
 
 }

@@ -2,8 +2,6 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
-
 class Panel extends WoodPiece{
 
     protected Panel(
@@ -20,6 +18,10 @@ class Panel extends WoodPiece{
             critical_date,
             price
         );
+    }
+
+    public Panel(ArrayList<BasicObject> paramList){
+        super(paramList);
     }
 
     protected Panel deepCopy(){
@@ -43,6 +45,7 @@ class Panel extends WoodPiece{
         }
     }
 
+    /*
     protected static ArrayList<Panel> read(String path){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
@@ -61,5 +64,6 @@ class Panel extends WoodPiece{
         return panels;
 
     }
+    */
 
 }
