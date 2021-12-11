@@ -1,18 +1,14 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writeable;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -22,98 +18,81 @@ import java.util.ArrayList;
 public class XMLWriter implements Writer{
 
     // rmq: ne pas mettre le path en dur
-     public void write(ArrayList<Cut> cuts, String path){
-         try {
-             Board client_b;
-             Panel supplier_p;
-             Cut cut;
+    public void write(ArrayList<Writeable> cuts, String path){
+        try {
 
-             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-             DocumentBuilder builder = factory.newDocumentBuilder();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
 
-             // racine
-             Document doc = builder.newDocument();
-             Element racine = doc.createElement("decoupes");
-             doc.appendChild(racine);
+            // racine
+            Document doc = builder.newDocument();
+            Element racine = doc.createElement("decoupes");
+            doc.appendChild(racine);
 
-             for (Cut value : cuts) {
-                 cut = value;
-                 client_b = cut.getBoard();
-                 supplier_p = cut.getPanel();
-                 // decoupes
-                 Element decoupe = doc.createElement("decoupe");
-                 racine.appendChild(decoupe);
+            ArrayList<String> fields;
 
-                 // client
-                 Element client = doc.createElement("client");
-                 decoupe.appendChild(client);
+            for (Writeable cut : cuts) {
 
-                 // attributs de client id
-                 Attr attr_id = doc.createAttribute("id");
-                 attr_id.setValue(String.valueOf(client_b.getActorId().getId()));
-                 client.setAttributeNode(attr_id);
+                fields = cut.getFields();
 
-                 // attributs de commande planche
-                 Attr planche = doc.createAttribute("planche");
-                 planche.setValue(String.valueOf(client_b.getTypeId().getId())); //?
-                 client.setAttributeNode(planche);
+                // decoupes
+                Element decoupe = doc.createElement("decoupe");
+                racine.appendChild(decoupe);
 
-                 // fournisseur
-                 Element fournisseur = doc.createElement("fournisseur");
-                 decoupe.appendChild(fournisseur);
+                // client
+                Element client = doc.createElement("client");
+                decoupe.appendChild(client);
 
-                 // attributs de commande id
-                 attr_id = doc.createAttribute("id");
-                 attr_id.setValue(String.valueOf(supplier_p.getActorId().getId()));
-                 fournisseur.setAttributeNode(attr_id);
+                // attributs de client id
+                Attr attr = doc.createAttribute("id");
+                attr.setValue(fields.get(0));
+                client.setAttributeNode(attr);
 
-                 // attributs de commande panneau
-                 Attr panneau = doc.createAttribute("panneau");
-                 panneau.setValue(String.valueOf(supplier_p.getTypeId().getId())); //?
-                 fournisseur.setAttributeNode(panneau);
+                // attributs de commande planche
+                attr  = doc.createAttribute("planche");
+                attr.setValue(fields.get(1));
+                client.setAttributeNode(attr);
 
-                 // position
-                 Element position = doc.createElement("position");
-                 decoupe.appendChild(position);
+                // fournisseur
+                Element fournisseur = doc.createElement("fournisseur");
+                decoupe.appendChild(fournisseur);
 
-                 // attributs de position x
-                 Attr x = doc.createAttribute("x");
-                 x.setValue(String.valueOf(cut.getPosition().getX())); //?
-                 position.setAttributeNode(x);
+                // attributs de commande id
+                attr = doc.createAttribute("id");
+                attr.setValue(fields.get(2));
+                fournisseur.setAttributeNode(attr);
 
-                 // attributs de position y
-                 Attr y = doc.createAttribute("y");
-                 y.setValue(String.valueOf(cut.getPosition().getY())); //?
-                 position.setAttributeNode(y);
+                // attributs de commande panneau
+                attr = doc.createAttribute("panneau");
+                attr.setValue(fields.get(3));
+                fournisseur.setAttributeNode(attr);
 
-             }
+                // position
+                Element position = doc.createElement("position");
+                decoupe.appendChild(position);
 
-             // write the content into xml file
-             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-             Transformer transformer = transformerFactory.newTransformer();
-             DOMSource source = new DOMSource(doc);
-             StreamResult resultat = new StreamResult(new File("decoupes.xml"));
-             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-             transformer.transform(source, resultat);
+                // attributs de position x
+                attr = doc.createAttribute("x");
+                attr.setValue(fields.get(4));
+                position.setAttributeNode(attr);
 
-             // write the content into xml file
-        /*TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        DOMSource source = new DOMSource(doc);
-        StreamResult resultat = new StreamResult(new File("decoupes.xml"));*/
-             //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-             //transformer.transform(source, resultat);
+                // attributs de position y
+                attr = doc.createAttribute("y");
+                attr.setValue(fields.get(5));
+                position.setAttributeNode(attr);
 
-             //SVG
-//        XPathFactory sfactory = XPathFactory.newInstance();
-//        XPath xpath = sfactory.newXPath();
-//        String xpathQuery = "./svg";
-//        XPathExpression exp = xpath.compile(xpathQuery);
-//        Node svgNode = (Node) exp.evaluate(doc, XPathConstants.NODE);
+            }
 
+            // write the content into xml file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult resultat = new StreamResult(new File(path));
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, resultat);
 
-         }catch(Exception e){
-             System.out.println(e);
-         }
-     }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 }

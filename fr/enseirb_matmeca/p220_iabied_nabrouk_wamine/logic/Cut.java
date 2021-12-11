@@ -35,12 +35,18 @@ class Cut implements Writeable{
         ArrayList<String> field_string = new ArrayList<String>();
 
         field_string.add(String.valueOf(this.board.getActorId().getId()));
-        field_string.add(String.valueOf(this.board.getTypeId().getId()));
-        field_string.add(String.valueOf(this.board.getIdInsideGroup().getId()));
+        field_string.add(
+            String.valueOf(this.board.getTypeId().getId())
+            +"."+
+            String.valueOf(this.board.getIdInsideGroup().getId())
+        );
 
         field_string.add(String.valueOf(this.panel.getActorId().getId()));
-        field_string.add(String.valueOf(this.panel.getTypeId().getId()));
-        field_string.add(String.valueOf(this.panel.getIdInsideGroup().getId()));
+        field_string.add(
+            String.valueOf(this.panel.getTypeId().getId())
+            +"."+
+            String.valueOf(this.panel.getIdInsideGroup().getId())
+        );
 
         field_string.add(String.valueOf(this.position.getX()));
         field_string.add(String.valueOf(this.position.getY()));

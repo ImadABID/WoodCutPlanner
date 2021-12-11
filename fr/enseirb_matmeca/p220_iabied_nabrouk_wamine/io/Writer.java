@@ -1,8 +1,8 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
-
 import java.util.ArrayList;
+
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writeable;
 
 public interface Writer {
 
@@ -16,5 +16,5 @@ public interface Writer {
         throw new IllegalArgumentException("Uknown type.");
     }
 
-    public void write(ArrayList<Cut> cuts, String path);
+    public void write(ArrayList<Writeable> cuts, String path);
 }
