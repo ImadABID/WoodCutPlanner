@@ -1,6 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -78,13 +77,23 @@ class Cut implements Writable{
         }
     }
 
-    protected boolean is_delivery_possible() throws ParseException {
-        String d_client = this.board.getCritical_date().getDeadline();
-        String d_supplier = this.panel.getCritical_date().getDeadline();
-        Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
-        Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
+    protected boolean is_delivery_possible() {
 
-        return date_supplier.before(date_client);
+        try{
+
+            String d_client = this.board.getCritical_date().getDeadline();
+            String d_supplier = this.panel.getCritical_date().getDeadline();
+
+            Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
+            Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
+
+            return date_supplier.before(date_client);
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        throw new RuntimeException("Exit");
 
     }
 
