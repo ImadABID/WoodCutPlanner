@@ -6,4 +6,11 @@ public interface Writable {
 
     public ArrayList<String> getFields();
 
+    public String toString();
+
+    public static void printList(ArrayList<Writable> writableList){
+        for(int i = 0; i<writableList.size(); i++){
+            System.out.println(writableList.get(i));
+        }
+    }
 }
