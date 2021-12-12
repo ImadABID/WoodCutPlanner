@@ -89,7 +89,6 @@ public class XMLReader implements Reader {
                         paramList.add(p.getAttribute("prix"));
                         price = BasicObject.buildBasicObject("Price", paramList);
 
-                        
                         // Get woodpiece Rectangle
                         /*
                             To adapt with Polygone Later.
@@ -181,6 +180,6 @@ public class XMLReader implements Reader {
         }
 
         /* To exit */
-        throw new RuntimeException();
+        throw new RuntimeException("Exit");
     }
 }

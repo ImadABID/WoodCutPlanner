@@ -49,14 +49,21 @@ class Rectangle extends Polygon {
 
     }
 
-    public Rectangle(ArrayList<String> rectangle){
-        try{
-            
-            this.leftTopPt.setX(Double.parseDouble(rectangle.get(0)));
-            this.leftTopPt.setX(Double.parseDouble(rectangle.get(1)));
+    public Rectangle(ArrayList<String> paramList){
 
-            this.length = Double.parseDouble(rectangle.get(2));
-            this.width = Double.parseDouble(rectangle.get(3));
+        if(paramList.size() != 4){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        try{
+
+            this.leftTopPt = new Point(
+                Double.parseDouble(paramList.get(0)), 
+                Double.parseDouble(paramList.get(1))
+            );
+
+            this.length = Double.parseDouble(paramList.get(2));
+            this.width = Double.parseDouble(paramList.get(3));
 
             this.orientation = false;
 
