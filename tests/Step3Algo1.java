@@ -1,31 +1,32 @@
 package tests;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.CutStep3Algo1;
-import org.xml.sax.SAXException;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Reader;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Writer;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.CutAlgos;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.xpath.XPathExpressionException;
 
 public class Step3Algo1{
-    public static void main(String[] args) throws ParserConfigurationException, IOException, ParseException, TransformerException, SAXException, XPathExpressionException {
+    public static void main(String[] args){
 
-        ArrayList<Panel> panels = Panel.read("fournisseurs.xml");
-        ArrayList<Board> boards = Board.read("clients.xml");
-        
-        ArrayList<Cut> cuts = new CutStep3Algo1().optimiseCuts(boards, panels);
+        // Reading
+        Reader xmlReader = Reader.getReader("XML");
+        ArrayList <Readable> panels = xmlReader.read("fournisseurs.xml");
+        ArrayList <Readable> boards = xmlReader.read("clients.xml");
 
-        Cut.printList(cuts);
-        Communicate.generateCutsXML(cuts);
-        //Communicate.generateCutsSVG("decoupes.xml");
+        // Processing
+        CutAlgos algo = CutAlgos.getAlgo("step3.1");
+        ArrayList<Writable> cuts = algo.optimiseCuts(boards,panels);
+
+        // Displaying Results
+        Writable.printList(cuts);
+
+        // Writing
+        Writer xmlWriter = Writer.getWriter("XML");
+        xmlWriter.write(cuts, "decoupes.xml");
 
     }
 }

@@ -2,18 +2,31 @@ package tests;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Reader;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Writer;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.CutAlgos;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
+
 
 public class Step4{
-    public static void main(String[] args) {
-        
-        ArrayList<Panel> panels = Panel.read("fournisseurs.xml");
-        Panel.printList(panels);
+    public static void main(String[] args){
 
-        ArrayList<Board> boards = Board.read("clients.xml");
-        Board.printList(boards);
+        // Reading
+        Reader xmlReader = Reader.getReader("XML");
+        ArrayList <Readable> panels = xmlReader.read("fournisseurs.xml");
+        ArrayList <Readable> boards = xmlReader.read("clients.xml");
 
+        // Processing
+        CutAlgos algo = CutAlgos.getAlgo("step4");
+        ArrayList<Writable> cuts = algo.optimiseCuts(boards,panels);
+
+        // Displaying Results
+        Writable.printList(cuts);
+
+        // Writing
+        Writer xmlWriter = Writer.getWriter("XML");
+        xmlWriter.write(cuts, "decoupes.xml");
 
     }
 }
