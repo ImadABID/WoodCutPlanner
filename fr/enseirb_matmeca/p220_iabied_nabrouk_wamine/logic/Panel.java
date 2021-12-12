@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Panel extends WoodPiece{
 
-    protected Panel(
+    public Panel(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
@@ -24,7 +24,7 @@ class Panel extends WoodPiece{
         super(paramList);
     }
 
-    protected Panel deepCopy(){
+    public Panel deepCopy(){
         return new Panel(
             new Id(this.actorId.getId()),
             new Id(this.typeId.getId()), new Id(this.idInsideGroup.getId()), new Number(this.nbrPiecesFromType.getNumber()),
@@ -38,7 +38,7 @@ class Panel extends WoodPiece{
         return this.toString("supplier");
     }
 
-    protected static void printList(ArrayList<Panel> panels){
+    public static void printList(ArrayList<Panel> panels){
         for(int i = 0 ; i < panels.size(); i++){
             Panel panel = panels.get(i);
             System.out.println(panel);
@@ -46,7 +46,7 @@ class Panel extends WoodPiece{
     }
 
     /*
-    protected static ArrayList<Panel> read(String path){
+    public static ArrayList<Panel> read(String path){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
 

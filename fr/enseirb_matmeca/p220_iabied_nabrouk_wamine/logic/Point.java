@@ -5,23 +5,33 @@ class Point implements BasicObject{
 
     private double x;
     private double y;
+    private boolean isValid;
 
     protected Point(double x, double y){ 
         this.setX(x);
         this.setY(y);
+        this.isValid = true;
     }
 
-    protected Point(){
-        this(.0, .0);
-    }
-    protected Point(ArrayList<String> point){
-        this.x = Double.parseDouble(point.get(0));
-        this.y = Double.parseDouble(point.get(1));
+    protected Point(ArrayList<String> paramList){
+
+        if(paramList.size() != 2){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        try{
+            this.x = Double.parseDouble(paramList.get(0));
+            this.y = Double.parseDouble(paramList.get(1));
+            this.isValid = true;
+        }catch (Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
     //isValid
     public boolean isValid(){
-        return true;
+        return this.isValid;
     }
 
     //getters & setters

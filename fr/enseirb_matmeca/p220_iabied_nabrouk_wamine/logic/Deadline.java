@@ -9,16 +9,17 @@ import java.util.ArrayList;
 class Deadline implements BasicObject {
     private String date;
 
-    protected Deadline(String date){
+    public Deadline(String date){
         this.date = date;
     }
 
-    protected Deadline(){
-        this("");
-    }
+    public Deadline(ArrayList<String> paramList){
 
-    protected Deadline(ArrayList<String> date){
-        this.date = date.get(0);
+        if(paramList.size() != 1){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        this.date = paramList.get(0);
     }
 
     @Override
@@ -63,13 +64,8 @@ class Deadline implements BasicObject {
     
     //getters & setters
 
-    protected String getDeadline(){
+    public String getDeadline(){
         return this.date;
-    }
-    protected void setDeadline(String date){
-        this.date = date;
     }
 
 }
-
-

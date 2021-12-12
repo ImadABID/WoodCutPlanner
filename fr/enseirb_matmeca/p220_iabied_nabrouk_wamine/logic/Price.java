@@ -3,53 +3,55 @@ import java.util.ArrayList;
 
 class Price implements BasicObject {
 
-    private String value_str;
-    private Float value_num;
+    private Double value;
 
-    protected Price(Float value){
-        this.value_num = value;
+    private boolean isValid;
+
+    protected Price(Double value){
+        try {
+
+            this.value = value;
+
+            if(this.value < 0){
+                throw new RuntimeException("Price cannot be negatif.");
+            }
+
+            this.isValid = true;
+
+        } catch (Exception e) {
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
-    protected Price(String value){
-        this.value_str = value;
-    }
+    protected Price(ArrayList<String> paramList){
 
-    protected Price(){
-        this("-1.0");
-    }
-    protected Price(ArrayList<String> price){
-        this.value_str = price.get(0);
-        this.value_num = Float.parseFloat(price.get(0));
+        if(paramList.size() != 1){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        try{
+            this.value = Double.parseDouble(paramList.get(0));
+            if(this.value < 0){
+                throw new RuntimeException("Number cannot be negatif.");
+            }
+            this.isValid = true;
+        }catch(Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
     @Override
     public boolean isValid()
     {
-        try {
-            value_num = Float.parseFloat(value_str);
-        } catch(NumberFormatException e){
-            System.out.println(e);
-            return false;
-        }
-        final  String PriceFormat = "^\\d+(\\.\\d\\d)";
-        if (!(value_str.matches(PriceFormat))){
-            throw new IllegalArgumentException("Invalid price format  ");
-        }
-        else if (value_num <0) {
-            throw new IllegalArgumentException("Invalid Price : price must be positive");
-            //return false;
-        }
-        return true;
+        return this.isValid;
     }
 
-    
-     //getters & setters
+    //getters & setters
 
-    protected Float getPrice(){
-        return this.value_num;
-    }
-    protected void setPrice(String price){
-        this.value_str = price;
+    protected Double getPrice(){
+        return this.value;
     }
 
 }

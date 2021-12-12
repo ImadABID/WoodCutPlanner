@@ -6,117 +6,140 @@ class Rectangle extends Polygon {
     private Point leftTopPt;
     private  double length;
     private  double width;
-    private  String length_str;
-    private  String width_str;
 
     private boolean orientation;
     /*
             if orientation = false : Length follows x & Width follows y. "horizontal"
             if orientation = true : Length follows y & Width follows x. "vertical"
     */
+
+    private boolean isValid;
     
-    protected Rectangle(Point leftTopPt, double length, double width){
+    public Rectangle(Point leftTopPt, double length, double width){
 
-        super();
+        try{
 
-        this.pts.add(leftTopPt);
-        this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()));
-        this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()+width));
-        this.pts.add(new Point(leftTopPt.getX(), leftTopPt.getY()+width));
+            /*
 
-        this.leftTopPt = leftTopPt;
+            Use super instead of this.
 
-        this.length = length;
-        this.width = width;
+            this.pts.add(leftTopPt);
+            this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()));
+            this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()+width));
+            this.pts.add(new Point(leftTopPt.getX(), leftTopPt.getY()+width));
 
-        this.orientation = false;
+            this.leftTopPt = leftTopPt;
+            */
+
+            this.length = length;
+            this.width = width;
+
+            if(this.length < this.width){
+                throw new RuntimeException("length < width");
+            }
+
+            this.orientation = false;
+            
+            this.isValid = true;
+
+        }catch(Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
 
     }
-    protected Rectangle(ArrayList<String> rectangle){
-        this.leftTopPt.setX(Double.parseDouble(rectangle.get(0)));
-        this.leftTopPt.setX(Double.parseDouble(rectangle.get(1)));
-        this.length_str = rectangle.get(2);
-        this.width_str = rectangle.get(3);
-        this.length = Double.parseDouble(rectangle.get(2));
-        this.width = Double.parseDouble(rectangle.get(3));
+
+    public Rectangle(ArrayList<String> rectangle){
+        try{
+            
+            this.leftTopPt.setX(Double.parseDouble(rectangle.get(0)));
+            this.leftTopPt.setX(Double.parseDouble(rectangle.get(1)));
+
+            this.length = Double.parseDouble(rectangle.get(2));
+            this.width = Double.parseDouble(rectangle.get(3));
+
+            this.orientation = false;
+
+            this.isValid = true;
+            
+        }catch(Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
     /*
-        It keeps orientation.
+        * It keeps orientation.
+
+        * boolean autoDetectLengthWidth : is not considerd (always true).
+            it is used just to make difference between constructors.
+
     */
-    protected Rectangle(Point leftTopPt, double dimx, double dimy, boolean autoDetectLengthWidth){
+    public Rectangle(Point leftTopPt, double dimx, double dimy, boolean autoDetectLengthWidth){
 
-        this(leftTopPt, dimx, dimy);
+        this.leftTopPt = leftTopPt;
 
-        if(autoDetectLengthWidth && dimy > dimx){
+        if(dimy > dimx){
             this.length = dimy;
             this.width = dimx;
             this.orientation = true;
+        }else{
+            this.length = dimx;
+            this.width = dimy;
+            this.orientation = false;
         }
+
+        this.isValid = true;
     }
 
     //isValid
     public boolean isValid(){
-        try {
-            length = Double.parseDouble(length_str);
-            width = Double.parseDouble(width_str);
-        } catch(NumberFormatException e){
-            System.out.println(e);
-            return false;
-        }
-        return (length>0 && width>0 && length>=width);
+        return this.isValid;
     }
 
-    // setters
-    protected void setLength(String length){
-        this.length_str = length;
-    }
 
-    protected void setWidth(String width){
-        this.width_str = width;
-    }
     // getters
 
-    protected Point getLeftTopPt(){
+    public Point getLeftTopPt(){
         return this.leftTopPt;
     }
-    protected void setLeftTopPt(Point pt){
+    public void setLeftTopPt(Point pt){
         this.leftTopPt = pt;
     }
 
-    protected double getLength(){
+    public double getLength(){
         return this.length;
     }
 
-    protected double getWidth(){
+    public double getWidth(){
         return this.width;
     }
 
-    protected double getDimX(){
+    public double getDimX(){
         if(this.orientation){
             return this.width;
         }
         return this.length;
     }
 
-    protected double getDimY(){
+    public double getDimY(){
         if(this.orientation){
             return this.length;
         }
         return this.width;
     }
 
-    protected boolean isVertical(){
+    public boolean isVertical(){
         return this.orientation;
     }
-    protected void setOrientation(boolean orientation){
+    public void setOrientation(boolean orientation){
         this.orientation = orientation;
     }
-    protected void setOrientation(String orientation){
+    public void setOrientation(String orientation){
         this.orientation = (orientation == "vertical");
     }
 
-    protected Rectangle deepCopy(){
+    public Rectangle deepCopy(){
         return new Rectangle(
             this.leftTopPt.deepCopy(),
             this.length,
@@ -135,7 +158,7 @@ class Rectangle extends Polygon {
         ;
     }
 
-    protected boolean contains(Rectangle r){
+    public boolean contains(Rectangle r){
 
         if(this.isVertical()){
             if(r.isVertical()){
@@ -166,14 +189,14 @@ class Rectangle extends Polygon {
         }
     }
 
-    protected static boolean overlap(Rectangle r1, Rectangle r2){
+    public static boolean overlap(Rectangle r1, Rectangle r2){
 
         // To implement later.
 
         return false;
     }
 
-    protected static int compareLexicalOrderLengthWith(Rectangle r1, Rectangle r2){
+    public static int compareLexicalOrderLengthWith(Rectangle r1, Rectangle r2){
         
         // Decreasing order
 
@@ -197,7 +220,7 @@ class Rectangle extends Polygon {
         
     }
 
-    protected static int compareLexicalOrderWithLength(Rectangle r1, Rectangle r2){
+    public static int compareLexicalOrderWithLength(Rectangle r1, Rectangle r2){
         
         // Decreasing order
 

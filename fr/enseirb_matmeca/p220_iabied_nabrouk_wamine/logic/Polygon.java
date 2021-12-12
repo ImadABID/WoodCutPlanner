@@ -1,43 +1,43 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class Polygon implements BasicObject{
    
-    protected List<Point> pts;
+    protected ArrayList<Point> pts;
 
-    protected Polygon(List<Point> pts){
+    /*
+    public Polygon(ArrayList<Point> pts){
         this.pts = pts;
     }
+    */
 
-    protected Polygon(ArrayList<String> pts_str){
-        throw new RuntimeException("Polygon(ArrayList<String> pts_str) not implemented yet.");
+    public Polygon(ArrayList<String> pts_str){
+        throw new RuntimeException("Not implemented yet.");
     }
 
-    protected Polygon(){
-        this(new ArrayList<Point>());
-    }
+    // For Recatangle constructors
+    public Polygon(){}
+
 
     //isValid
     public boolean isValid(){
-        return true;
+        throw new RuntimeException("Not implemented yet.");
     }
 
     // getters
-    protected List<Point> getPts(){
+    public ArrayList<Point> getPts(){
         return this.pts;
     }
 
-    protected Polygon deepCopy() throws RuntimeException{
-        throw new RuntimeException("Polygon.deepCopy not implemented yet.");
+    public Polygon deepCopy() throws RuntimeException{
+        throw new RuntimeException("Not implemented yet.");
     }
 
-    protected static boolean overlap(Polygon p1, Polygon p2){
+    public static boolean overlap(Polygon p1, Polygon p2){
 
-        // To implement later.
+        throw new RuntimeException("Not implemented yet.");
 
-        return false;
     }
 
 }
