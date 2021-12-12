@@ -18,4 +18,13 @@ public interface Readable {
                 throw new IllegalArgumentException("Uknown type.");
         }
     }
+
+    public String toString();
+
+    public static void printList(ArrayList<Readable> readableList){
+
+        for(int i = 0; i<readableList.size(); i++){
+            System.out.println(readableList.get(i));
+        }
+    }
 }
