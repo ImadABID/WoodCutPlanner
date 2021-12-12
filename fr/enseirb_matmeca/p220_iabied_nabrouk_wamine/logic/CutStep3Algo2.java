@@ -1,14 +1,15 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class CutStep3Algo2 implements CutAlgos {
 
-    public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> panels){
+    public ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels){
 
-        ArrayList<Cut> cuts = new ArrayList<Cut>();
+        ArrayList<Writable> cuts = new ArrayList<Writable>();
 
+        ArrayList<Board> boards = Board.boardsFromReadabls(readableBoards);
+        ArrayList<Panel> panels = Panel.panelsFromReadabls(readablePanels);
 
         panels.sort(new WoodPieceWidthLengthComparator());
         boards.sort(new WoodPieceWidthLengthComparator());

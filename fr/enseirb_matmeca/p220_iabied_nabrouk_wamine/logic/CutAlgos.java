@@ -1,17 +1,30 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
-
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 public interface CutAlgos{
 
-    public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> Panels) throws ParserConfigurationException, ParseException, IOException, SAXException;
+    public static CutAlgos getAlgo(String algo) throws IllegalArgumentException{
+        switch(algo){
+
+            case "step2":
+                return new CutStep2Algo();
+
+            case "step3.1":
+                return new CutStep3Algo1();
+            
+            case "step3.2":
+                return new CutStep3Algo2();
+
+            case "step4":
+                return new CutStep4Algo();
+
+            default:
+                throw new IllegalArgumentException("Uknown Algo.");
+
+        }
+    }
+
+    public ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels);
 
 }
