@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class XMLWriter implements Writer{
 
-    // rmq: ne pas mettre le path en dur
     public void write(ArrayList<Writable> cuts, String path){
         try {
 
