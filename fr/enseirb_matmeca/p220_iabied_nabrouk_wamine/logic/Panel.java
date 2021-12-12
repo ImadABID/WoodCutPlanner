@@ -45,25 +45,16 @@ class Panel extends WoodPiece{
         }
     }
 
-    /*
-    public static ArrayList<Panel> read(String path){
+    
+    public static ArrayList<Panel> panelsFromReadabls(ArrayList<Readable> readabls){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
 
-        try {
-
-            ArrayList<? extends WoodPiece> woods = Communicate.readFromXML(path, "fournisseur");
-            for(int i = 0; i<woods.size(); i++){
-                panels.add((Panel) woods.get(i));
-            }
-
-        } catch (Exception e) {
-            System.out.println("read error");
+        for(int i = 0; i < readabls.size(); i++){
+            panels.add((Panel) readabls.get(i));
         }
-
+        
         return panels;
-
     }
-    */
 
 }

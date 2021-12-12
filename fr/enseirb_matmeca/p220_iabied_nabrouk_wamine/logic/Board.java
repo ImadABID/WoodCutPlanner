@@ -48,25 +48,15 @@ class Board extends WoodPiece {
     }
 
 
-    /*
-    protected static ArrayList<Board> read(String path){
+    public static ArrayList<Board> boardsFromReadabls(ArrayList<Readable> readabls){
 
         ArrayList<Board> boards = new ArrayList<Board>();
 
-        try {
-
-            ArrayList<? extends WoodPiece> woods = Communicate.readFromXML(path, "client");
-            for(int i = 0; i<woods.size(); i++){
-                boards.add((Board) woods.get(i));
-            }
-
-        } catch (Exception e) {
-            System.out.println("read error");
+        for(int i = 0; i < readabls.size(); i++){
+            boards.add((Board) readabls.get(i));
         }
-
+        
         return boards;
-
     }
-    */
 
 }
