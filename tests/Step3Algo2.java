@@ -1,30 +1,32 @@
 package tests;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.Cut;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.cut.CutStep3Algo2;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Reader;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Writer;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.CutAlgos;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
 
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 public class Step3Algo2{
-    public static void main(String[] args) throws ParserConfigurationException, IOException, ParseException, TransformerException, SAXException {
-        
-        ArrayList<Panel> panels = Panel.read("fournisseurs.xml");
-        ArrayList<Board> boards = Board.read("clients.xml");
-        
-        ArrayList<Cut> cuts = new CutStep3Algo2().optimiseCuts(boards, panels);
+    public static void main(String[] args){
 
-        Cut.printList(cuts);
-        Communicate.generateCutsXML(cuts);
+        // Reading
+        Reader xmlReader = Reader.getReader("XML");
+        ArrayList <Readable> panels = xmlReader.read("fournisseurs.xml");
+        ArrayList <Readable> boards = xmlReader.read("clients.xml");
+
+        // Processing
+        CutAlgos algo = CutAlgos.getAlgo("step3.2");
+        ArrayList<Writable> cuts = algo.optimiseCuts(boards,panels);
+
+        // Displaying Results
+        Writable.printList(cuts);
+
+        // Writing
+        Writer xmlWriter = Writer.getWriter("XML");
+        xmlWriter.write(cuts, "decoupes.xml");
 
     }
 }

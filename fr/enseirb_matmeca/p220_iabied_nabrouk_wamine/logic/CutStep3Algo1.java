@@ -1,19 +1,21 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class CutStep3Algo1 implements CutAlgos {
 
-    public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> panels){
+    public ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels){
 
+        ArrayList<Board> boards = Board.boardsFromReadabls(readableBoards);
+        ArrayList<Panel> panels = Panel.panelsFromReadabls(readablePanels);
+        
         panels.sort(new WoodPieceLengthWidthComparator());
         boards.sort(new WoodPieceLengthWidthComparator());
 
 
         Panel panel;
 
-        ArrayList<Cut> cuts = new ArrayList<Cut>();
+        ArrayList<Writable> cuts = new ArrayList<Writable>();
 
         for(int panels_index = 0; panels_index < panels.size(); panels_index++){
 
@@ -109,6 +111,15 @@ class CutStep3Algo1 implements CutAlgos {
         *   The possibility of a cut depends on the cut's algo.
         *   That's why this method is implemented here and not in the class Cut.
         */
+
+        // is_delevery_possible
+        try{
+            if(!cut.is_delivery_possible()){
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
 
         /*
          * This method is private and all calls inside this class ensure that 

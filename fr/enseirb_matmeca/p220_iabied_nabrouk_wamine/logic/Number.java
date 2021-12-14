@@ -1,49 +1,56 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 
-class Number implements IsValid{
-    private int value_num;
-    private String value_str;
+class Number implements BasicObject{
 
-    protected Number(int value){
-        this.value_num = value;
+    private int value;
+    private boolean isValid;
+
+    public Number(int value){
+        try {
+
+            this.value = value;
+
+            if(this.value < 0){
+                throw new RuntimeException("Number cannot be negatif.");
+            }
+
+            this.isValid = true;
+
+        } catch (Exception e) {
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
-    protected Number(){
-        this(-1);
-    }
-    protected Number(ArrayList<String> number){
-        this.value_str = number.get(0);
-        this.value_num = Integer.parseInt(number.get(0));
+    public Number(ArrayList<String> paramList){
+
+        if(paramList.size() != 1){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        try{
+            this.value = Integer.parseInt(paramList.get(0));
+            if(this.value < 0){
+                throw new RuntimeException("Number cannot be negatif.");
+            }
+            this.isValid = true;
+        }catch(Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
     @Override
     public boolean isValid() {
-        try {
-            value_num = Integer.parseInt(value_str);
-        } catch(NumberFormatException e){
-            System.out.println(e);
-            return false;
-        }
-        if(value_num < 0)
-        {
-            throw new IllegalArgumentException("Invalid Number : number must be positive");
-            //return false;
-        }
-        return true;
+        return this.isValid;
     }
 
 
     //getters & setters
 
-    protected int getNumber(){
-        return this.value_num;
-    }
-    protected void setNumber(String value){
-        this.value_str = value;
-    }
-    protected void setNumber(int value){
-        this.value_num = value;
+    public int getNumber(){
+        return this.value;
     }
 
 }

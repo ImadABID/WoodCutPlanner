@@ -1,13 +1,12 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
 import java.util.Date;
 
-class Cut {
+class Cut implements Writable{
 
     private Panel panel;
     private Board board;
@@ -29,6 +28,29 @@ class Cut {
 
     protected Point getPosition(){
         return this.position;
+    }
+
+    public ArrayList<String> getFields(){
+        ArrayList<String> field_string = new ArrayList<String>();
+
+        field_string.add(String.valueOf(this.board.getActorId().getId()));
+        field_string.add(
+            String.valueOf(this.board.getTypeId().getId())
+            +"."+
+            String.valueOf(this.board.getIdInsideGroup().getId())
+        );
+
+        field_string.add(String.valueOf(this.panel.getActorId().getId()));
+        field_string.add(
+            String.valueOf(this.panel.getTypeId().getId())
+            +"."+
+            String.valueOf(this.panel.getIdInsideGroup().getId())
+        );
+
+        field_string.add(String.valueOf(this.position.getX()));
+        field_string.add(String.valueOf(this.position.getY()));
+
+        return field_string;
     }
 
     public String toString(){
@@ -55,13 +77,23 @@ class Cut {
         }
     }
 
-    protected boolean is_delivery_possible() throws ParseException {
-        String d_client = this.board.getCritical_date().getDeadline();
-        String d_supplier = this.panel.getCritical_date().getDeadline();
-        Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
-        Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
+    protected boolean is_delivery_possible() {
 
-        return date_supplier.before(date_client);
+        try{
+
+            String d_client = this.board.getCritical_date().getDeadline();
+            String d_supplier = this.panel.getCritical_date().getDeadline();
+
+            Date date_client = new SimpleDateFormat("dd.MM.yy").parse(d_client);
+            Date date_supplier = new SimpleDateFormat("dd.MM.yy").parse(d_supplier);
+
+            return date_supplier.before(date_client);
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        throw new RuntimeException("Exit");
 
     }
 

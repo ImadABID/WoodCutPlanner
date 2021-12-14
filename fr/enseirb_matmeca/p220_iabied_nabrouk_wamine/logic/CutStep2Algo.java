@@ -1,14 +1,17 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 class CutStep2Algo implements CutAlgos {
 
-    public ArrayList<Cut> optimiseCuts(List<Board> boards, List<Panel> panels)throws ParseException{
-        ArrayList<Cut> cuts = new ArrayList<>();
+    public ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels){
+
+        ArrayList<Board> boards = Board.boardsFromReadabls(readableBoards);
+        ArrayList<Panel> panels = Panel.panelsFromReadabls(readablePanels);
+        ArrayList<Writable> cuts = new ArrayList<>();
+
         Cut cut;
         Point position = new Point(0,0);
         ArrayList<Board> corresponding_boards;
@@ -20,13 +23,13 @@ class CutStep2Algo implements CutAlgos {
             corresponding_boards = CorrespondingBoardsForPanel(boards, panel, quantity);
             for (Board corresponding_board : corresponding_boards) {
                 cut = new Cut(panel, corresponding_board, position);
-                cuts.add(cut);
+                cuts.add((Writable) cut);
             }
         }
         return cuts;
     }
 
-    protected static ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity) throws ParseException {
+    public static ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity){
 
         ArrayList<Board> corresponding_boards = new ArrayList<>();
         Rectangle rect = (Rectangle) panel.getPolygon(), b_rect;
@@ -59,7 +62,7 @@ class CutStep2Algo implements CutAlgos {
 
     }
 
-    protected static boolean is_rectangle(Polygon p){
+    public static boolean is_rectangle(Polygon p){
         return (p instanceof Rectangle);
     }
 

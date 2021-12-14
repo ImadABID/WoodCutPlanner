@@ -2,18 +2,20 @@ package tests;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Board;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Panel;
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Reader;
+import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
 
 public class Step1{
     public static void main(String[] args) {
-        
-        ArrayList <Panel> panels = Panel.read("fournisseurs.xml");
-        Panel.printList(panels);
 
-        ArrayList <Board> boards = Board.read("clients.xml");
-        Board.printList(boards);
+        Reader xmlReader = Reader.getReader("XML");
+
+        
+        ArrayList <Readable> panels = xmlReader.read("fournisseurs.xml");
+        Readable.printList(panels);
+
+        ArrayList <Readable> boards = xmlReader.read("clients.xml");
+        Readable.printList(boards);
 
 
     }

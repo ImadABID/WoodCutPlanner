@@ -1,46 +1,54 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
 
-class Id implements IsValid{   
-    private int value_num;
-    private String value_str;
+class Id implements BasicObject{
 
-    protected Id(int value){
-        this.value_num = value;
-    }
+    private int value;
+    private boolean isValid;
 
-    protected Id(){
-        this(-1);
+    public Id(int value){
+        try {
+
+            this.value = value;
+
+            if(this.value < 0){
+                throw new RuntimeException("Number cannot be negatif.");
+            }
+
+            this.isValid = true;
+
+        } catch (Exception e) {
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
-    protected Id(ArrayList<String> id){
-        this.value_str = id.get(0);
-        this.value_num = Integer.parseInt(id.get(0));
+    
+    protected Id(ArrayList<String> paramList){
+        if(paramList.size() != 1){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        try{
+            this.value = Integer.parseInt(paramList.get(0));
+            if(this.value < 0){
+                throw new RuntimeException("Id cannot be negatif.");
+            }
+            this.isValid = true;
+        }catch(Exception e){
+            this.isValid = false;
+            System.out.println(e);
+        }
     }
 
     @Override
     public boolean isValid() {
-        try {
-            value_num = Integer.parseInt(value_str);
-        } catch(NumberFormatException e){
-            System.out.println(e);
-            return false;
-        }
-        if(value_num < 0)
-        {
-            throw new IllegalArgumentException("Invalid actorid : actor id must be positive");
-            //return false;
-        }
-        return true;
+        return this.isValid;
     }
-
 
     //getters
 
     protected int getId(){
-        return this.value_num;
-    }
-    protected void setId(String id){
-        this.value_str = id;
+        return this.value;
     }
 
 }

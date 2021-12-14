@@ -3,17 +3,23 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 
 
-class Deadline implements IsValid {
+class Deadline implements BasicObject {
     private String date;
 
-    protected Deadline(String date){
+    public Deadline(String date){
         this.date = date;
     }
 
-    protected Deadline(){
-        this("");
+    public Deadline(ArrayList<String> paramList){
+
+        if(paramList.size() != 1){
+            throw new RuntimeException("paramList is not conform.");
+        }
+
+        this.date = paramList.get(0);
     }
 
     @Override
@@ -58,13 +64,8 @@ class Deadline implements IsValid {
     
     //getters & setters
 
-    protected String getDeadline(){
+    public String getDeadline(){
         return this.date;
-    }
-    protected void setDeadline(String date){
-        this.date = date;
     }
 
 }
-
-

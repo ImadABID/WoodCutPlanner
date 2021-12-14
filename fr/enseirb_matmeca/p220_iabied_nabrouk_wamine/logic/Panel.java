@@ -2,11 +2,9 @@ package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 
 import java.util.ArrayList;
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io.Communicate;
-
 class Panel extends WoodPiece{
 
-    protected Panel(
+    public Panel(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
@@ -22,7 +20,11 @@ class Panel extends WoodPiece{
         );
     }
 
-    protected Panel deepCopy(){
+    public Panel(ArrayList<BasicObject> paramList){
+        super(paramList);
+    }
+
+    public Panel deepCopy(){
         return new Panel(
             new Id(this.actorId.getId()),
             new Id(this.typeId.getId()), new Id(this.idInsideGroup.getId()), new Number(this.nbrPiecesFromType.getNumber()),
@@ -36,30 +38,23 @@ class Panel extends WoodPiece{
         return this.toString("supplier");
     }
 
-    protected static void printList(ArrayList<Panel> panels){
+    public static void printList(ArrayList<Panel> panels){
         for(int i = 0 ; i < panels.size(); i++){
             Panel panel = panels.get(i);
             System.out.println(panel);
         }
     }
 
-    protected static ArrayList<Panel> read(String path){
+    
+    public static ArrayList<Panel> panelsFromReadabls(ArrayList<Readable> readabls){
 
         ArrayList<Panel> panels = new ArrayList<Panel>();
 
-        try {
-
-            ArrayList<? extends WoodPiece> woods = Communicate.readFromXML(path, "fournisseur");
-            for(int i = 0; i<woods.size(); i++){
-                panels.add((Panel) woods.get(i));
-            }
-
-        } catch (Exception e) {
-            System.out.println("read error");
+        for(int i = 0; i < readabls.size(); i++){
+            panels.add((Panel) readabls.get(i));
         }
-
+        
         return panels;
-
     }
 
 }
