@@ -30,7 +30,7 @@ class CutStep3Algo1 implements CutAlgos {
         return cuts;
     }
 
-    protected static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
         if(! (panel.getPolygon() instanceof Rectangle)){
             throw new RuntimeException("Polygon must be a Rectangle.");
@@ -47,7 +47,7 @@ class CutStep3Algo1 implements CutAlgos {
 
     }
 
-    protected static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical) throws RuntimeException{
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical) throws RuntimeException{
 
         /*
          * At the cut, the board has the panel's orientation.

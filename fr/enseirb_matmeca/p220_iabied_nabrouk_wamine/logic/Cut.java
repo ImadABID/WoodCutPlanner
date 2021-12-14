@@ -12,21 +12,21 @@ class Cut implements Writable{
     private Board board;
     private Point position; // board's decalage
 
-    protected Cut(Panel panel, Board board, Point position){
+    public Cut(Panel panel, Board board, Point position){
         this.panel = panel;
         this.board = board;
         this.position = position;
     }
 
-    protected Panel getPanel(){
+    public Panel getPanel(){
         return this.panel;
     }
 
-    protected Board getBoard(){
+    public Board getBoard(){
         return this.board;
     }
 
-    protected Point getPosition(){
+    public Point getPosition(){
         return this.position;
     }
 
@@ -71,13 +71,13 @@ class Cut implements Writable{
         return "Displaying Cut info for non Rectangle Polygon is not implemented yet.";
     }
 
-    protected static void printList(ArrayList<Cut> cuts){
+    public static void printList(ArrayList<Cut> cuts){
         for(int i = 0 ; i < cuts.size(); i++){
             System.out.println(cuts.get(i));
         }
     }
 
-    protected boolean is_delivery_possible() {
+    public boolean is_delivery_possible() {
 
         try{
 
