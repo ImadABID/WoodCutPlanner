@@ -6,7 +6,7 @@ class Board extends WoodPiece {
 
     private boolean pulledOut;
 
-    protected Board(
+    public Board(
         Id actorId,
         Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
         Polygon polygon,
@@ -24,16 +24,16 @@ class Board extends WoodPiece {
         this.pulledOut = false;
     }
 
-    protected Board(ArrayList<BasicObject> paramList){
+    public Board(ArrayList<BasicObject> paramList){
         super(paramList);
         this.pulledOut = false;
     }
 
-    protected boolean isPulledOut(){
+    public boolean isPulledOut(){
         return this.pulledOut;
     }
     
-    protected void setAsPulledOut(){
+    public void setAsPulledOut(){
         this.pulledOut = true;
     }
 
@@ -41,7 +41,7 @@ class Board extends WoodPiece {
         return this.toString("client");
     }
 
-    protected static void printList(ArrayList<Board> boards){
+    public static void printList(ArrayList<Board> boards){
         for(int i = 0 ; i < boards.size(); i++){
             System.out.println(boards.get(i));
         }

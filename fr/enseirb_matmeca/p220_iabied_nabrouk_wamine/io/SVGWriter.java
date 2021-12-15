@@ -5,7 +5,7 @@ import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Writable;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class SVGWriter implements Writer{
+class SVGWriter implements Writer{
 
      public void write(ArrayList<Writable> cuts, String path) {
          try {

@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
 
-public class XMLWriter implements Writer{
+class XMLWriter implements Writer{
 
     public void write(ArrayList<Writable> cuts, String path){
         try {

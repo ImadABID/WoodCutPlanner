@@ -7,13 +7,13 @@ class Point implements BasicObject{
     private double y;
     private boolean isValid;
 
-    protected Point(double x, double y){ 
+    public Point(double x, double y){ 
         this.setX(x);
         this.setY(y);
         this.isValid = true;
     }
 
-    protected Point(ArrayList<String> paramList){
+    public Point(ArrayList<String> paramList){
 
         if(paramList.size() != 2){
             throw new RuntimeException("paramList is not conform.");
@@ -36,21 +36,21 @@ class Point implements BasicObject{
 
     //getters & setters
 
-    protected double getX(){
+    public double getX(){
         return this.x;
     }
-    protected void setX(double x){
+    public void setX(double x){
         this.x = x;
     }
 
-    protected double getY(){
+    public double getY(){
         return this.y;
     }
-    protected void setY(double y){
+    public void setY(double y){
         this.y = y;
     }
 
-    protected Point deepCopy(){
+    public Point deepCopy(){
         return new Point(this.x, this.y);
     }
 

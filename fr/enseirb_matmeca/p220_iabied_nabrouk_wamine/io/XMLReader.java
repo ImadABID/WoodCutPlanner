@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.BasicObject;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
 
-public class XMLReader implements Reader {
+class XMLReader implements Reader {
 
 
     public ArrayList<Readable> read(String path) {

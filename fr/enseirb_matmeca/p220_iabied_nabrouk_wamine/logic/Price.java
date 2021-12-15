@@ -7,7 +7,7 @@ class Price implements BasicObject {
 
     private boolean isValid;
 
-    protected Price(Double value){
+    public Price(Double value){
         try {
 
             this.value = value;
@@ -24,7 +24,7 @@ class Price implements BasicObject {
         }
     }
 
-    protected Price(ArrayList<String> paramList){
+    public Price(ArrayList<String> paramList){
 
         if(paramList.size() != 1){
             throw new RuntimeException("paramList is not conform.");
@@ -50,7 +50,7 @@ class Price implements BasicObject {
 
     //getters & setters
 
-    protected Double getPrice(){
+    public Double getPrice(){
         return this.value;
     }
 

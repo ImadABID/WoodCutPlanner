@@ -23,7 +23,7 @@ class Id implements BasicObject{
         }
     }
     
-    protected Id(ArrayList<String> paramList){
+    public Id(ArrayList<String> paramList){
         if(paramList.size() != 1){
             throw new RuntimeException("paramList is not conform.");
         }
@@ -47,7 +47,7 @@ class Id implements BasicObject{
 
     //getters
 
-    protected int getId(){
+    public int getId(){
         return this.value;
     }
 

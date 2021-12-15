@@ -30,7 +30,7 @@ class CutStep3Algo2 implements CutAlgos {
         return cuts;
     }
 
-    protected static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
 
         /*
          * At the cut, the board has the panel's orientation.
