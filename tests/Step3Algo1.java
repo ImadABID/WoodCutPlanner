@@ -28,5 +28,9 @@ public class Step3Algo1{
         Writer xmlWriter = Writer.getWriter("XML");
         xmlWriter.write(cuts, "decoupes.xml");
 
+        // Writing
+        Writer svgWriter = Writer.getWriter("SVG");
+        svgWriter.write(cuts, "decoupes");
+
     }
 }
