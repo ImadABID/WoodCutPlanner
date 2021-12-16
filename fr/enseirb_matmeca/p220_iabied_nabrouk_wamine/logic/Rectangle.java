@@ -69,6 +69,14 @@ class Rectangle extends Polygon {
             this.length = Double.parseDouble(paramList.get(2));
             this.width = Double.parseDouble(paramList.get(3));
 
+            if(this.length <= 0 || this.width <= 0){
+                throw new RuntimeException("Dimensions cannot be negatif or null.");
+            }
+
+            if(this.length < this.width){
+                throw new RuntimeException("length < width");
+            }
+
             this.orientation = false;
 
             this.isValid = true;

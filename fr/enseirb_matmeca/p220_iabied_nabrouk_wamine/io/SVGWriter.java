@@ -39,7 +39,7 @@ class SVGWriter implements Writer{
                     board_width = fields_first.get(8);
                     board_height = fields_first.get(9);
 
-                    pw = new PrintWriter(path + "_panel_" + fields_first.get(2) + "." + fields_first.get(3) + ".svg");
+                    pw = new PrintWriter(path +"_"+ String.valueOf(i) + "_panel_" + fields_first.get(2) + "." + fields_first.get(3) + ".svg");
 
                     pw.println("<svg xmlns=\"http://www.w3.org/2000/svg\"");
                     pw.println("    version=\"1.1\" width=\"" + panel_width + "\" height=\"" + panel_height + "\">");
