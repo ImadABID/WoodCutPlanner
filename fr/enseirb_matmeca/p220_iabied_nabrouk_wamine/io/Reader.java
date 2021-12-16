@@ -1,7 +1,6 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.io;
 
 
-import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.WoodPiece;
 import fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic.Readable;
 
 import java.util.ArrayList;

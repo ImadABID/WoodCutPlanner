@@ -50,6 +50,12 @@ class Cut implements Writable{
         field_string.add(String.valueOf(this.position.getX()));
         field_string.add(String.valueOf(this.position.getY()));
 
+        field_string.add(String.valueOf(((Rectangle)this.panel.getPolygon()).getDimX()));
+        field_string.add(String.valueOf(((Rectangle)this.panel.getPolygon()).getDimY()));
+
+        field_string.add(String.valueOf(((Rectangle)this.board.getPolygon()).getDimX()));
+        field_string.add(String.valueOf(((Rectangle)this.board.getPolygon()).getDimY()));
+
         return field_string;
     }
 
