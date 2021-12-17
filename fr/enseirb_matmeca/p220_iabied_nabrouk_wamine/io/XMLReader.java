@@ -95,43 +95,26 @@ class XMLReader implements Reader {
                         */
                         
                         paramList = new ArrayList<String>();
+                        
+                            // Setting top left point
+                        paramList.add("0.00");
+                        paramList.add("0.00");
 
                             // Dimensions
                         NodeList dimList = panel.getChildNodes();
-                        int element_num = 0;
                         for (int k = 0; k < dimList.getLength(); k++) {
                             Node dim = dimList.item(k);
                             if (dim.getNodeType() == Node.ELEMENT_NODE) {
 
                                 Element d = (Element) dim;
-                                System.out.println("le tag name est " + d.getTagName());
-                                //System.out.println(d.getTagName().equals("dim"));
-                                if (d.getTagName().equals("dim") && element_num != 1){
-                                    // Setting top left point
-                                    paramList.add("0.00");
-                                    paramList.add("0.00");
-                                    paramList.add(d.getAttribute("L"));
-                                    paramList.add(d.getAttribute("l"));
-                                    element_num++;                                   
-                                }
-                                else if (d.getTagName().equals("point")){
-                                    paramList.add(d.getAttribute("x"));
-                                    paramList.add(d.getAttribute("y"));
-                                }
-                                else{
-                                    throw new RuntimeException("Invalid category : expected dim or point");
-                                }
-                                //System.out.println("le point k est " + "point" + point_id);
-                                //System.out.println(d.getTagName().equals("point" + point_id));
 
+                                paramList.add(d.getAttribute("L"));
+                                paramList.add(d.getAttribute("l"));
 
                             }
                         }
-                        System.out.println(paramList);
-                        if (dimList.getLength() == 1)
-                            polygon = BasicObject.buildBasicObject("Rectangle", paramList);
-                        else 
-                            polygon = BasicObject.buildBasicObject("Polygon", paramList);
+
+                        polygon = BasicObject.buildBasicObject("Rectangle", paramList);
 
                         // Declaring idInsideGroup
                         /*

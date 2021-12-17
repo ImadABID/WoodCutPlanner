@@ -32,25 +32,28 @@ class CutStep2Algo implements CutAlgos {
     public static ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity){
 
         ArrayList<Board> corresponding_boards = new ArrayList<>();
-        Rectangle rect = panel.getBoundingRect(), b_rect;
+        Rectangle rect = (Rectangle) panel.getPolygon(), b_rect;
         double panel_length = rect.getLength(), panel_width = rect.getWidth();
         double board_length, board_width;
+        Board curr_board;
         int panel_quantity = quantity;
 
         Cut cut;
 
-        for (Board curr_board : boards) {
+        for (Board board : boards) {
+            curr_board = board;
+            if (is_rectangle(curr_board.getPolygon())) {
+                b_rect = (Rectangle) curr_board.getPolygon();
+                board_length = b_rect.getLength();
+                board_width = b_rect.getWidth();
 
-            b_rect = curr_board.getBoundingRect();
-            board_length = b_rect.getLength();
-            board_width = b_rect.getWidth();
+                cut = new Cut(panel, board, new Point(0,0));
 
-            cut = new Cut(panel, curr_board, new Point(0,0));
-
-            if (panel_length >= board_length && panel_width >= board_width && cut.is_delivery_possible() && panel_quantity > 0 && !curr_board.isPulledOut()) {
-                corresponding_boards.add(curr_board);
-                panel_quantity--;
-                curr_board.setAsPulledOut();
+                if (panel_length >= board_length && panel_width >= board_width && cut.is_delivery_possible() && panel_quantity > 0 && !curr_board.isPulledOut()) {
+                    corresponding_boards.add(curr_board);
+                    panel_quantity--;
+                    curr_board.setAsPulledOut();
+                }
             }
 
         }

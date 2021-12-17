@@ -11,10 +11,10 @@ public class Step1{
         Reader xmlReader = Reader.getReader("XML");
 
         
-        ArrayList <Readable> panels = xmlReader.read("./Step4/fournisseurs.xml");
+        ArrayList <Readable> panels = xmlReader.read("fournisseurs.xml");
         Readable.printList(panels);
 
-        ArrayList <Readable> boards = xmlReader.read("./Step4/clients.xml");
+        ArrayList <Readable> boards = xmlReader.read("clients.xml");
         Readable.printList(boards);
 
 

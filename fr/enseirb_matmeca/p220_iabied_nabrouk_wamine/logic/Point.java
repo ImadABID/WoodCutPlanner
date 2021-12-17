@@ -54,13 +54,4 @@ class Point implements BasicObject{
         return new Point(this.x, this.y);
     }
 
-    public void add(Point toAdd){
-        this.x += toAdd.x;
-        this.y += toAdd.y;
-    }
-
-    public static Point difference(Point Pt1, Point Pt2){
-        return new Point(Pt1.getX() - Pt2.getX(), Pt1.getY() - Pt2.getY());
-    }
-
 }
