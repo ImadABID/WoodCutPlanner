@@ -68,29 +68,39 @@ class Cut implements Writable{
 
         // 1 - Board : a list of path pt : [x_py1, y_py1, x_py2, y_py2, ...]
 
-        // ---- point nbr
-        field_string.add(String.valueOf(this.board.getPolygon().getPts().size()));
+        String points = "";
 
         // ---- adding the pts coordinates
         pts = this.board.getPolygon().getPts();
         for(int i = 0; i < pts.size(); i++){
             pt = this.board.getPolygon().getPts().get(i);
-            field_string.add(String.valueOf(pt.getX()));
-            field_string.add(String.valueOf(pt.getY()));
+
+            points += String.valueOf(pt.getX()) + "," + String.valueOf(pt.getY());
+
+            if(i != pts.size()-1){
+                points += " ";
+            }
         }
+        field_string.add(points);
+
+
 
         // 2 - Panel : a list of path pt : [x_py1, y_py1, x_py2, y_py2, ...]
 
-        // ---- point nbr
-        field_string.add(String.valueOf(this.panel.getPolygon().getPts().size()));
+        points = "";
 
         // ---- adding the pts coordinates
         pts = this.panel.getPolygon().getPts();
         for(int i = 0; i < pts.size(); i++){
             pt = this.panel.getPolygon().getPts().get(i);
-            field_string.add(String.valueOf(pt.getX()));
-            field_string.add(String.valueOf(pt.getY()));
+
+            points += String.valueOf(pt.getX()) + "," + String.valueOf(pt.getY());
+
+            if(i != pts.size()-1){
+                points += " ";
+            }
         }
+        field_string.add(points);
 
         return field_string;
     }
