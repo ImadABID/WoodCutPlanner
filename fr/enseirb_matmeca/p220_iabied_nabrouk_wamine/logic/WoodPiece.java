@@ -11,6 +11,7 @@ abstract class WoodPiece implements Readable{
     protected Number nbrPiecesFromType;
 
     protected Polygon polygon;
+    protected Rectangle boundingRect;
 
     protected Deadline critical_date;
 
@@ -31,6 +32,7 @@ abstract class WoodPiece implements Readable{
         this.nbrPiecesFromType = nbrPiecesFromType;
 
         this.polygon = polygon;
+        this.boundingRect = new Rectangle(polygon);
 
         this.critical_date = critical_date;
 
@@ -67,7 +69,13 @@ abstract class WoodPiece implements Readable{
         if (! (paramList.get(4) instanceof Polygon)){
             throw new RuntimeException("paramList is not conform.");
         }
-        this.polygon = (Polygon) paramList.get(4);
+        if(paramList.get(4) instanceof Rectangle){
+            this.polygon = (Rectangle) paramList.get(4);
+            this.boundingRect = (Rectangle) paramList.get(4);
+        }else{
+            this.polygon = (Polygon) paramList.get(4);
+            this.boundingRect = new Rectangle(this.polygon);
+        }
 
         if (! (paramList.get(5) instanceof Deadline)){
             throw new RuntimeException("paramList is not conform.");
@@ -104,6 +112,13 @@ abstract class WoodPiece implements Readable{
     }
     public void setPolygone(Polygon p){
         this.polygon = p;
+    }
+
+    public Rectangle getBoundingRect(){
+        return this.boundingRect;
+    }
+    public void setBoundingRect(Rectangle rect){
+        this.boundingRect = rect;
     }
 
     public Deadline getCritical_date(){

@@ -30,7 +30,7 @@ class CutStep3Algo2 implements CutAlgos {
         return cuts;
     }
 
-    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards) throws RuntimeException{
+    public static ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards){
 
         /*
          * At the cut, the board has the panel's orientation.
@@ -48,13 +48,9 @@ class CutStep3Algo2 implements CutAlgos {
         Point cut_position;
         Panel possibleCutZone = panel.deepCopy();
 
-        if(! (possibleCutZone.getPolygon() instanceof Rectangle && panel.getPolygon() instanceof Rectangle)){
-            throw new RuntimeException("Polygon must be a Rectangle.");
-        }
-
         Rectangle possibleCutZoneRect;
 
-        panelRect = (Rectangle) panel.getPolygon();
+        panelRect = panel.getBoundingRect();
 
         /*
             Cuts are optimised if their direction is the inverse of the panel's orientation.
@@ -70,11 +66,8 @@ class CutStep3Algo2 implements CutAlgos {
         for(int bords_index = 0; bords_index < boards.size(); bords_index++){
 
             board = boards.get(bords_index);
-
-            if( ! (board.getPolygon() instanceof Rectangle)){
-                throw new RuntimeException("Polygon must be a Rectangle.");
-            }
-            boardRect = (Rectangle) board.getPolygon();
+            
+            boardRect = board.getBoundingRect();
             boardRect.setOrientation("horizontal");
 
 
@@ -104,6 +97,7 @@ class CutStep3Algo2 implements CutAlgos {
                     true
                 );
                 possibleCutZone.setPolygone(possibleCutZoneRect);
+                possibleCutZone.setBoundingRect(possibleCutZoneRect);
 
                 currentWidth += boardRect.getDimY();
 
@@ -125,27 +119,13 @@ class CutStep3Algo2 implements CutAlgos {
         */
 
         // is_delevery_possible
-        try{
-            if(!cut.is_delivery_possible()){
-                return false;
-            }
-        }catch(Exception e){
-            System.out.println(e);
+        if(!cut.is_delivery_possible()){
+            return false;
         }
 
-        /*
-         * This method is private and all calls inside this class ensure that 
-         * the Polygon of a WoodPiece is a Rectangle.
-        */
-
-        Rectangle cutZoneRect = (Rectangle) possibleCutZone.getPolygon();
-        Rectangle panelRect = (Rectangle) cut.getPanel().getPolygon();
-        Rectangle boardRect = (Rectangle) cut.getBoard().getPolygon();
-
-        /*
-        * We ignore board.position. The cut is always preformed from cut.position.
-        */
-        boardRect.setLeftTopPt(cut.getPosition());
+        Rectangle cutZoneRect = possibleCutZone.getBoundingRect();
+        Rectangle panelRect = cut.getPanel().getBoundingRect();
+        Rectangle boardRect = cut.getBoard().getBoundingRect();
 
         /*
         * We ignore possibleCutZone.position. The zone always starts from cut.position.

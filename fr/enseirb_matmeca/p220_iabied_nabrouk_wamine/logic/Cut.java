@@ -13,9 +13,14 @@ class Cut implements Writable{
     private Point position; // board's decalage
 
     public Cut(Panel panel, Board board, Point position){
+
         this.panel = panel;
         this.board = board;
         this.position = position;
+
+        this.board.getPolygon().setLeftTopPt(position);
+        this.board.getBoundingRect().setLeftTopPt(position);
+
     }
 
     public Panel getPanel(){
@@ -33,48 +38,75 @@ class Cut implements Writable{
     public ArrayList<String> getFields(){
         ArrayList<String> field_string = new ArrayList<String>();
 
+        // Board actor Id
         field_string.add(String.valueOf(this.board.getActorId().getId()));
+
+        // Board Id
         field_string.add(
             String.valueOf(this.board.getTypeId().getId())
             +"."+
             String.valueOf(this.board.getIdInsideGroup().getId())
         );
 
+        // Panel actor Id
         field_string.add(String.valueOf(this.panel.getActorId().getId()));
+
+        // Panel Id
         field_string.add(
             String.valueOf(this.panel.getTypeId().getId())
             +"."+
             String.valueOf(this.panel.getIdInsideGroup().getId())
         );
 
+        // Position
         field_string.add(String.valueOf(this.position.getX()));
         field_string.add(String.valueOf(this.position.getY()));
 
-        field_string.add(String.valueOf(((Rectangle)this.panel.getPolygon()).getDimX()));
-        field_string.add(String.valueOf(((Rectangle)this.panel.getPolygon()).getDimY()));
+        // Wood Piece
+        ArrayList<Point> pts;
+        Point pt;
 
-        field_string.add(String.valueOf(((Rectangle)this.board.getPolygon()).getDimX()));
-        field_string.add(String.valueOf(((Rectangle)this.board.getPolygon()).getDimY()));
+        // 1 - Board : a list of path pt : [x_py1, y_py1, x_py2, y_py2, ...]
+
+        // ---- point nbr
+        field_string.add(String.valueOf(this.board.getPolygon().getPts().size()));
+
+        // ---- adding the pts coordinates
+        pts = this.board.getPolygon().getPts();
+        for(int i = 0; i < pts.size(); i++){
+            pt = this.board.getPolygon().getPts().get(i);
+            field_string.add(String.valueOf(pt.getX()));
+            field_string.add(String.valueOf(pt.getY()));
+        }
+
+        // 2 - Panel : a list of path pt : [x_py1, y_py1, x_py2, y_py2, ...]
+
+        // ---- point nbr
+        field_string.add(String.valueOf(this.panel.getPolygon().getPts().size()));
+
+        // ---- adding the pts coordinates
+        pts = this.panel.getPolygon().getPts();
+        for(int i = 0; i < pts.size(); i++){
+            pt = this.panel.getPolygon().getPts().get(i);
+            field_string.add(String.valueOf(pt.getX()));
+            field_string.add(String.valueOf(pt.getY()));
+        }
 
         return field_string;
     }
 
     public String toString(){
-        if(this.board.getPolygon() instanceof Rectangle){
-            return
-                "The board (clientId=" + String.valueOf(this.board.getActorId().getId())
-                + ", typeId=" + String.valueOf(this.board.getTypeId().getId())
-                + ", insideGroupId=" + String.valueOf(this.board.getIdInsideGroup().getId())
-                + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().getId())
-                + ", typeId=" + String.valueOf(this.panel.getTypeId().getId())
-                + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().getId())
-                + ") from the position(" + String.valueOf(this.position.getX())
-                + ", " + String.valueOf(this.position.getY())
-                + ")."
-            ;
-        }
-
-        return "Displaying Cut info for non Rectangle Polygon is not implemented yet.";
+        return
+            "The board (clientId=" + String.valueOf(this.board.getActorId().getId())
+            + ", typeId=" + String.valueOf(this.board.getTypeId().getId())
+            + ", insideGroupId=" + String.valueOf(this.board.getIdInsideGroup().getId())
+            + ") <= (supplierId=" + String.valueOf(this.panel.getActorId().getId())
+            + ", typeId=" + String.valueOf(this.panel.getTypeId().getId())
+            + ", insideGroupId=" + String.valueOf(this.panel.getIdInsideGroup().getId())
+            + ") from the position(" + String.valueOf(this.position.getX())
+            + ", " + String.valueOf(this.position.getY())
+            + ")."
+        ;
     }
 
     public static void printList(ArrayList<Cut> cuts){
