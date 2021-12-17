@@ -4,7 +4,7 @@ import java.util.Collections;
 
 class Rectangle extends Polygon {
 
-    private Point leftTopPt;
+    
     private  double length;
     private  double width;
 
@@ -20,18 +20,6 @@ class Rectangle extends Polygon {
 
         try{
 
-            /*
-
-            Use super instead of this.
-
-            this.pts.add(leftTopPt);
-            this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()));
-            this.pts.add(new Point(leftTopPt.getX()+length, leftTopPt.getY()+width));
-            this.pts.add(new Point(leftTopPt.getX(), leftTopPt.getY()+width));
-
-            this.leftTopPt = leftTopPt;
-            */
-
             this.length = length;
             this.width = width;
 
@@ -44,6 +32,10 @@ class Rectangle extends Polygon {
             }
 
             this.orientation = false;
+
+            this.compute_ptr();
+
+            super.setLeftTopPt(leftTopPt);
             
             this.isValid = true;
 
@@ -62,7 +54,7 @@ class Rectangle extends Polygon {
 
         try{
 
-            this.leftTopPt = new Point(
+            Point leftTopPt = new Point(
                 Double.parseDouble(paramList.get(0)), 
                 Double.parseDouble(paramList.get(1))
             );
@@ -79,6 +71,10 @@ class Rectangle extends Polygon {
             }
 
             this.orientation = false;
+
+            this.compute_ptr();
+
+            super.setLeftTopPt(leftTopPt);
 
             this.isValid = true;
             
@@ -97,8 +93,6 @@ class Rectangle extends Polygon {
     */
     public Rectangle(Point leftTopPt, double dimx, double dimy, boolean autoDetectLengthWidth){
 
-        this.leftTopPt = leftTopPt;
-
         if(dimy > dimx){
             this.length = dimy;
             this.width = dimx;
@@ -108,6 +102,10 @@ class Rectangle extends Polygon {
             this.width = dimy;
             this.orientation = false;
         }
+
+        this.compute_ptr();
+
+        super.setLeftTopPt(leftTopPt);
 
         this.isValid = true;
     }
@@ -133,7 +131,6 @@ class Rectangle extends Polygon {
         double y_min = Collections.min(y_table);
         double y_max = Collections.max(y_table);
 
-        this.leftTopPt = new Point(x_min, y_min);
 
         double dimx = x_max - x_min;
         double dimy = y_max - y_min;
@@ -148,23 +145,39 @@ class Rectangle extends Polygon {
             this.orientation = false;
         }
 
+        this.compute_ptr();
+        super.setLeftTopPt(polygon.getLeftTopPt());
+
         this.isValid = true;
+
+    }
+
+    
+    public void compute_ptr(){
+
+        this.pts = new ArrayList<Point>();
+
+        if(isVertical()){
+
+            this.pts.add(new Point(0, 0));
+            this.pts.add(new Point(this.width, 0));
+            this.pts.add(new Point(this.width, this.length));
+            this.pts.add(new Point(0, this.length));
+
+        }else{
+
+            this.pts.add(new Point(0, 0));
+            this.pts.add(new Point(this.length, 0));
+            this.pts.add(new Point(this.length, this.width));
+            this.pts.add(new Point(0, this.width));
+
+        }
 
     }
 
     //isValid
     public boolean isValid(){
         return this.isValid;
-    }
-
-
-    // getters
-
-    public Point getLeftTopPt(){
-        return this.leftTopPt;
-    }
-    public void setLeftTopPt(Point pt){
-        this.leftTopPt = pt;
     }
 
     public double getLength(){
@@ -201,7 +214,7 @@ class Rectangle extends Polygon {
 
     public Rectangle deepCopy(){
         return new Rectangle(
-            this.leftTopPt.deepCopy(),
+            this.getLeftTopPt().deepCopy(),
             this.length,
             this.width
         );

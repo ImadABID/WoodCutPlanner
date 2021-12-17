@@ -6,6 +6,8 @@ import java.util.Collections;
 class Polygon implements BasicObject{
    
     protected ArrayList<Point> pts;
+    private Point leftTopPt;
+
 
     /*
     public Polygon(ArrayList<Point> pts){
@@ -31,7 +33,7 @@ class Polygon implements BasicObject{
         return this.pts;
     }
 
-    public Point getTopLeftPosition(){
+    public Point computeTopLeftPt(){
 
         ArrayList<Double> x_table = new ArrayList<Double>();
         ArrayList<Double> y_table = new ArrayList<Double>();
@@ -51,9 +53,13 @@ class Polygon implements BasicObject{
 
         return new Point(x_min, y_min);
     }
-    public void setTopLeftPosition(Point topLeftPoint){
 
-        Point diff = Point.difference(topLeftPoint, this.getTopLeftPosition());
+    public Point getLeftTopPt(){
+        return this.leftTopPt;
+    }
+    public void setLeftTopPt(Point topLeftPoint){
+
+        Point diff = Point.difference(topLeftPoint, this.getLeftTopPt());
 
         for (int i = 0; i < this.pts.size(); i++){
             this.pts.get(i).add(diff);
