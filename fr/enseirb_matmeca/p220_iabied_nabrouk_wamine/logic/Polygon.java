@@ -13,7 +13,23 @@ class Polygon implements BasicObject{
     */
 
     public Polygon(ArrayList<String> pts_str){
-        throw new RuntimeException("Not implemented yet.");
+        int pts_num = pts_str.size();
+        if(pts_num%2 != 0){
+            throw new RuntimeException("paramList's size is not conform.");
+        }
+        try{
+            this.pts = new ArrayList<Point> ();
+            for(int i = 0; i <= pts_num; i = i + 2){
+                Point point = new Point(Double.parseDouble(pts_str.get(i)), 
+                    Double.parseDouble(pts_str.get(i + 1))
+                );   
+                System.out.println(pts_str.get(i));
+                System.out.println(pts_str.get(i+1));
+                this.pts.add(point); 
+            }            
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     // For Recatangle constructors

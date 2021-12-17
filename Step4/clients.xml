@@ -1,0 +1,31 @@
+<clients>
+  <client id="0">
+    <planche id="0" nombre="10" date="14.12.21" prix="300.00">
+      <point x="50.00" y="40.00"/>
+      <point x="50.00" y="40.00"/>
+      <point x="50.00" y="40.00"/>
+    </planche>
+    <planche id="1" nombre="5" date="04.05.23" prix="200.00">
+      <point x="50.00" y="100.00"/>
+      <point x="60.00" y="30.00"/>
+      <point x="50.00" y="10.00"/>
+    </planche>
+    <planche id="2" nombre="3" date="16.05.22" prix="950.00">
+      <point x="40.00" y="60.00"/>
+      <point x="50.00" y="10.00"/>
+      <point x="6.00" y="40.00"/>
+    </planche>
+  </client>
+  <client id="1">
+    <planche id="0" nombre="10" date="14.06.12" prix="-300.00">
+      <point x="50.00" y="40.00"/>
+      <point x="50.00" y="80.00"/>
+      <point x="10.00" y="40.00"/>
+    </planche>
+    <planche id="2" nombre="10" date="14.06.24" prix="200.00">
+      <point x="50.00" y="40.00"/>
+      <point x="70.00" y="40.00"/>
+      <point x="50.00" y="40.00"/>
+    </planche>
+  </client>
+</clients>
