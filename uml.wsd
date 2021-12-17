@@ -1,207 +1,251 @@
-@startuml uml
-
+@startuml
 left to right direction
 
 package "fr.enseirb_matmeca.p220_iabied_nabrouk_wamine"{
 
-    package "basic"{
+    package "logic"{
 
-        interface basic.IsValid {
-            + boolean isValid();
-        }
+        interface BasicObject{
 
-        class basic.Point implements basic.IsValid{
+            + {static} BasicObject buildBasicObject(String type, ArrayList<String> paramList) \n\t throws IllegalArgumentException
 
-            - double x
-            - double y
-
-            + Point(double x, double y)
-            + Point()
-            + double getX()
-            + void setX(double x)
-            + double getY()
-            + void setY(double y)
+            + boolean isValid()
 
         }
 
-        class basic.Polygon implements basic.IsValid{
+        interface CutAlgos{
 
-            + Polygon(List<Point> pts)
+            + {static} CutAlgos getAlgo(String algo) throws IllegalArgumentException
+
+            + ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels)
+
+        }
+
+        interface Readable{
+
+            + {static} Readable getReadable(String type, ArrayList<BasicObject> paramList) throws IllegalArgumentException
+
+            + String toString()
+
+            + {static} void printList(ArrayList<Readable> readableList)
+
+        }
+
+        interface Writable{
+
+            + ArrayList<String> getFields()
+
+            + String toString()
+
+            + {static} void printList(ArrayList<Writable> writableList)
+
+        }
+
+        class Id implements BasicObject{
+
+            - int value
+            - boolean isValid
+
+            + Id(int value)
+            + Id(ArrayList<String> paramList)
+            + boolean isValid()
+            + int getId()
+
+        }
+
+        class Number implements BasicObject{
+
+            - int value
+            - boolean isValid
+
+            + Number(int value)
+            + Number(ArrayList<String> paramList)
+            + boolean isValid()
+            + int getNumber()
+
+        }
+
+        class Price implements BasicObject {
+
+            - Double value
+            - boolean isValid
+
+            + Price(Double value)
+            + Price(ArrayList<String> paramList)
+            + boolean isValid()
+            + Double getPrice()
+
+        }
+
+         class Polygon implements BasicObject {
+
+            # ArrayList<Point> pts
+
+            + Polygon(ArrayList<String> pts_str)
             + Polygon()
-            + List<Point> getPts();
+            + boolean isValid()
+            + ArrayList<Point> getPts()
+            + Point getTopLeftPosition()
+            + void setTopLeftPosition(Point topLeftPoint)
+            + Polygon deepCopy()
             + {static} boolean overlap(Polygon p1, Polygon p2)
 
         }
-        basic.Polygon "1" *-- "*" basic.Point
 
-        class basic.Rectangle {
 
-            - double length
-            - double width
-            - boolean orientation;
-            
-            + Rectangle(Point leftTopPt, double length, double width)\n\tthrows IllegalArgumentException
-            + Point getLeftTopPt()
-            + void setLeftTopPt(Point pt)
-            + double getLength()
-            + double getWidth()
-            + boolean isVertical()
-            + void setOrientation(boolean orientation)
-            + void setOrientation(String orientation)
-            + boolean contains(Rectangle r)
-            + {static} boolean overlap(Rectangle r1, Rectangle r2)
-            + {static} int compareLexicalOrderLengthWith(Rectangle r1, Rectangle r2)
-            + {static} int compareLexicalOrderWithLength(Rectangle r1, Rectangle r2)
-        }
-        basic.Rectangle *-- basic.Point
-        basic.Polygon <|-- basic.Rectangle
+        abstract class Actor {
 
-        class basic.Id implements basic.IsValid{
-            + int value
-
-            + Id(int value)
-            + Id()
-            + int getId()
-        }
-
-        class basic.Deadline implements basic.IsValid{
-            + String Deadline
-
-            + String getDeadline()
-            + void setDeadline(String date)
-        }
-
-        class basic.Number implements basic.IsValid{
-            + int value
-
-            + int getNumber()
-            + void setNumber(int value)
-        }
-
-        class basic.Price implements basic.IsValid {
-            + String value_1
-            + Float value_2
-
-            + Float getPrice()
-            + void setPrice(Float price)
-        }
-
-    }
-
-    package "logic"{
-
-        abstract class logic.Actor{
-            # int id
-
-            + int getId()
-            + {static} Actor getByIdIfNExistCreateIt(List<? extends Actor> actors, int id) \n\tthrows IllegalArgumentException
-        }
-
-        class logic.Client{
+            + Id getId()
 
         }
+        Actor *-- Id
 
-        class logic.Supplier{
-            
-        }
+       class Board extends WoodPiece{
 
-        logic.Actor <|-- logic.Client
-        logic.Actor <|-- logic.Supplier
-
-        abstract class logic.WoodPiece {
-
-            + WoodPiece(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone,\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
-            + basic.Id getTypeId()
-            + basic.Id getIdInsideGroup()
-            + basic.Id getNbrPiecesFromType()
-            + basic.Polygon getPolygon()
-            + basic.Deadline getCritical_date()
-            + basic.Price getPrice()
-            + String toString()
-
-        }
-        logic.WoodPiece *-- basic.Polygon
-        logic.WoodPiece "1" <-- "3" basic.Id
-        logic.WoodPiece <-- basic.Number
-        logic.WoodPiece <-- basic.Price
-        logic.WoodPiece <-- basic.Deadline
-
-        class logic.Panel {
-            + Panel(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
-            + String toString()
-            + {static} void printList(ArrayList<Panel> panels)
-            + {static} ArrayList<Panel> read(String path)
-        }
-
-        class logic.Board {
             - boolean pulledOut
-            + Board(\n\tbasic.Id actorId,\n\tbasic.Id typeId, basic.Id idInsideGroup, basic.Number nbrPiecesFromType,\n\tbasic.Polygone  polygone\n\tbasic.Deadline critical_date,\n\tbasic.Price price)
+
+            + Board(Id actorId,
+        Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
+        Polygon polygon,
+        Deadline critical_date,
+        Price price)
+            + Board(ArrayList<BasicObject> paramList)
+
             + boolean isPulledOut()
             + void setAsPulledOut()
             + String toString()
             + {static} void printList(ArrayList<Board> boards)
-            + {static} ArrayList<Board> read(String path)
-            
-        }
-
-        logic.WoodPiece <|-- logic.Panel
-        logic.WoodPiece <|-- logic.Board
-
-        package "comparator" {
-            class WoodPieceLengthWidthComparator implements java.util.Comparator {
-            }
-
-            class WoodPieceWidthLengthComparator implements java.util.Comparator {
-            }
-        }
-
-        package "cut" {
-            
-            class cut.Cut {
-
-                + Cut(Panel panel, Board board, Point position)
-                + Panel getPanel()
-                + Board getBoard()
-                + Point getPosition()
-                + String toString()
-                + {static} void printList(ArrayList<Cut> cuts)
-
-            }
-            cut.Cut *-- logic.Panel
-            cut.Cut *-- logic.Board
-            cut.Cut *-- basic.Point
-
-            interface CutAlgos{
-            }
-
-            class CutStep2Algo implements CutAlgos {
-            }
-
-            class CutStep3Algo1 implements CutAlgos {
-                - {static} boolean isCutPossible(Cut cut)
-                + {static} ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards)
-                + {static} ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical)
-            }
-
-            class CutStep3Algo2 implements CutAlgos {
-            }
-
-            class CutStep4Algo implements CutAlgos {
-            }
+            + {static} ArrayList<Board> boardsFromReadabls(ArrayList<Readable> readabls)
 
         }
+
+        class Client extends Actor{
+}
+
+        class Supplier extends Actor{
+}
+
+        class Cut implements Writable{
+
+               - Panel panel;
+               - Board board;
+               - Point position;
+
+               + Cut(Panel panel, Board board, Point position)
+               + Panel getPanel()
+               + Board getBoard()
+               + Point getPosition()
+               + ArrayList<String> getFields()
+               + String toString()
+               + {static} void printList(ArrayList<Cut> cuts)
+               + boolean is_delivery_possible()
+}
+
+        class CutStep2Algo implements CutAlgos{
+
+
+               + ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels)
+               + {static} ArrayList<Board> CorrespondingBoardsForPanel(List<Board> boards, Panel panel, int quantity)
+               + {static} boolean is_rectangle(Polygon p)
+}
+
+        class CutStep3Algo1 implements CutAlgos{
+
+
+               + ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels)
+               + {static}ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards)
+               + {static} ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical)
+               - {static} boolean isCutPossible(Cut cut)
+}
+
+        class CutStep3Algo2 implements CutAlgos{
+
+
+               + ArrayList<Writable> optimiseCuts(ArrayList <Readable> readableBoards, ArrayList <Readable> readablePanels)
+               + {static}ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards)
+               + {static} ArrayList<Cut> findBoardsForPanel(Panel panel, ArrayList<Board> boards, boolean cuts_direction_vertical)
+               - {static} boolean isCutPossible(Cut cut)
+}
+
+        abstract class WoodPiece implements Readable {
+
+            # Id actorId;
+            # Id typeId;
+            protected Id idInsideGroup;
+            # Number nbrPiecesFromType;
+
+            # Polygon polygon;
+            # Rectangle boundingRect;
+
+            # Deadline critical_date;
+
+            # Price price;
+
+            + WoodPiece(Id actorId,Id typeId, Id idInsideGroup, Number nbrPiecesFromType,
+        Polygon polygon,
+        Deadline critical_date,
+        Price price
+    )
+
+            + WoodPiece(ArrayList<BasicObject> paramList)
+            + getActorId()
+            + Id getTypeId()
+            + Id getIdInsideGroup()
+            + Number getNbrPiecesFromType()
+            + Polygon getPolygon()
+            + void setPolygone(Polygon p)
+            + Rectangle getBoundingRect()
+            + void setBoundingRect(Rectangle rect)
+            + Deadline getCritical_date()
+            + Price getPrice()
+            + String toString(String actorType)
+            + void setNbrPiecesFromType(Number nbrPiecesFromType)
+
+        }
+        WoodPiece *-- Id
+
+
+
+
+
 
     }
-
     package "io"{
-        class io.Communicate {
-            + {static} ArrayList<? extends WoodPiece> readFromXML(String path, String tagName)\t\nthrows ParserConfigurationException, IOException, SAXException, ParseException
-            + {static} void generateCutsXML(List<Cut> cuts)
-            + {static} void generateCutsSVG(List<Cut> cuts)
+       interface Reader{
+
+            + {static}Reader getReadr(String type) \n\t throws IllegalArgumentException
+            + ArrayList<Readable> read(String path);
+
+
         }
+
+       interface Writer{
+
+            + {static}Writer getWriter(String type) \n\t throws IllegalArgumentException
+
+            + void write(ArrayList<Writable> cuts, String path);
+
+        }
+
+       class XMLReader implements Reader {
+
+            + ArrayList<Readable> read(String path)
+
+        }
+
+        class XMLWriter implements Writer {
+
+            + void write(ArrayList<Writable> cuts, String path)
+
+        }
+
+        class SVGWriter implements Writer {
+
+            + void write(ArrayList<Writable> cuts, String path)
+
+        }
+
     }
 
 }
-
-
 @enduml
