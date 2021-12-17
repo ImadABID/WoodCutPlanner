@@ -111,7 +111,7 @@ abstract class WoodPiece implements Readable{
     public Rectangle getBoundingRect(){
         return this.boundingRect;
     }
-    public void setPolygone(Rectangle rect){
+    public void setBoundingRect(Rectangle rect){
         this.boundingRect = rect;
     }
 
