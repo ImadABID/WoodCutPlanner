@@ -11,6 +11,7 @@ abstract class WoodPiece implements Readable{
     protected Number nbrPiecesFromType;
 
     protected Polygon polygon;
+    protected Rectangle boundingRect;
 
     protected Deadline critical_date;
 
@@ -31,6 +32,7 @@ abstract class WoodPiece implements Readable{
         this.nbrPiecesFromType = nbrPiecesFromType;
 
         this.polygon = polygon;
+        this.boundingRect = new Rectangle(polygon);
 
         this.critical_date = critical_date;
 
@@ -104,6 +106,13 @@ abstract class WoodPiece implements Readable{
     }
     public void setPolygone(Polygon p){
         this.polygon = p;
+    }
+
+    public Rectangle getBoundingRect(){
+        return this.boundingRect;
+    }
+    public void setPolygone(Rectangle rect){
+        this.boundingRect = rect;
     }
 
     public Deadline getCritical_date(){

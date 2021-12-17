@@ -1,6 +1,5 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 class Rectangle extends Polygon {
