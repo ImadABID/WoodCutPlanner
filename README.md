@@ -49,7 +49,7 @@ Le deuxième est plus optimisé puisque c'est possible de placer les découpes s
 ## Etape 4
 
 La quatrième étape a pour but d'adapter les algorithmes implémentés précédemment pour qu'ils prennent en compte
-les commandes des clients sous n'importe quelle forme de polygone et non pas qu'en rectangle.
+les commandes des clients sous n'importe quelle forme de polygone et non pas qu'en rectangle. En effet, la catégorie dim est désormais remplacée par plusieurs balises de type point qui ont pour paramètres les coordonnées (x, y) correspondant à chaque point (choisi par le client ou le fournisseur), ces dernières sont déjà récupérées dans XMLReader qui dorénavant distingue les commandes des découpes en rectangle de celles en polygone, elles doivent être validées par la suite pour finalement faire les découpes (étape qu'on n'a pas pu atteindre). 
 
 ## UML
 <img src="uml.png">

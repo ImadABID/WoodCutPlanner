@@ -21,7 +21,6 @@ public interface CutAlgos{
 
             default:
                 throw new IllegalArgumentException("Uknown Algo.");
-
         }
     }
 
