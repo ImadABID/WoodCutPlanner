@@ -1,5 +1,7 @@
 package fr.enseirb_matmeca.p220_iabied_nabrouk_wamine.logic;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 class Rectangle extends Polygon {
 
@@ -109,6 +111,46 @@ class Rectangle extends Polygon {
         }
 
         this.isValid = true;
+    }
+
+    public Rectangle(Polygon polygon){
+
+        ArrayList<Double> x_table = new ArrayList<Double>();
+        ArrayList<Double> y_table = new ArrayList<Double>();
+
+        Point pt;
+
+        for(int i = 0; i < polygon.pts.size(); i++){
+            pt = polygon.pts.get(i);
+
+            x_table.add(pt.getX());
+            y_table.add(pt.getY());
+            
+        }
+
+        double x_min = Collections.min(x_table);
+        double x_max = Collections.max(x_table);
+
+        double y_min = Collections.min(y_table);
+        double y_max = Collections.max(y_table);
+
+        this.leftTopPt = new Point(x_min, y_min);
+
+        double dimx = x_max - x_min;
+        double dimy = y_max - y_min;
+
+        if(dimy > dimx){
+            this.length = dimy;
+            this.width = dimx;
+            this.orientation = true;
+        }else{
+            this.length = dimx;
+            this.width = dimy;
+            this.orientation = false;
+        }
+
+        this.isValid = true;
+
     }
 
     //isValid
