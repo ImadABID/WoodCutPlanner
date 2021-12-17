@@ -69,7 +69,13 @@ abstract class WoodPiece implements Readable{
         if (! (paramList.get(4) instanceof Polygon)){
             throw new RuntimeException("paramList is not conform.");
         }
-        this.polygon = (Polygon) paramList.get(4);
+        if(paramList.get(4) instanceof Rectangle){
+            this.polygon = (Rectangle) paramList.get(4);
+            this.boundingRect = (Rectangle) paramList.get(4);
+        }else{
+            this.polygon = (Polygon) paramList.get(4);
+            this.boundingRect = new Rectangle(this.polygon);
+        }
 
         if (! (paramList.get(5) instanceof Deadline)){
             throw new RuntimeException("paramList is not conform.");
