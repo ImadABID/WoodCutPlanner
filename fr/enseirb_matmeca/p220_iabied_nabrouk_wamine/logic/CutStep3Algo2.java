@@ -128,11 +128,6 @@ class CutStep3Algo2 implements CutAlgos {
         Rectangle boardRect = cut.getBoard().getBoundingRect();
 
         /*
-        * We ignore board.position. The cut is always preformed from cut.position.
-        */
-        boardRect.setLeftTopPt(cut.getPosition());
-
-        /*
         * We ignore possibleCutZone.position. The zone always starts from cut.position.
         */
         cutZoneRect.setLeftTopPt(cut.getPosition());

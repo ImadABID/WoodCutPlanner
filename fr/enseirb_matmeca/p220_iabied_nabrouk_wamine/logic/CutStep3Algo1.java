@@ -109,11 +109,6 @@ class CutStep3Algo1 implements CutAlgos {
         Rectangle panelRect = cut.getPanel().getBoundingRect();
         Rectangle boardRect = cut.getBoard().getBoundingRect();
 
-        /*
-        * We ignore board.position. The cut is always preformed from cut.position.
-        */
-        boardRect.setLeftTopPt(cut.getPosition());
-
         return panelRect.contains(boardRect);
     }
 
